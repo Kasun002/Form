@@ -7,6 +7,7 @@ import { appRouting, appRoutingProviders }  from './app.routes';
 import { AppComponent } from './app.component';
 
 import { AuthinticationModule } from "./authintication/authintication.module";
+import { HomeModule } from "./home/home.module";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AuthinticationModule } from "./authintication/authintication.module";
     HttpModule,
     appRouting,
     AuthinticationModule,
+    HomeModule,
     AlertModule.forRoot(),
   ],
   providers: [appRoutingProviders],
