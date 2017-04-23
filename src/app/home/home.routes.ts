@@ -1,10 +1,9 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-/**
- * import services
- */
 import { HomeComponent } from './';
+import { FormTp1Component } from '../form-tp1';
+import { FormTp2Component } from '../form-tp2';
 
 const homeRoutes: Routes = [
   {
@@ -12,7 +11,10 @@ const homeRoutes: Routes = [
     redirectTo: '/',
     pathMatch: 'full'
   },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent,
+   children:[ {path:'form1',component: FormTp1Component},
+   {path:'form2',component: FormTp2Component}] },
+   { path: '**', redirectTo: '' }
 ];
 
 export const homeRoutingProviders: any[] = [];

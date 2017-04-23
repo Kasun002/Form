@@ -1,6 +1,5 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
-import { AlertModule } from 'ngx-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,7 +16,6 @@ import { AuthinticationComponent } from './';
       FormsModule,
       ReactiveFormsModule,
       loginRouting,
-      AlertModule
   ],
   providers: [ loginRoutingProviders ],
 })
