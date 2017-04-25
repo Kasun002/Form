@@ -11,6 +11,7 @@ const homeRoutes: Routes = [
     redirectTo: '/',
     pathMatch: 'full'
   },
+  { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent,
    children:[ {path:'insident_report',component: FormTp1Component},
    {path:'form2',component: FormTp2Component}] },
