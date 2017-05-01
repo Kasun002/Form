@@ -1,1 +1,58 @@
-    
+
+/* myStyle.css */
+.form-horizontal .control-label{
+    text-align: left;
+}
+
+.form-horizontal .control-label-custom{
+    text-align: left;
+    margin-left: 0px;
+}
+
+.custom-bullet li {
+    display: block;
+    margin-left: 80px;
+}
+
+.custom-bullet li:before
+{
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\e080";
+    font-family: 'Glyphicons Halflings';
+    font-size: 9px;
+    float: left;
+    margin-top: 4px;
+    margin-left: -17px;
+    color: #CCCCCC;
+}
+
+.custom-list-header
+{
+    float: left;
+    margin-top: 4px;
+    margin-left: 30px;
+    /*color: #CCCCCC;*/
+}
+
+.custom_input
+{
+	margin-left: 0px;
+	padding-right: 15px;
+}
+
+.custom-radio-label 
+{
+    margin-left: 10px;
+}
+
+.hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+    /*border-color: #fff;
+    background-color: #fff;*/
+}    

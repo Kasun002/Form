@@ -1,3 +1,16 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Basic Form Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <!-- Optional Bootstrap theme -->
+<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel = "stylesheet" type = "text/css" href = "FormStyle.css" />
+</head>
+<body> -->
+
 <div class="container" style="padding-top: 50px">
 
     <form class="well form-horizontal" id="contact_form">
@@ -54,7 +67,6 @@
                             <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
                         </div>
                     </div>
-
                 </div>
 
                 <!-- Text input-->
@@ -228,49 +240,208 @@
         <div #form2>
             <fieldset>
                 <!-- Form Name -->
-                <legend>Incident Report</legend>
-                <!-- Text input-->
+                <legend><h2>Incident Report</h2></legend>
+                <legend>
+                  <h3>About the Accident</h3>
+                </legend>
+                <legend>
+                    <hr>
+                    <!-- <br/> -->
+                    <h4>Section 1: When did the accident happen?</h4>
+                </legend>
+                <!-- Select Date & Time -->
+                <!-- user role -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
                 <div class="form-group">
-                    <div class="col-md-2"></div>
-                    <h4 class="col-md-10">About the Accident</h4>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label">Full Name<span class="label worning">*</span></label>
+                    <label class="col-md-2 control-label">Select Date & Time<span class="label worning">*</span></label>
                     <div class="col-md-10 inputGroupContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="first_name" placeholder="Full Name" class="form-control" type="text">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
+                            <input name="Organisation_name" placeholder="Select Date & Time" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
 
-                <!-- Text input-->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <legend>
+                    <hr>
+                    <h4>Section 2:  Where did the accident happen?</h4>
+                </legend>
 
+                <!-- section2_q1 --> 
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label">NIC NO</label>
-                    <div class="col-md-10 inputGroupContainer">
+                  <label class="col-md-12 control-label">The form below contains three inline radio buttons:</label>
+                  <div class="col-md-12 ">
+                    <label class="radio-inline custom-radio-label">
+                      <input type="radio" name="options" id="option1" autocomplete="off">At someone else’s premises
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">At premises under the management / control of your organisation
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2"autocomplete="off">In a public place/ road
+                    </label>
+                  </div>
+                </div>
+
+                <!-- section2_q2 --> 
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <div class="form-group">
+                    <!-- <label class="col-md-2 control-label">Organization Name<span class="label worning">*</span></label> -->
+                    <div class="col-md-12 inputGroupContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="last_name" placeholder="NIC NO" class="form-control" type="text">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input name="organization_name" placeholder="Organization Name" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
 
-                <!-- Text input-->
+                <!-- section2_q3 -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Phone</label>
+                  <!-- <label class='col-md-12 control-label-custom'>Address or details where the accident happened
+                  </label> -->
+                  <div class="col-md-12 inputGroupContainer custom_input">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                      <textarea name="section2_q3" placeholder="Address or Details where the accident happened" class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <legend>
+                    <hr>
+                    <h4>Section 3: How did the accident happen?</h4>
+                </legend>
+
+                <!-- section3_q1-->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Treating Doctor -->
+                <div class="form-group">
+                  <label class='col-md-12 control-label-custom'>Was any person, includin your employee, injured in the accident?
+                  </label>
+                  <h5 class='col-md-12 custom-list-header'>Any person is considered “ injured” under the following scenarios:</h5>
+                  <ul class="col-md-12 custom-bullet">
+                    <li>Physical injuries e.g. fractures, cuts, burns, electrocution, muscle strains etc</li>
+                    <li>Death, or</li>
+                    <li> Incidents or medical nature e.g. heart attack, stroke, asthma</li>
+                  </ul>
+                  <div class="col-md-12 inputGroupContainer custom_input">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                      <input name="section2_q1" placeholder="Write here" class="form-control" type="text">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- section3_q2 -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Treating Doctor -->
+                <hr>
+                <div class="form-group">
+                  <label class="col-md-2 control-label">About the type of accident</label>
+                  <div class="col-md-10 selectContainer">
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                          <select name="state" class="form-control selectpicker">
+                        <option value=" " disabled selected hidden>Please select type of accident</option>
+                        <option>Slips and Falls</option>
+                        <option>Manual Work Activities</option>
+                        <option >Working Around Vehicles and Moving Equipment</option>
+                        <option >Electric Shock</option>
+                        <option >Workplace Hazards</option>
+                      </select>
+                      </div>
+                  </div>
+                </div>
+
+                <!-- section3_q3 -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <hr>
+                <div class="form-group">
+                  <label class='col-md-12 control-label-custom'>About the type of equipment or agencies that led to the accident
+                  </label>
+                  <div class="col-md-12 inputGroupContainer custom_input">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                      <textarea name="section3_q3" placeholder="Write here" class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!-- section3_q4-->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <hr>
+                <div class="form-group">
+                  <label class='col-md-12 control-label-custom'>write a short description about how the accident took place including following details
+                  </label>
+                  <ul class="col-md-12 custom-bullet">
+                    <li> Name and type of machinery or substance involved</li>
+                    <li> The events that led to the accident</li>
+                    <li> What the injured person was doing at the time of the accident</li>
+                    <li> Name of other persons involved</li>
+                  </ul>
+                  <div class="col-md-12 inputGroupContainer custom_input">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                      <textarea name="section3_q1" placeholder="Write here" class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!-- Office No.--> 
+                <!-- <div class="form-group">
+                    <label class="col-md-2 control-label">Office No.</label>
                     <div class="col-md-10 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+                            <input name="office_number" placeholder="(xxx)xxx-xxxx" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Fax No.-->
+                <!-- <div class="form-group">
+                    <label class="col-md-2 control-label">Fax No.</label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                            <input name="fax_number" placeholder="(xxx)xxx-xxxx" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
+ -->
+                <!-- Email-->
 
-
-                <!-- Text input-->
-
-                <div class="form-group">
+<!--                 <div class="form-group">
                     <label class="col-md-2 control-label">Email</label>
                     <div class="col-md-10 inputGroupContainer">
                         <div class="input-group">
@@ -278,12 +449,23 @@
                             <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
                         </div>
                     </div>
-
                 </div>
+ -->
+                <!-- No. of employees-->
+
+                <!-- <div class="form-group">
+                    <label class="col-md-2 control-label">No. of employees</label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="employees_count" placeholder="Count" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div> -->
 
                 <!-- Text input-->
 
-                <div class="form-group">
+<!--                 <div class="form-group">
                     <label class="col-md-2 control-label">You are the</label>
                     <div class="col-md-10 selectContainer">
                         <div class="input-group">
@@ -312,18 +494,94 @@
                     <div class="col-md-3">
                         <button type="button" class="btn btn-default">Next <span class="glyphicon glyphicon-arrow-right"></span></button>
                     </div>
-                </div>
+                </div> -->
             </fieldset>
         </div>
         <div #form3>
             <fieldset>
                 <!-- Form Name -->
-                <legend>Incident Report</legend>
-                <!-- Text input-->
+                <legend><h2>Incident Report</h2></legend>
+                <legend>
+                  <h3>About the Injured Person</h3>
+                </legend>
+
+                <!-- Employer Only/ Representative of employer
+                Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+                <hr>
+                <legend>
+                  <h4>Section 1: Particulars of the Injured Person</h4>
+                </legend>
+
+                <!-- Is the injured person -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- <hr> -->
                 <div class="form-group">
-                    <div class="col-md-2"></div>
-                    <h4 class="col-md-10">About the Injured Person</h4>
+                  <label class="col-md-2 control-label">Is the injured person</label>
+                  <div class="col-md-10">
+                    <label class="radio-inline custom-radio-label">
+                      <input type="radio" name="options" id="option1" autocomplete="off">Employee of other company
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">Self-employed
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">Members of public
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">A trainee or student
+                    </label>
+                  </div>
                 </div>
+
+
+                <!-- Employee ID -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Treating Doctor -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Employee ID<span class="label worning">*</span></label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="employee_id" placeholder="Employee ID" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NIC NO-->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Treating Doctor -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">NIC NO</label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="nic_nO" placeholder="NIC NO" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Name -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
                 <div class="form-group">
                     <label class="col-md-2 control-label">Full Name<span class="label worning">*</span></label>
                     <div class="col-md-10 inputGroupContainer">
@@ -334,31 +592,588 @@
                     </div>
                 </div>
 
-                <!-- Text input-->
+                <!-- Date of Birth -->
+                <!-- user role -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Date of Birth<span class="label worning">*</span></label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
+                            <input name="date_of_birth" placeholder="Date of Birth" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+                <!-- <hr> -->
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Gender</label>
+                  <div class="col-md-10 ">
+                    <label class="radio-inline custom-radio-label">
+                      <input type="radio" name="options" id="option1" autocomplete="off">Male
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">Female
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Nationality -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Treating Doctor -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Nationality</label>
+                  <div class="col-md-10 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                          <option>Sri Lankan</option>
+                          <option>Non Sri Lankan</option>
+                      </select>
+                      </div>
+                  </div>
+                </div>
+
+
+                <!-- Address-->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Treating Doctor -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Address</label>  
+                  <div class="col-md-10">
+
+                    <div class="control-group">
+                      <div class="control-group">  
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                          <input id="address-line1" name="address-line1" type="text" placeholder="address line 1" class="form-control">
+                        </div>
+                        <p class="help-block">Street address, P.O. box, home name</p>
+                      </div>
+                    </div>
+                    <!-- address-line2 input-->
+
+                    <div class="control-group">
+                      <div class="control-group">  
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                          <input id="address-line2" name="address-line2" type="text" placeholder="address line 2" class="form-control">
+                        </div>
+                        <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                      </div>
+                    </div>
+
+                    <!-- city input-->
+                    <div class="control-group">
+                      <div class="control-group">  
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                          <input id="city" name="city" type="text" placeholder="city" class="form-control">
+                        </div>
+                        <p class="help-block">City, town</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Contact No.-->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Treating Doctor -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Contact No.</label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                            <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <legend>
+                    <hr>
+                    <h4>Section 2: Employment details of the Injured Person</h4>
+                </legend>
+
+
+                <!-- Employer's Organisation Name -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Employer's Organisation Name</label>
+                  <div class="col-md-10 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                      <input name="organisation_name" placeholder="Organisation Name" class="form-control" type="text">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Employer's Mailing Address -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Employer's Mailing Address</label>  
+                  <div class="col-md-10">
+
+                    <div class="control-group">
+                      <div class="control-group">  
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                          <input id="address-line1" name="address-line1" type="text" placeholder="address line 1" class="form-control">
+                        </div>
+                        <p class="help-block">Street address, P.O. box, company name</p>
+                      </div>
+                    </div>
+                    <!-- address-line2 input-->
+
+                    <div class="control-group">
+                      <div class="control-group">  
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                          <input id="address-line2" name="address-line2" type="text" placeholder="address line 2" class="form-control">
+                        </div>
+                        <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                      </div>
+                    </div>
+
+                    <!-- city input-->
+                    <div class="control-group">
+                      <div class="control-group">  
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                          <input id="city" name="city" type="text" placeholder="city" class="form-control">
+                        </div>
+                        <p class="help-block">City, town</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!-- Occupation-->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Occupation</label>
+                  <div class="col-md-10 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                      <input name="occupation" placeholder="Occupation" class="form-control" type="text">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Start Date of Employment -->
+                <!-- user role -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Start Date of Employment<span class="label worning">*</span></label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
+                            <input name="date_of_birth" placeholder="Select Date" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Average Monthly Earnings -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <div class="form-group">
+                  <div class="control-group">
+                    <label class="col-md-2 control-label">Average Monthly Earnings</label>  
+                    <div class="col-md-10 control-group">  
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input id="warnings" name="warnings" type="text" placeholder="Write here" class="form-control">
+                      </div>
+                      <p class="help-block">• Under WICA, AME includes wages, allowances, overtime payments, bonuses or annual wage supplement but does not include traveling allowances, employer’s CPF contributions or pensions or monies paid to cover any special expenses.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Percentage of manual work performed by the injured person -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- <hr> -->
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Percentage of manual work performed by the injured person</label>
+                  <div class="col-md-10 ">
+                    <label class="radio-inline custom-radio-label">
+                      <input type="radio" name="options" id="option1" autocomplete="off">Equal or greater than 50%
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">Less than 50%
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+                <legend>
+                    <hr>
+                    <h4>Section 3: Injury Details</h4>
+                </legend>
+
+                <!-- section3q1 -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <!-- <hr> -->
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Did the accident result in death of the injured person?</label>
+                  <div class="col-md-10 ">
+                    <label class="radio-inline custom-radio-label">
+                      <input type="radio" name="options" id="option1" autocomplete="off">Yes
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">No
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Nature of injury -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Nature of injury</label>
+                  <div class="col-md-10 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                          <option value=" " disabled selected hidden>Please select nature of injury</option>
+                          <option>No Physical Injury</option>
+                          <option>Amputation</option>
+                          <option>Angina Pectoris</option>
+                          <option>Burn</option>
+                          <option>Concussion</option>
+                          <option>Contusion</option>
+                          <option>Crushing</option>
+                          <option>Dislocation</option>
+                          <option>Electric Shock</option>
+                          <option>Enucleation</option>
+                          <option>Foreign Body</option>
+                          <option>Fracture</option>
+                          <option>Freezing</option>
+                          <option>Hearing Loss or Impairment</option>
+                          <option>Heat Prostration</option>
+                          <option>Hernia</option>
+                          <option>Infection</option>
+                          <option>Inflammation</option>
+                          <option>Laceration</option>
+                          <option>Myocardial Infarction</option>
+                          <option>Poisoning - General</option>
+                          <option>Puncture</option>
+                          <option>Rupture</option>
+                          <option>Severance</option>
+                          <option>Sprain or Tear</option>
+                          <option>Strain or Tear</option>
+                          <option>Syncope</option>
+                          <option>Asphyxiation</option>
+                          <option>Vascular</option>
+                          <option>Vision Loss</option>
+                          <option>All Other Specific Injuries, NOC</option>
+                          <option>Dust Disease, NOC</option>
+                          <option>Asbestosis</option>
+                          <option>Black Lung</option>
+                          <option>Byssinosis</option>
+                          <option>Silicosis</option>
+                          <option>Poisoning - Chemical, (Other Than Metals)</option>
+                          <option>Respiratory Disorders</option>
+                          <option>Poisoning - Metal</option>
+                          <option>Dermatitis</option>
+                          <option>Mental Disorder</option>
+                          <option>Radiation</option>
+                          <option>All Other Occupational Disease Injury, NOC</option>
+                          <option>Loss of Hearing</option>
+                          <option>Contagious Disease</option>
+                          <option>Cancer</option>
+                          <option>AIDS</option>
+                          <option>VDT - Related Diseases</option>
+                          <option>Carpal Tunnel Syndrome</option>
+                          <option>Hepatitis C</option>
+                          <option>All Other Cumulative Injury, NOC</option>
+                          <option>Multiple Physical Injuries Only</option>
+                          <option>Multiple Injuries Including Both Physical & Psychological</option>
+                      </select>
+                      </div>
+                  </div>
+                </div>
+
+                <!-- Associated body part(s) injured -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Associated body part(s) injured</label>
+                  <!-- ToDo 
+                    - multiple selector with search 
+                    - need to add data-->
+                  <div class="col-md-10 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                          <option>Multiple Head Injury</option>
+                          <option>Skull</option>
+                      </select>
+                      </div>
+                  </div>
+                </div>
+
+
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <legend>
+                    <hr>
+                    <h4>Section 4: Other Details</h4>
+                </legend>
+
+                <!-- section4q1 -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <!-- <hr> -->
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Was the injured person hospitalised for more than 24 hours</label>
+                  <div class="col-md-10 ">
+                    <label class="radio-inline custom-radio-label">
+                      <input type="radio" name="options" id="option1" autocomplete="off">Yes
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">No
+                    </label>
+                  </div>
+                </div>
+
+
+                <!-- No. of days of medical leave -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Treating Doctor -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+                <div class="form-group">
+                  <label class="col-md-2 control-label">No. of days of medical leave</label>
+                  <div class="col-md-10 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                      <input name="medical_leave" placeholder="Write here" class="form-control" type="text">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- user role -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Date of 4 th day of Medical leave -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Date of 4 th day of Medical leave<span class="label worning">*</span></label>
+                    <div class="col-md-10 inputGroupContainer">
+                    <!-- ToDo :- add calender component -->
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
+                        <input name="date_of_birth" placeholder="Select Date" class="form-control" type="text">
+                      </div>
+                    </div>
+                </div>
+
+                <!-- Associated body part(s) injured -->
+                <!-- Employer Only/ Representative of employer -->
+                
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Reason of late reporting</label>
+                  <div class="col-md-10 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                          <option value=" " disabled selected hidden>Please select a reason</option>
+                          <option>It can increase the cost of the claim</option>
+                          <option>It hurts employee morale</option>
+                          <option>Potential for litigation increases</option>
+                          <option>Reporting workers compensation claims too late may violate state law</option>
+                      </select>
+                      </div>
+                      <p class="help-block">• You are required to provide the reason if your incident report was submitted past the mandatory 10 days timeline from the 4 th day of medical leave.</p>
+                  </div>
+                </div>
+
+
+                <!-- Hospital/ Clinic where the injured person was examined or treated -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Hospital/ Clinic where the injured person was examined or treated</label>
+                  <div class="col-md-10 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                          <option value=" " disabled selected hidden>Please select a hospital / clinic</option>
+                          <option>National Hospital of Sri Lanka, Colombo</option>
+                          <option>Castle Street Hospital for Women, Colombo</option>
+                          <option>Colombo South Teaching Hospital, Kalubowila</option>
+                          <option>Dental Institute, Colombo</option>
+
+                          <option>De Soysa Hospital for Women, Colombo</option>
+                          <option>National Eye Hospital, Colombo</option>
+                          <option>National Institute of Mental Health (Angoda Mental Hospital)</option>
+                          <option>Sri Jayawardenepura General Hospital</option>
+                          <option>Avissawella Base Hospital</option>
+                          <option>Homagama Base Hospital</option>
+                        </select>
+                      </div>
+                  </div>
+                </div>
+
+                <!-- Would you like to provide any witness information? -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <!-- <hr> -->
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Would you like to provide any witness information?</label>
+                  <div class="col-md-10 ">
+                    <label class="radio-inline custom-radio-label">
+                      <input type="radio" name="options" id="option1" autocomplete="off">Yes
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">No
+                    </label>
+                  </div>
+                </div>
+
+                
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <hr>
+                <legend><h4>Section 5: Particulars of the Witness</h4></legend>
+
+                <!-- NIC NO-->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
 
                 <div class="form-group">
                     <label class="col-md-2 control-label">NIC NO</label>
                     <div class="col-md-10 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="last_name" placeholder="NIC NO" class="form-control" type="text">
+                            <input name="nic_nO" placeholder="NIC NO" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
 
-                <!-- Text input-->
+                <!-- Full Name -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Phone</label>
+                    <label class="col-md-2 control-label">Full Name<span class="label worning">*</span></label>
                     <div class="col-md-10 inputGroupContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="first_name" placeholder="Full Name" class="form-control" type="text">
                         </div>
                     </div>
                 </div>
 
+                <!-- Contact No.-->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
 
-                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Contact No.</label>
+                  <div class="col-md-10 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                      <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+                    </div>
+                  </div>
+                </div>
+
+                <!--Email-->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
 
                 <div class="form-group">
                     <label class="col-md-2 control-label">Email</label>
@@ -368,42 +1183,185 @@
                             <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
                         </div>
                     </div>
-
                 </div>
 
-                <!-- Text input-->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+
+                <hr>
+                <legend><h4>Section 6: Employment Details of the Witness</h4></legend>
+                
+                <!-- Employer's Organisation Name -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
 
                 <div class="form-group">
-                    <label class="col-md-2 control-label">You are the</label>
-                    <div class="col-md-10 selectContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                            <select name="state" class="form-control selectpicker">
-                          <option value=" " >Please select your are..</option>
-                          <option>Employer Only/ Representative of employer</option>
-                          <option>Occupier Only/ Representative of occupier</option>
-                          <option >Victim’s Legal Representative</option>
-                          <option >Treating Doctor</option>
-                          <option >Victim’s Next-of-kin</option>
-                          <option >Victim</option>
-                        </select>
-                        </div>
+                  <label class="col-md-2 control-label">Employer's Organisation Name</label>
+                  <div class="col-md-10 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                      <input name="organisation_name" placeholder="Organisation Name" class="form-control" type="text">
                     </div>
+                  </div>
                 </div>
+
+                <!-- Employer's Mailing Address -->
+                <!-- Victim’s Legal Representative -->
+                <!-- Victim’s Next-of-kin -->
+                <!-- Victim -->
+                
                 <hr>
                 <div class="form-group">
-                    <label class="col-md-3 control-label"></label>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-default">Previous <span class="glyphicon glyphicon-arrow-left"></span></button>
+                  <label class="col-md-2 control-label">Employer's Mailing Address</label>  
+                  <div class="col-md-10">
+
+                    <div class="control-group">
+                      <div class="control-group">  
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                          <input id="address-line1" name="address-line1" type="text" placeholder="address line 1" class="form-control">
+                        </div>
+                        <p class="help-block">Street address, P.O. box, company name</p>
+                      </div>
                     </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-success">Submit <span class="glyphicon glyphicon-send"></span></button>
+                    <!-- address-line2 input-->
+
+                    <div class="control-group">
+                      <div class="control-group">  
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                          <input id="address-line2" name="address-line2" type="text" placeholder="address line 2" class="form-control">
+                        </div>
+                        <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                      </div>
                     </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-default">Next <span class="glyphicon glyphicon-arrow-right"></span></button>
+
+                    <!-- city input-->
+                    <div class="control-group">
+                      <div class="control-group">  
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                          <input id="city" name="city" type="text" placeholder="city" class="form-control">
+                        </div>
+                        <p class="help-block">City, town</p>
+                      </div>
                     </div>
+                  </div>
+                </div>
+
+
+
+                <!-- What time did the injured person start work on the day of the accident? -->
+                <!-- user role -->
+                <!-- Employer Only/ Representative of employer -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">What time did the injured person start work on the day of the accident?<span class="label worning">*</span></label>
+                    <div class="col-md-10 inputGroupContainer">
+                    <!-- ToDo :- add clock component -->
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
+                        <input name="date_of_birth" placeholder="Select Time" class="form-control" type="text">
+                      </div>
+                    </div>
+                </div>
+
+
+                <!-- Was the injured person working overtime when the accident happened? -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- <hr> -->
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Was the injured person working overtime when the accident happened?</label>
+                  <div class="col-md-10 ">
+                    <label class="radio-inline custom-radio-label">
+                      <input type="radio" name="options" id="option1" autocomplete="off">Yes
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">No
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Was the person injured while performing official work duties? -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- <hr> -->
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Was the person injured while performing official work duties?</label>
+                  <div class="col-md-10 ">
+                    <label class="radio-inline custom-radio-label">
+                      <input type="radio" name="options" id="option1" autocomplete="off">Yes
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="options" id="option2" autocomplete="off">No
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Associated body part(s) injured -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <p class="help-block">• Please provide details for the employer’s Work Injury Compensation Insurance policy (if any).</p>
+                  </div>
+                  <label class="col-md-2 control-label">Name of insurer</label>
+                  <div class="col-md-10 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                          <option value=" " disabled selected hidden>Please select a insure</option>
+                          <option>AIA Insurance Lanka PLC</option>
+                          <option>AIG Insurance Ltd. *</option>
+                          <option>Allianz Insurance Lanka Ltd.</option>
+                          <option>Allianz Life Insurance Lanka Ltd.</option>
+                          <option>Amana Takaful PLC</option>
+                          <option>Arpico Insurance PLC</option>
+                          <option>Softlogic Life Insurance PLC</option>
+                          <option>Fairfirst Insurance Limited.</option>
+                          <option>Ceylinco Life Insurance Limited</option>
+                          <option>Cooplife Insurance Limited.</option>
+                          <option>HNB Assurance PLC</option>
+                          <option>Janashakthi Insurance PLC</option>
+                          <option>Life Insurance Corporation (Lanka) Ltd.</option>
+                          <option>LOLC Life Assurance Limited</option>
+                          <option>People's Insurance Ltd.</option>
+                          <option>Sri Lanka Insurance Corporation Ltd.</option>
+                        </select>
+                      </div>
+                  </div>
+                </div>
+
+                <!-- Insurance Policy No. -->
+                <!-- Employer Only/ Representative of employer -->
+                <!-- Occupier Only/ Representative of occupier -->
+                <!-- <hr> -->
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Insurance Policy No.</label>
+                  <div class="col-md-10 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                      <input name="date_of_birth" placeholder="Write here" class="form-control" type="text">
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+                <div class="form-group">
+                  <label class="col-md-3 control-label"></label>
+                  <div class="col-md-3">
+                      <button type="button" class="btn btn-default">Previous <span class="glyphicon glyphicon-arrow-left"></span></button>
+                  </div>
+                  <div class="col-md-3">
+                      <button type="button" class="btn btn-success">Submit <span class="glyphicon glyphicon-send"></span></button>
+                  </div>
+                  <div class="col-md-3">
+                      <button type="button" class="btn btn-default">Next <span class="glyphicon glyphicon-arrow-right"></span></button>
+                  </div>
                 </div>
             </fieldset>
         </div>
     </form>
 </div>
+<<!-- /body>
+</html> -->
