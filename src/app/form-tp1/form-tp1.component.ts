@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import {ValidationService} from './validation.service';
+
 @Component({
   selector: 'app-form-tp1',
   templateUrl: './form-tp1.component.html',
@@ -17,6 +19,7 @@ export class FormTp1Component implements OnInit {
     private fb1: FormBuilder,
     private fb2: FormBuilder,
     private fb3: FormBuilder,
+    private validationService : ValidationService,
     private router: Router) { 
       this.formValidation();
       console.log(this.form1.get('name').invalid);
@@ -36,7 +39,7 @@ export class FormTp1Component implements OnInit {
       name: ['', [Validators.required]],
       nic: ['', [Validators.required, Validators.pattern(/([0-9]{12})|([0-9]{9}[vVxX])/)]],
       mobile: ['', [Validators.required, Validators.pattern(/^[7]\d{8}$/), Validators.maxLength(9)]],
-      email: ['', [Validators.required, Validators.pattern(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)]],
+      email: ['', [Validators.required, this.validationService.emailValidator]],
       youAre: ['', [Validators.required]]
     });
 

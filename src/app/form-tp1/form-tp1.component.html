@@ -17,7 +17,9 @@
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
               <input name="first_name" formControlName="name"  placeholder="Full Name" class="form-control" type="text">
             </div>
-            <span [class.hidden]="form1.get('name').valied" class="help-block hidden" >Name is required.</span>
+            <div *ngIf="form1.get('name').touched">
+              <span [class.hidden]="!form1.controls['name'].hasError('required')" class="help-block hidden" >Name is required.</span>
+            </div>
           </div>
         </div>
 
@@ -31,7 +33,9 @@
               <input name="last_name" formControlName="nic"  placeholder="NIC NO" class="form-control" type="text">
               
             </div>
-            <span [class.hidden]="form1.get('nic').valied && !form1.get('nic').touched" class="help-block hidden" >Nic is not valied</span>
+            <div *ngIf="form1.get('nic').touched">
+              <span [class.hidden]="!form1.controls['nic'].hasError('required')" class="help-block hidden" >NIC is required.</span>
+            </div>
           </div>
         </div>
 
@@ -43,7 +47,9 @@
               <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
               <input name="phone" formControlName="mobile" placeholder="(845)555-1212" class="form-control" type="text">
             </div>
-              <span [class.hidden]="form1.get('mobile').valied && !form1.get('mobile').touched" class="help-block hidden" >Phone NO is not valied</span>
+              <div *ngIf="form1.get('mobile').touched">
+              <span [class.hidden]="!form1.controls['mobile'].hasError('required')" class="help-block hidden" >Mobile NO is required.</span>
+            </div>
             
           </div>
         </div>
@@ -58,7 +64,10 @@
               <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
               <input name="email" formControlName="email" placeholder="E-Mail Address" class="form-control" type="text">
             </div>
-               <span [class.hidden]="form1.get('email').valied && !form1.get('email').touched" class="help-block hidden" >Phone NO is not valied</span>            
+            <div *ngIf="form1.get('email').touched">
+              <span [class.hidden]="!form1.controls['email'].hasError('required')" class="help-block hidden" >Email is required.</span>
+              <span [class.hidden]="!form1.controls['email'].hasError('invalidEmail')" class="help-block hidden" >Email format error.</span>
+            </div>
           </div>
         </div>
 
@@ -78,6 +87,9 @@
                           <option >Victim’s Next-of-kin</option>
                           <option >Victim</option>
                         </select>
+            </div>
+            <div *ngIf="form1.get('youAre').touched">
+              <span [class.hidden]="!form1.controls['youAre'].hasError('required')" class="help-block hidden" >Role is required.</span>
             </div>
           </div>
         </div>
