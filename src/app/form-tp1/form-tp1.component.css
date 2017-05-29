@@ -55,4 +55,16 @@
     border-width: 1px;
     /*border-color: #fff;
     background-color: #fff;*/
-}    
+}
+
+/*.custom-required-label
+{ 
+   content:"*";
+   color:red;
+   font-size: 9px;
+}*/
+
+.form-group.required .control-label:after { 
+   content:"*";
+   color:red;
+}

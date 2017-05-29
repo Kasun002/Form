@@ -14,6 +14,13 @@ export class FormTp1Component implements OnInit {
   public form1: FormGroup;
   public form2: FormGroup;
   public form3: FormGroup;
+  public userRole:string;
+  public role1='Employer Only/ Representative of employer';
+  public role2='Occupier Only/ Representative of occupier';
+  public role3='Victim’s Legal Representative';
+  public role4='Treating Doctor';
+  public role5='Victim’s Next-of-kin';
+  public role6='Victim';
 
   constructor(
     private fb1: FormBuilder,
@@ -32,14 +39,18 @@ export class FormTp1Component implements OnInit {
   formNext(val){
     console.log(this.form1.get('name').invalid);
     this.formStatus=val;
+    this.userRole=this.form1.get('youAre').value;
+    console.log("this.userRole", this.userRole);
+    console.log(this.userRole);
   }
-
+  // F-form S-section Q-question
+  // F2S1Q1 = Form2 Section 1 Question 1
   formValidation(){
     this.form1 = this.fb1.group({
       name: ['', [Validators.required]],
-      nic: ['', [Validators.required, Validators.pattern(/([0-9]{12})|([0-9]{9}[vVxX])/)]],
-      mobile: ['', [Validators.required, Validators.pattern(/^[7]\d{8}$/), Validators.maxLength(9)]],
-      email: ['', [Validators.required, this.validationService.emailValidator]],
+      nic: ['', [Validators.required, this.validationService.nicValidator]],
+      mobile: ['', [Validators.required,this.validationService.phoneValidator, Validators.maxLength(9)]],
+      email: ['', [this.validationService.emailValidator]],
       youAre: ['', [Validators.required]]
     });
 
@@ -48,11 +59,14 @@ export class FormTp1Component implements OnInit {
     *Add the form controlers according to the above and fill the html
     */
     this.form2 = this.fb2.group({
-
+      F2S1Q1: ['', [Validators.required]],
+      F2S3Q1: ['', [Validators.required]]
     });
 
     this.form3 = this.fb3.group({
-
+      // F2S3Q2: ['', [Validators.required]],
+      // F2S3Q3: ['', [Validators.required]],
+      // F2S3Q4: ['', [Validators.required]]
     });
 
   }
