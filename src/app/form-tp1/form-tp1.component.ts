@@ -50,9 +50,9 @@ mySettings: IMultiSelectSettings = {
     private fb2: FormBuilder,
     private fb3: FormBuilder,
     private validationService : ValidationService,
-    private router: Router) { 
+    private router: Router
+    ) { 
       this.formValidation();
-      console.log(this.form1.get('name').invalid);
       this.options = new DatePickerOptions();
     }
 
@@ -61,11 +61,15 @@ mySettings: IMultiSelectSettings = {
   }
 
   formNext(val){
-    console.log(this.form1.get('name').invalid);
-    this.formStatus=val;
     this.userRole=this.form1.get('youAre').value;
-    console.log("this.userRole", this.userRole);
-    console.log(this.userRole);
+    let value = this.userRole === this.role6? 3: val;
+    this.formStatus=value;
+  }
+
+  formBack(val){
+    this.userRole=this.form1.get('youAre').value;
+    let value = this.userRole === this.role6? 1: val;
+    this.formStatus=value;
   }
   
   onChange($event){
@@ -75,10 +79,8 @@ mySettings: IMultiSelectSettings = {
   public setMoment(moment: any): any {
     this.momentValue = moment;
     // Do whatever you want to the return object 'moment'
-}
+  }
 
-  // F-form S-section Q-question
-  // F2S1Q1 = Form2 Section 1 Question 1
   formValidation(){
     this.form1 = this.fb1.group({
       name: ['', [Validators.required]],
@@ -88,21 +90,52 @@ mySettings: IMultiSelectSettings = {
       youAre: ['', [Validators.required]]
     });
 
-    /*
-    *TO DO
-    *Add the form controlers according to the above and fill the html
-    */
+    // F-form S-section Q-question
+    // F2S1Q1 = Form2 Section 1 Question 1
     this.form2 = this.fb2.group({
       F2S1Q1: ['', [Validators.required]],
-      F2S3Q1: ['', [Validators.required]]
+      F2S3Q1: ['', [Validators.required]],
+      F2S3Q2: ['', [Validators.required]],
+      F2S3Q3: ['', [Validators.required]],
+      F2S3Q4: ['', [Validators.required]],
     });
 
     this.form3 = this.fb3.group({
-      // F2S3Q2: ['', [Validators.required]],
-      // F2S3Q3: ['', [Validators.required]],
-      // F2S3Q4: ['', [Validators.required]]
+      F3S1Q1: ['', [Validators.required]],
+      F3S1Q2: ['', [Validators.required]],
+      F3S1Q3: ['', [Validators.required]],
+      F3S1Q4: ['', [Validators.required]],
+      F3S1Q5: ['', [Validators.required, this.validationService.nicValidator]],
+      F3S1Q6: ['', [Validators.required]],
+      F3S1Q7: ['', [Validators.required]],
+      F3S1Q8: ['', [Validators.required]],
+      F3S1Q9: ['', [Validators.required]],
+      F3S1Q10: ['', [Validators.required]],
+      F3S1Q11: ['', [Validators.required, this.validationService.phoneValidator]],
+      F3S2Q1: ['', [Validators.required]],
+      F3S2Q3: ['', [Validators.required]],
+      F3S2Q4: ['', [Validators.required]],
+      F3S2Q5: ['', [Validators.required, this.validationService.salaryValidator]],
+      F3S2Q9: ['', [Validators.required]],
+      F3S2Q10: ['', [Validators.required]],
+      F3S2Q11: ['', [Validators.required]],
+      F3S3Q1: ['', [Validators.required]],
+      F3S3Q2: ['', [Validators.required]],
+      F3S3Q3: ['', [Validators.required]],
+      F3S4Q1: ['', [Validators.required]],
+      F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],
+      F3S4Q3: ['', [Validators.required]],
+      F3S4Q5: ['', [Validators.required]],
+      F3S4Q6: ['', [Validators.required]],
+      F3S5Q1: ['', [this.validationService.nicValidator]],
+      F3S5Q2: ['', [Validators.required]],
+      F3S5Q3: ['', [this.validationService.phoneValidator]],
+      F3S5Q4: ['', [this.validationService.emailValidator]],
+      F3S6Q3: ['', [Validators.required]],
+      F3S6Q4: ['', [Validators.required]],
+      F3S6Q5: ['', [Validators.required]],
+      F3S6Q6: ['', [Validators.required]],
+      F3S6Q7: ['', [Validators.required]],
     });
-
   }
-
 }

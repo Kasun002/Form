@@ -27,4 +27,18 @@ export class ValidationService {
 	      return { invalidPhone: true };
 	    }
 	}
+
+	salaryValidator(control: FormControl): { [key: string]: any } {
+	    var phoneRegexp = /^\d{1,9}$/;
+	    if (control.value && !phoneRegexp.test(control.value)) {
+	      return { invalidSalary: true };
+	    }
+	}
+
+	leaveValidator(control: FormControl): { [key: string]: any } {
+	    var phoneRegexp = /^[1-9][0-9]*$/;
+	    if (control.value && !phoneRegexp.test(control.value)) {
+	      return { invalidLeave: true };
+	    }
+	}
 }

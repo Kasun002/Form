@@ -1,5 +1,5 @@
 <div class="container" style="padding-top: 50px">
-  <div class="form-group">
+ <!--  <div class="form-group">
             <ss-multiselect-dropdown [settings]="mySettings" [options]="myOptions" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
         </div>
          <div class="form-group">
@@ -7,7 +7,7 @@
          </div>
          <div class="form-group">
          <input [mode]="'dropdown'" [ngModel]="momentValue | date: 'short'" [dateTimePicker]="momentValue" (dateTimePickerChange)="setMoment($event)" readonly />
-         </div>
+         </div> -->
   <form class="well form-horizontal" [formGroup]="form1" *ngIf="formStatus==1" novalidate>
     <div>
       <fieldset>
@@ -92,14 +92,14 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
               <select name="state"  formControlName="youAre" class="form-control selectpicker">
-                          <!--<option value=" " >Please select your are..</option>-->
-                          <option>Employer Only/ Representative of employer</option>
-                          <option>Occupier Only/ Representative of occupier</option>
-                          <option >Victim’s Legal Representative</option>
-                          <option >Treating Doctor</option>
-                          <option >Victim’s Next-of-kin</option>
-                          <option >Victim</option>
-                        </select>
+                <!--<option value=" " >Please select your are..</option>-->
+                <option>Employer Only/ Representative of employer</option>
+                <option>Occupier Only/ Representative of occupier</option>
+                <option >Victim’s Legal Representative</option>
+                <option >Treating Doctor</option>
+                <option >Victim’s Next-of-kin</option>
+                <option >Victim</option>
+              </select>
             </div>
             <div *ngIf="form1.get('youAre').touched">
               <span [class.hidden]="!form1.controls['youAre'].hasError('required')" class="help-block hidden" >Role is required.</span>
@@ -123,7 +123,7 @@
     </div>
   </form>
   <form class="well form-horizontal" [formGroup]="form2" *ngIf="formStatus==2" novalidate>
-    <div #form2>
+    <div>
       <fieldset>
         <!-- Form Name -->
         <legend>
@@ -139,10 +139,10 @@
         </legend>
         <!-- Select Date & Time -->
         <!-- user role -->
-        <!-- Employer Only/ Representative of employer required-->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
-        <!-- Treating Doctor -->
+        <!-- Employer Only/ Representative of employer, required-->
+        <!-- Occupier Only/ Representative of occupier, required-->
+        <!-- Victim’s Legal Representative, required -->
+        <!-- Treating Doctor, required, required-->
         <!-- Victim’s Next-of-kin -->
         <div class="form-group required" *ngIf="userRole!==role6">
           <label class="col-md-2 control-label">Select Date & Time</label>
@@ -157,10 +157,10 @@
           </div>
         </div>
 
-        <!-- Occupier Only/ Representative of occupier -->
+        <!-- Occupier Only/ Representative of occupier required-->
         <!-- Victim’s Legal Representative -->
-        <!-- Victim’s Next-of-kin -->
-        <legend *ngIf="!(userRole===role6 || userRole===role1 || userRole===role4)">
+        <!-- Victim’s Next-of-kin, required-->
+        <legend *ngIf="!((userRole===role6) || (userRole===role1) || (userRole===role4))">
           <hr>
           <h4>Section 2: Where did the accident happen?</h4>
         </legend>
@@ -169,28 +169,33 @@
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
-        <div class="form-group" *ngIf="(userRole===role2 || userRole===role3 || 
-        userRole===role5)">
-          <label class="col-md-12 control-label">The form below contains three inline radio buttons:</label>
-          <div class="col-md-12 ">
-            <label class="radio-inline custom-radio-label">
-                      <input type="radio" name="options" id="option1" autocomplete="off">At someone else’s premises
-                    </label>
+        <div class="form-group required" *ngIf="(userRole===role2 || (userRole===role3) || 
+        (userRole===role5))">
+          <label class="col-md-12 control-label">The accident happened at:</label>
+          <div class="col-md-12">
+            <label class="radio-inline custom-radio-label" *ngIf="(userRole===role3 || userRole===role5)">
+              <input type="radio" name="options" id="option1" autocomplete="off">At premises belonging to the employer
+            </label>
+            <label class="radio-inline" *ngIf="(userRole===role3 || userRole===role5)">
+              <input type="radio" name="options" id="option2" autocomplete="off">At another organisation's premise
+            </label>
+            <label class="radio-inline" *ngIf="!(userRole===role3)">
+              <input type="radio" name="options" id="option3" autocomplete="off">At premises under the management / control of your organisation
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">At premises under the management / control of your organisation
-                    </label>
-            <label class="radio-inline">
-                      <input type="radio" name="options" id="option2"autocomplete="off">In a public place/ road
-                    </label>
+              <input type="radio" name="options" id="option4"autocomplete="off">In a public place/ road
+            </label>
           </div>
         </div>
 
+
+        <!-- ///////////////////////////////////// F2S2Q1 options /////////////////////////// -->
         <!-- F2S2Q2 -->
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
-        <div class="form-group" *ngIf="(userRole===role2 || userRole===role3 || 
-        userRole===role5)">
+        <div class="form-group" *ngIf="((userRole===role2) || (userRole===role3) || 
+        (userRole===role5))">
           <!-- <label class="col-md-2 control-label">Organization Name<span class="label worning">*</span></label> -->
           <div class="col-md-12 inputGroupContainer">
             <div class="input-group">
@@ -215,29 +220,34 @@
             </div>
           </div>
         </div>
+        <!-- //////////////////////////////////////////////////////////////////////////////// -->
 
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
-        <!-- Treating Doctor -->
+
+
+        <!-- Occupier Only/ Representative of occupier, required-->
+        <!-- Victim’s Legal Representative, required-->
         <!-- Victim’s Next-of-kin -->
-        <legend *ngIf="!(userRole===role6 || userRole===role1)">
+        <legend *ngIf="!(userRole===role6 || userRole===role1 || userRole===role4)">
           <hr>
           <h4>Section 3: How did the accident happen?</h4>
         </legend>
 
         <!-- Employer Only/ Representative of employer -->
-        <legend *ngIf="userRole===role1">
+        <!-- Treating Doctor, required -->
+        <legend *ngIf="(userRole===role1 || userRole===role4)">
           <hr>
           <h4>Section 2: How did the accident happen?</h4>
         </legend>
 
-        <!-- S3Q1-->
+        <!-- F2S3Q1-->
         <!-- Employer Only/ Representative of employer ,required-->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Treating Doctor -->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Treating Doctor, required-->
         <div class="form-group required" *ngIf="(userRole===role1 || userRole===role2 || 
-        userRole===role4)">
-          <label class='col-md-12 control-label-custom'>Was any person, includin your employee, injured in the accident?
+          userRole===role4)">
+          <label class='col-md-12 control-label control-label-custom' *ngIf="(userRole===role1)">Was any person, includin your employee, injured in the accident?
+          </label>
+          <label class='col-md-12 control-label control-label-custom' *ngIf="!(userRole===role1)">Any person injured in the accident?
           </label>
           <h5 class='col-md-12 custom-list-header'>Any person is considered “ injured” under the following scenarios:</h5>
           <ul class="col-md-12 custom-bullet">
@@ -251,18 +261,18 @@
               <input name="F2S3Q1" formControlName="F2S3Q1" placeholder="Write here" class="form-control" type="text">
             </div>
              <div *ngIf="form2.get('F2S3Q1').touched">
-              <span [class.hidden]="!form2.controls['F2S3Q1'].hasError('required')" class="help-block hidden" >This is required.</span>
+              <span [class.hidden]="!form2.controls['F2S3Q1'].hasError('required')" class="help-block hidden" >This field is required.</span>
             </div>
           </div>
+          <hr>
         </div>
 
         <!-- F2S3Q2 -->
         <!-- Employer Only/ Representative of employer, required-->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Treating Doctor -->
-        <hr>
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Treating Doctor, required-->
         <div class="form-group required" *ngIf="(userRole===role1 || userRole===role2 || 
-        userRole===role4)">
+          userRole===role4)">
           <label class="col-md-2 control-label">About the type of accident</label>
           <div class="col-md-10 selectContainer">
             <div class="input-group">
@@ -280,17 +290,16 @@
               <span [class.hidden]="!form2.controls['F2S3Q2'].hasError('required')" class="help-block hidden" >Type of accident is required.</span>
             </div>
           </div>
+          <hr>
         </div>
 
         <!-- F2S3Q3 -->
         <!-- Employer Only/ Representative of employer, required -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Treating Doctor -->
-        <!-- Victim’s Next-of-kin -->
-        <hr>
-        <div class="form-group required" *ngIf="!(userRole===role3 || userRole===role6)">
-          <label class='col-md-12 control-label-custom'>About the type of equipment or agencies that led to the accident
-                  </label>
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Treating Doctor, required-->
+        <div class="form-group required" *ngIf="!(userRole===role3 || userRole===role6 || userRole===role5)">
+          <label class='col-md-12 control-label control-label-custom'>About the type of equipment or agencies that led to the accident
+          </label>
           <div class="col-md-12 inputGroupContainer custom_input">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
@@ -300,17 +309,18 @@
               <span [class.hidden]="!form2.controls['F2S3Q3'].hasError('required')" class="help-block hidden" >This is required.</span>
             </div>
           </div>
+          <hr>
         </div>
 
 
         <!-- F2S3Q4-->
         <!-- Employer Only/ Representative of employer, required -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
-        <!-- Treating Doctor -->
-        <hr>
-        <div class="form-group required" *ngIf="!(userRole===role5 || userRole===role6)">
-          <label class='col-md-12 control-label-custom'>write a short description about how the accident took place including following details
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative,required -->
+        <!-- Victim’s Next-of-kin, required-->
+        <!-- Treating Doctor, required-->
+        <div class="form-group required" *ngIf="!(userRole===role6)">
+          <label class='col-md-12 control-label control-label-custom'>write a short description about how the accident took place including following details
           </label>
           <ul class="col-md-12 custom-bullet">
             <li> Name and type of machinery or substance involved</li>
@@ -327,105 +337,27 @@
               <span [class.hidden]="!form2.controls['F2S3Q4'].hasError('required')" class="help-block hidden" >Description is required.</span>
             </div>
           </div>
+          <hr>
         </div>
 
-
-        <!-- Office No.-->
-        <!-- <div class="form-group">
-                    <label class="col-md-2 control-label">Office No.</label>
-                    <div class="col-md-10 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                            <input name="office_number" placeholder="(xxx)xxx-xxxx" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div> -->
-
-        <!-- Fax No.-->
-        <!-- <div class="form-group">
-                    <label class="col-md-2 control-label">Fax No.</label>
-                    <div class="col-md-10 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
-                            <input name="fax_number" placeholder="(xxx)xxx-xxxx" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div>
- -->
-        <!-- Email-->
-
-        <!--                 <div class="form-group">
-                    <label class="col-md-2 control-label">Email</label>
-                    <div class="col-md-10 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div>
- -->
-        <!-- No. of employees-->
-
-        <!-- <div class="form-group">
-                    <label class="col-md-2 control-label">No. of employees</label>
-                    <div class="col-md-10 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input name="employees_count" placeholder="Count" class="form-control" type="text">
-                        </div>
-                    </div>
-                </div> -->
-
-        <!-- Text input-->
-
-        <!--                 <div class="form-group">
-                    <label class="col-md-2 control-label">You are the</label>
-                    <div class="col-md-10 selectContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                            <select name="state" class="form-control selectpicker">
-                          <option value=" " >Please select your are..</option>
-                          <option>Employer Only/ Representative of employer</option>
-                          <option>Occupier Only/ Representative of occupier</option>
-                          <option >Victim’s Legal Representative</option>
-                          <option >Treating Doctor</option>
-                          <option >Victim’s Next-of-kin</option>
-                          <option >Victim</option>
-                        </select>
-                        </div>
-                    </div>
-                </div>-->
-                <hr>
-                <div class="form-group">
-                    <label class="col-md-3 control-label"></label>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-default" (click)="formNext(1)">Previous <span class="glyphicon glyphicon-arrow-left"></span></button>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-success" [disabled]="true">Submit <span class="glyphicon glyphicon-send"></span></button>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-default" [disabled]="form2.invalid" (click)="form2.valid && formNext(3)" >Next <span class="glyphicon glyphicon-arrow-right"></span></button>
-                    </div>
-                </div>
-
-                <!-- <div class="form-group">
-                  <label class="col-md-3 control-label"></label>
-                  <div class="col-md-3">
-                    <button type="button" class="btn btn-default"  [disabled]="true">Previous <span class="glyphicon glyphicon-arrow-left"></span></button>
-                  </div>
-                  <div class="col-md-3">
-                    <button type="button" class="btn btn-success" [disabled]="true">Submit <span class="glyphicon glyphicon-send"></span></button>
-                  </div>
-                  <div class="col-md-3" >
-                    <button type="button" class="btn btn-default" [disabled]="form1.invalid" (click)="form1.valid && formNext(2)">Next <span class="glyphicon glyphicon-arrow-right"></span></button>
-                  </div>
-                </div> -->
+        <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-default" (click)="formNext(1)">Previous <span class="glyphicon glyphicon-arrow-left"></span></button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-success" [disabled]="true">Submit <span class="glyphicon glyphicon-send"></span></button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-default" [disabled]="form2.invalid" (click)="form2.valid && formNext(3)" >Next <span class="glyphicon glyphicon-arrow-right"></span></button>
+            </div>
+        </div>
       </fieldset>
     </div>
   </form>
-  <form class="well form-horizontal" id="contact_form" *ngIf="formStatus==3">
-    <div #form3>
+
+  <form class="well form-horizontal" [formGroup]="form3" *ngIf="formStatus==3" novalidate>
+    <div>
       <fieldset>
         <!-- Form Name -->
         <legend>
@@ -446,154 +378,216 @@
           <h4>Section 1: Particulars of the Injured Person</h4>
         </legend>
 
-        <!-- Is the injured person -->
-        <!-- Occupier Only/ Representative of occupier -->
+        <!-- F3S1Q1 -->
+        <!-- Occupier Only/ Representative of occupier, required -->
         <!-- <hr> -->
-        <div class="form-group" *ngIf="(userRole===role2)">
+        <div class="form-group required" *ngIf="(userRole===role2)">
           <label class="col-md-2 control-label">Is the injured person</label>
           <div class="col-md-10">
             <label class="radio-inline custom-radio-label">
-                      <input type="radio" name="options" id="option1" autocomplete="off">Employee of other company
-                    </label>
+              <input type="radio" name="F3S1Q1" value="option1" formControlName="F3S1Q1"autocomplete="off">Employee of other company
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">Self-employed
-                    </label>
+              <input type="radio" name="F3S1Q1" value="option2" formControlName="F3S1Q1"autocomplete="off">Self-employed
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">Members of public
-                    </label>
+              <input type="radio" name="F3S1Q1" value="option3" formControlName="F3S1Q1"autocomplete="off">Members of public
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">A trainee or student
-                    </label>
+              <input type="radio" name="F3S1Q1" value="option4" formControlName="F3S1Q1"autocomplete="off">A trainee or student
+            </label>
+          </div>
+          <div *ngIf="form3.get('F3S1Q1').touched">
+            <span [class.hidden]="!form3.controls['F3S1Q1'].hasError('required')" class="help-block hidden" >Description is required.</span>
           </div>
         </div>
 
-
+        <!-- F3S1Q2 -->
         <!-- Employee ID -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- Employer Only/ Representative of employer, required -->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
         <!-- Treating Doctor -->
         <!-- Victim -->
-
-        <div class="form-group">
-          <label class="col-md-2 control-label">Employee ID<span class="label worning">*</span></label>
+        <div class="form-group required">
+          <label class="col-md-2 control-label">Employee ID</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="employee_id" placeholder="Employee ID" class="form-control" type="text">
+              <input name="employee_id" formControlName='F3S1Q2' placeholder="Employee ID" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S1Q2').touched">
+              <span [class.hidden]="!form3.controls['F3S1Q2'].hasError('required')" class="help-block hidden" >Employee ID is required.</span>
             </div>
           </div>
         </div>
 
-        <!-- NIC NO-->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S1Q3-->
+        <!-- Employer Only/ Representative of employer, required -->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
         <!-- Treating Doctor -->
         <!-- Victim -->
-
-        <div class="form-group">
+        <div class="form-group required">
           <label class="col-md-2 control-label">NIC NO</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="nic_nO" placeholder="NIC NO" class="form-control" type="text">
+              <input name="nic_nO" placeholder="NIC NO" formControlName='F3S1Q3' class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S1Q3').touched">
+              <span [class.hidden]="!form3.controls['F3S1Q3'].hasError('required')" class="help-block hidden" >NIC NO is required.</span>
             </div>
           </div>
         </div>
 
-        <!-- Full Name -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S1Q4 Full Name -->
+        <!-- Employer Only/ Representative of employer, reuired-->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Treating Doctor -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
-
-        <div class="form-group">
-          <label class="col-md-2 control-label">Full Name<span class="label worning">*</span></label>
+        <div class="form-group required">
+          <label class="col-md-2 control-label">Full Name</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="first_name" placeholder="Full Name" class="form-control" type="text">
+              <input name="first_name" formControlName='F3S1Q4' placeholder="Full Name" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S1Q4').touched">
+              <span [class.hidden]="!form3.controls['F3S1Q4'].hasError('required')" class="help-block hidden" >FullName is required.</span>
             </div>
           </div>
         </div>
 
-        <!-- Date of Birth -->
+        <!-- F3S1Q5 Date of Birth -->
         <!-- user role -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- Employer Only/ Representative of employer , required-->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Treating Doctor -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group">
-          <label class="col-md-2 control-label">Date of Birth<span class="label worning">*</span></label>
+        <div class="form-group required">
+          <label class="col-md-2 control-label">Date of Birth</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
-              <input name="date_of_birth" placeholder="Date of Birth" class="form-control" type="text">
+              <input name="date_of_birth" formControlName='F3S1Q5' placeholder="Date of Birth" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S1Q5').touched">
+              <span [class.hidden]="!form3.controls['F3S1Q5'].hasError('required')" class="help-block hidden" >Date of birth is required.</span>
             </div>
           </div>
         </div>
 
-        <!-- Gender -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S1Q6 Gender -->
+        <!-- Employer Only/ Representative of employer , required-->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
         <!-- <hr> -->
-        <div class="form-group">
+        <div class="form-group required">
           <label class="col-md-2 control-label">Gender</label>
-          <div class="col-md-10 ">
+          <div class="col-md-10">
             <label class="radio-inline custom-radio-label">
-                      <input type="radio" name="options" id="option1" autocomplete="off">Male
-                    </label>
+              <input type="radio" name="options" id="option1" autocomplete="off">Male
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">Female
-                    </label>
+              <input type="radio" name="options" id="option2" autocomplete="off">Female
+            </label>
           </div>
         </div>
 
-        <!-- Nationality -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S1Q7 Nationality -->
+        <!-- Employer Only/ Representative of employer, required-->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
         <!-- Treating Doctor -->
         <!-- Victim -->
-
-        <div class="form-group">
+        <div class="form-group required">
           <label class="col-md-2 control-label">Nationality</label>
           <div class="col-md-10 selectContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select name="state" class="form-control selectpicker">
-                          <option>Sri Lankan</option>
-                          <option>Non Sri Lankan</option>
-                      </select>
+              <select name="state" class="form-control selectpicker" formControlName='F3S1Q7'>
+                <option>Sri Lankan</option>
+                <option>Non Sri Lankan</option>
+              </select>
+            </div>
+            <div *ngIf="form3.get('F3S1Q7').touched">
+              <span [class.hidden]="!form3.controls['F3S1Q7'].hasError('required')" class="help-block hidden" >Nationality is required.</span>
             </div>
           </div>
         </div>
 
 
         <!-- Address-->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- Employer Only/ Representative of employer, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
         <!-- Treating Doctor -->
         <!-- Victim -->
 
-        <div class="form-group">
+        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role3))">
           <label class="col-md-2 control-label">Address</label>
           <div class="col-md-10">
+            <!-- F3S1Q8 -->
+            <div class="control-group">
+              <div class="control-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                  <input id="address-line1" name="address-line1" type="text" placeholder="address line 1" class="form-control" formControlName='F3S1Q8'>
+                </div>
+                <p class="help-block">Street address, P.O. box, home name</p>
+                <div *ngIf="form3.get('F3S1Q8').touched">
+                  <span [class.hidden]="!form3.controls['F3S1Q8'].hasError('required')" class="help-block hidden" >Address field one is required.</span>
+                </div>
+              </div>
+            </div>
 
+            <!-- F3S1Q9 address-line2 input-->
+            <div class="control-group">
+              <div class="control-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                  <input id="address-line2" name="address-line2" type="text" placeholder="address line 2" class="form-control" formControlName='F3S1Q9'>
+                </div>
+                <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                <div *ngIf="form3.get('F3S1Q9').touched">
+                  <span [class.hidden]="!form3.controls['F3S1Q9'].hasError('required')" class="help-block hidden" >Address field two is required.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- F3S1Q10 city input-->
+            <div class="control-group">
+              <div class="control-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                  <input id="city" name="city" type="text" placeholder="city" class="form-control" formControlName='F3S1Q10'>
+                </div>
+                <p class="help-block">City, town</p>
+                <div *ngIf="form3.get('F3S1Q10').touched">
+                  <span [class.hidden]="!form3.controls['F3S1Q10'].hasError('required')" class="help-block hidden" >City is required.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Occupier Only/ Representative of occupier -->
+        <div class="form-group" *ngIf="(userRole===role2)">
+          <label class="col-md-2 control-label">Address</label>
+          <div class="col-md-10">
+            <!-- F3S1Q12 -->
             <div class="control-group">
               <div class="control-group">
                 <div class="input-group">
@@ -603,8 +597,8 @@
                 <p class="help-block">Street address, P.O. box, home name</p>
               </div>
             </div>
-            <!-- address-line2 input-->
 
+            <!-- F3S1Q13 address-line2 input-->
             <div class="control-group">
               <div class="control-group">
                 <div class="input-group">
@@ -615,7 +609,7 @@
               </div>
             </div>
 
-            <!-- city input-->
+            <!-- F3S1Q14 city input-->
             <div class="control-group">
               <div class="control-group">
                 <div class="input-group">
@@ -628,23 +622,43 @@
           </div>
         </div>
 
-        <!-- Contact No.-->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+
+        <!-- F3S1Q11 Contact No.-->
+        <!-- Employer Only/ Representative of employer, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
         <!-- Treating Doctor -->
         <!-- Victim -->
-
-        <div class="form-group">
+        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role3))">
           <label class="col-md-2 control-label">Contact No.</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-              <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+              <input name="phone"  formControlName="F3S1Q11" placeholder="772156498" class="form-control" type="text" maxlength="9">
+            </div>
+            <div *ngIf="form3.get('F3S1Q11').touched">
+              <span [class.hidden]="!form3.controls['F3S1Q11'].hasError('required')" class="help-block hidden" >Contact is required.</span>
+              <span [class.hidden]="!form3.controls['F3S1Q11'].hasError('invalidPhone')" class="help-block hidden" >Invalid phone No.
+              </span>
             </div>
           </div>
         </div>
+
+        <!-- F3S1Q15 Occupier Only/ Representative of occupier -->
+        <div class="form-group" *ngIf="(userRole===role2)">
+          <label class="col-md-2 control-label">Contact No.</label>
+          <div class="col-md-10 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+              <input name="phone" placeholder="772156498" formControlName="F3S1Q15" class="form-control" type="text" maxlength="9">
+            </div>
+            <div *ngIf="form3.get('F3S1Q15').touched">
+              <span [class.hidden]="!form3.controls['F3S1Q15'].hasError('invalidPhone')" class="help-block hidden" >Invalid phone No.
+              </span>
+            </div>
+          </div>
+        </div>
+
 
         <!-- Employer Only/ Representative of employer -->
         <!-- Occupier Only/ Representative of occupier -->
@@ -652,64 +666,77 @@
         <!-- Treating Doctor -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
-
         <legend>
           <hr>
           <h4>Section 2: Employment details of the Injured Person</h4>
         </legend>
 
 
-        <!-- Employer's Organisation Name -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S2Q1 Employer's Organisation Name -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group" *ngIf="!(userRole===role2 || userRole===role4)">
+        <div class="form-group required" *ngIf="!(userRole===role1 || userRole===role2 || userRole===role4)">
           <label class="col-md-2 control-label">Employer's Organisation Name</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-              <input name="organisation_name" placeholder="Organisation Name" class="form-control" type="text">
+              <input name="organisation_name" formControlName="F3S2Q1" placeholder="Organisation Name" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S2Q1').touched">
+              <span [class.hidden]="!form3.controls['F3S2Q1'].hasError('required')" class="help-block hidden" >Organisation Name is required.</span>
             </div>
           </div>
         </div>
 
-        <!-- Employer's Mailing Address -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S2Q2 Employer's Mailing Address -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group" *ngIf="!(userRole===role2 || userRole===role4)">
+        <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role2) || (userRole===role4))">
           <label class="col-md-2 control-label">Employer's Mailing Address</label>
           <div class="col-md-10">
-
+            <!-- F3S2Q9 -->
             <div class="control-group">
               <div class="control-group">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                  <input id="address-line1" name="address-line1" type="text" placeholder="address line 1" class="form-control">
+                  <input id="address-line1" name="address-line1" type="text" placeholder="address line 1" class="form-control" formControlName="F3S2Q9">
+                </div>
+                <div *ngIf="form3.get('F3S2Q9').touched">
+                  <span [class.hidden]="!form3.controls['F3S2Q9'].hasError('required')" class="help-block hidden" >Address field one is required.</span>
                 </div>
                 <p class="help-block">Street address, P.O. box, company name</p>
               </div>
             </div>
-            <!-- address-line2 input-->
 
+            <!-- F3S2Q10 -->
+            <!-- address-line2 input-->
             <div class="control-group">
               <div class="control-group">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                  <input id="address-line2" name="address-line2" type="text" placeholder="address line 2" class="form-control">
+                  <input id="address-line2" name="address-line2" type="text" placeholder="address line 2" class="form-control" formControlName="F3S2Q10">
+                </div>
+                <div *ngIf="form3.get('F3S2Q10').touched">
+                  <span [class.hidden]="!form3.controls['F3S2Q10'].hasError('required')" class="help-block hidden" >Address field two is required.</span>
                 </div>
                 <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
               </div>
             </div>
 
+            <!-- F3S2Q11 -->
             <!-- city input-->
             <div class="control-group">
               <div class="control-group">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                  <input id="city" name="city" type="text" placeholder="city" class="form-control">
+                  <input id="city" name="city" formControlName="F3S2Q11" type="text" placeholder="city" class="form-control">
+                </div>
+                <div *ngIf="form3.get('F3S2Q11').touched">
+                  <span [class.hidden]="!form3.controls['F3S2Q11'].hasError('required')" class="help-block hidden" >City is required.</span>
                 </div>
                 <p class="help-block">City, town</p>
               </div>
@@ -717,44 +744,71 @@
           </div>
         </div>
 
-
-        <!-- Occupation-->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S2Q3 Occupation-->
+        <!-- Employer Only/ Representative of employer, required-->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Treating Doctor -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group">
+        <div class="form-group required">
           <label class="col-md-2 control-label">Occupation</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-              <input name="occupation" placeholder="Occupation" class="form-control" type="text">
+                <input name="occupation" formControlName="F3S2Q3" placeholder="Occupation" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S2Q3').touched">
+              <span [class.hidden]="!form3.controls['F3S2Q3'].hasError('required')" class="help-block hidden" >Occupation is required.</span>
             </div>
           </div>
         </div>
 
-        <!-- Start Date of Employment -->
+        <!-- F3S2Q4 Start Date of Employment -->
         <!-- user role -->
-        <!-- Employer Only/ Representative of employer -->
+        <!-- Employer Only/ Representative of employer, required -->
         <!-- Occupier Only/ Representative of occupier -->
-        <div class="form-group" *ngIf="(userRole===role1 || userRole===role2)">
-          <label class="col-md-2 control-label">Start Date of Employment<span class="label worning">*</span></label>
+        <div class="form-group required" *ngIf="(userRole===role1 || userRole===role2)">
+          <label class="col-md-2 control-label">Start Date of Employment</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
               <input name="date_of_birth" placeholder="Select Date" class="form-control" type="text">
             </div>
+            <div *ngIf="form3.get('F3S2Q4').touched">
+              <span [class.hidden]="!form3.controls['F3S2Q4'].hasError('required')" class="help-block hidden" >Start Date is required.</span>
+            </div>
           </div>
         </div>
 
 
-        <!-- Average Monthly Earnings -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <div class="form-group" *ngIf="(userRole===role1 || userRole===role2)">
+        <!-- F3S2Q5 Average Monthly Earnings -->
+        <!-- Employer Only/ Representative of employer, required -->
+        <div class="form-group required" *ngIf="(userRole===role1)">
+          <div class="control-group">
+            <label class="col-md-2 control-label">Average Monthly Earnings</label>
+            <div class="col-md-10 control-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                <input id="warnings" name="warnings" formControlName="F3S2Q5" type="text" placeholder="Write here" class="form-control">
+              </div>
+              <p class="help-block">• Under WICA, AME includes wages, allowances, overtime payments, bonuses or annual wage supplement but does
+                not include traveling allowances, employer’s CPF contributions or pensions or monies paid to cover any special
+                expenses.</p>
+              <div *ngIf="form3.get('F3S2Q5').touched">
+                <span [class.hidden]="!form3.controls['F3S2Q5'].hasError('required')" class="help-block hidden" >Average monthly salary is required.</span>
+              </div>
+              <div *ngIf="form3.get('F3S2Q5').touched">
+                <span [class.hidden]="!form3.controls['F3S2Q5'].hasError('invalidSalary')" class="help-block hidden" >Average monthly salary is invalied.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- F3S2Q6 Occupier Only/ Representative of occupier -->
+        <div class="form-group" *ngIf="(userRole===role2)">
           <div class="control-group">
             <label class="col-md-2 control-label">Average Monthly Earnings</label>
             <div class="col-md-10 control-group">
@@ -769,19 +823,36 @@
           </div>
         </div>
 
-        <!-- Percentage of manual work performed by the injured person -->
+        <!-- F3S2Q7 Percentage of manual work performed by the injured person -->
         <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
         <!-- <hr> -->
-        <div class="form-group" *ngIf="(userRole===role1 || userRole===role2)">
+        <div class="form-group" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">Percentage of manual work performed by the injured person</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
-                      <input type="radio" name="options" id="option1" autocomplete="off">Equal or greater than 50%
-                    </label>
+              <input type="radio" name="options" id="option1" autocomplete="off">Equal or greater than 50%
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">Less than 50%
-                    </label>
+              <input type="radio" name="options" id="option2" autocomplete="off">Less than 50%
+            </label>
+          </div>
+        </div>
+
+
+        <!-- F3S2Q8 Occupier Only/ Representative of occupier, required -->
+        <!-- <hr> -->
+        <div class="form-group required" *ngIf="(userRole===role2)">
+          <label class="col-md-2 control-label">Percentage of manual work performed by the injured person</label>
+          <div class="col-md-10">
+            <label class="radio-inline custom-radio-label">
+              <input type="radio" name="F3S2Q8" id="option1" autocomplete="off" formControlName="F3S2Q8">Equal or greater than 50%
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="F3S2Q8" id="option2" autocomplete="off" formControlName="F3S2Q8">Less than 50%
+            </label>
+          </div>
+          <div *ngIf="form3.get('F3S2Q8').touched">
+            <span [class.hidden]="!form3.controls['F3S2Q8'].hasError('required')" class="help-block hidden" >Average monthly salary is required.</span>
           </div>
         </div>
 
@@ -796,120 +867,133 @@
           <h4>Section 3: Injury Details</h4>
         </legend>
 
-        <!-- section3q1 -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S3Q1 -->
+        <!-- Employer Only/ Representative of employer, required -->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Treating Doctor -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
-
         <!-- <hr> -->
-        <div class="form-group">
+        <div class="form-group required">
           <label class="col-md-2 control-label">Did the accident result in death of the injured person?</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
-                      <input type="radio" name="options" id="option1" autocomplete="off">Yes
-                    </label>
+              <input type="radio" name="F3S3Q1" value="option1" formControlName="F3S3Q1" autocomplete="off">Yes
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">No
-                    </label>
+              <input type="radio" name="F3S3Q1" value="option2" formControlName="F3S3Q1" autocomplete="off">No
+            </label>
+          </div>
+          <div *ngIf="form3.get('F3S3Q1').touched">
+            <span [class.hidden]="!form3.controls['F3S3Q1'].hasError('required')" class="help-block hidden" >This is required.</span>
           </div>
         </div>
 
-        <!-- Nature of injury -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- ToDo:- need to hide this feild 
+            according to radio btn value(show when select no)
+        -->
+        <!-- F3S3Q2 Nature of injury -->
+        <!-- Employer Only/ Representative of employer, required-->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Treating Doctor -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
-
-        <div class="form-group">
+        <div class="form-group required">
           <label class="col-md-2 control-label">Nature of injury</label>
           <div class="col-md-10 selectContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select name="state" class="form-control selectpicker">
-                          <option value=" " disabled selected hidden>Please select nature of injury</option>
-                          <option>No Physical Injury</option>
-                          <option>Amputation</option>
-                          <option>Angina Pectoris</option>
-                          <option>Burn</option>
-                          <option>Concussion</option>
-                          <option>Contusion</option>
-                          <option>Crushing</option>
-                          <option>Dislocation</option>
-                          <option>Electric Shock</option>
-                          <option>Enucleation</option>
-                          <option>Foreign Body</option>
-                          <option>Fracture</option>
-                          <option>Freezing</option>
-                          <option>Hearing Loss or Impairment</option>
-                          <option>Heat Prostration</option>
-                          <option>Hernia</option>
-                          <option>Infection</option>
-                          <option>Inflammation</option>
-                          <option>Laceration</option>
-                          <option>Myocardial Infarction</option>
-                          <option>Poisoning - General</option>
-                          <option>Puncture</option>
-                          <option>Rupture</option>
-                          <option>Severance</option>
-                          <option>Sprain or Tear</option>
-                          <option>Strain or Tear</option>
-                          <option>Syncope</option>
-                          <option>Asphyxiation</option>
-                          <option>Vascular</option>
-                          <option>Vision Loss</option>
-                          <option>All Other Specific Injuries, NOC</option>
-                          <option>Dust Disease, NOC</option>
-                          <option>Asbestosis</option>
-                          <option>Black Lung</option>
-                          <option>Byssinosis</option>
-                          <option>Silicosis</option>
-                          <option>Poisoning - Chemical, (Other Than Metals)</option>
-                          <option>Respiratory Disorders</option>
-                          <option>Poisoning - Metal</option>
-                          <option>Dermatitis</option>
-                          <option>Mental Disorder</option>
-                          <option>Radiation</option>
-                          <option>All Other Occupational Disease Injury, NOC</option>
-                          <option>Loss of Hearing</option>
-                          <option>Contagious Disease</option>
-                          <option>Cancer</option>
-                          <option>AIDS</option>
-                          <option>VDT - Related Diseases</option>
-                          <option>Carpal Tunnel Syndrome</option>
-                          <option>Hepatitis C</option>
-                          <option>All Other Cumulative Injury, NOC</option>
-                          <option>Multiple Physical Injuries Only</option>
-                          <option>Multiple Injuries Including Both Physical & Psychological</option>
-                      </select>
+              <select name="state" class="form-control selectpicker" formControlName="F3S3Q2">
+                <option value="" disabled selected hidden>Please select nature of injury</option>
+                <option>No Physical Injury</option>
+                <option>Amputation</option>
+                <option>Angina Pectoris</option>
+                <option>Burn</option>
+                <option>Concussion</option>
+                <option>Contusion</option>
+                <option>Crushing</option>
+                <option>Dislocation</option>
+                <option>Electric Shock</option>
+                <option>Enucleation</option>
+                <option>Foreign Body</option>
+                <option>Fracture</option>
+                <option>Freezing</option>
+                <option>Hearing Loss or Impairment</option>
+                <option>Heat Prostration</option>
+                <option>Hernia</option>
+                <option>Infection</option>
+                <option>Inflammation</option>
+                <option>Laceration</option>
+                <option>Myocardial Infarction</option>
+                <option>Poisoning - General</option>
+                <option>Puncture</option>
+                <option>Rupture</option>
+                <option>Severance</option>
+                <option>Sprain or Tear</option>
+                <option>Strain or Tear</option>
+                <option>Syncope</option>
+                <option>Asphyxiation</option>
+                <option>Vascular</option>
+                <option>Vision Loss</option>
+                <option>All Other Specific Injuries, NOC</option>
+                <option>Dust Disease, NOC</option>
+                <option>Asbestosis</option>
+                <option>Black Lung</option>
+                <option>Byssinosis</option>
+                <option>Silicosis</option>
+                <option>Poisoning - Chemical, (Other Than Metals)</option>
+                <option>Respiratory Disorders</option>
+                <option>Poisoning - Metal</option>
+                <option>Dermatitis</option>
+                <option>Mental Disorder</option>
+                <option>Radiation</option>
+                <option>All Other Occupational Disease Injury, NOC</option>
+                <option>Loss of Hearing</option>
+                <option>Contagious Disease</option>
+                <option>Cancer</option>
+                <option>AIDS</option>
+                <option>VDT - Related Diseases</option>
+                <option>Carpal Tunnel Syndrome</option>
+                <option>Hepatitis C</option>
+                <option>All Other Cumulative Injury, NOC</option>
+                <option>Multiple Physical Injuries Only</option>
+                <option>Multiple Injuries Including Both Physical & Psychological</option>
+              </select>
+            </div>
+            <div *ngIf="form3.get('F3S3Q2').touched">
+              <span [class.hidden]="!form3.controls['F3S3Q2'].hasError('required')" class="help-block hidden" >Nature of injury is required.</span>
             </div>
           </div>
         </div>
 
-        <!-- Associated body part(s) injured -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S3Q3 Associated body part(s) injured -->
+        <!-- Employer Only/ Representative of employer, required -->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Treating Doctor -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
-
-        <div class="form-group">
+        <!-- ToDo 
+          - multiple selector with search 
+          - need to add data
+        -->
+        <!-- ToDo:- need to hide this feild 
+            according to radio btn value(show when select no)
+        -->
+        <div class="form-group required">
           <label class="col-md-2 control-label">Associated body part(s) injured</label>
-          <!-- ToDo 
-                    - multiple selector with search 
-                    - need to add data-->
           <div class="col-md-10 selectContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
-              <select name="state" class="form-control selectpicker">
-                          <option>Multiple Head Injury</option>
-                          <option>Skull</option>
-                      </select>
+              <select name="state" class="form-control selectpicker" formControlName="F3S3Q3">
+                <option>Multiple Head Injury</option>
+                <option>Skull</option>
+              </select>
+            </div>
+            <div *ngIf="form3.get('F3S3Q3').touched">
+              <span [class.hidden]="!form3.controls['F3S3Q3'].hasError('required')" class="help-block hidden" >Associated body part(s) is required.</span>
             </div>
           </div>
         </div>
@@ -921,133 +1005,160 @@
         <!-- Treating Doctor -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
-
         <legend>
           <hr>
           <h4>Section 4: Other Details</h4>
         </legend>
 
-        <!-- section4q1 -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S4Q1 -->
+        <!-- Employer Only/ Representative of employer, required -->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Treating Doctor -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
         <!-- <hr> -->
-        <div class="form-group">
+        <div class="form-group required">
           <label class="col-md-2 control-label">Was the injured person hospitalised for more than 24 hours</label>
-          <div class="col-md-10 ">
+          <div class="col-md-10">
             <label class="radio-inline custom-radio-label">
-                      <input type="radio" name="options" id="option1" autocomplete="off">Yes
-                    </label>
+              <input type="radio" name="F3S4Q1" value="option2" formControlName="F3S4Q1" autocomplete="off">Yes
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">No
-                    </label>
+              <input type="radio" name="F3S4Q1" value="option2" formControlName="F3S4Q1" autocomplete="off">No
+            </label>
+          </div>
+          <div *ngIf="form3.get('F3S4Q1').touched">
+            <span [class.hidden]="!form3.controls['F3S4Q1'].hasError('required')" class="help-block hidden" >This field is required.</span>
           </div>
         </div>
 
 
-        <!-- No. of days of medical leave -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S4Q2 No. of days of medical leave -->
+        <!-- Employer Only/ Representative of employer, required -->
+        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Treating Doctor -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
-        <div class="form-group">
+
+        <!-- ToDo:- need to hide this feild 
+            according to radio btn value(show when select Yes)
+        -->
+        <div class="form-group required">
           <label class="col-md-2 control-label">No. of days of medical leave</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-              <input name="medical_leave" placeholder="Write here" class="form-control" type="text">
+              <input name="medical_leave" formControlName="F3S4Q2" placeholder="Write here" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S4Q2').touched">
+              <span [class.hidden]="!form3.controls['F3S4Q2'].hasError('required')" class="help-block hidden" >Medical leave is required.</span>
+            </div>
+            <div *ngIf="form3.get('F3S4Q2').touched">
+              <span [class.hidden]="!form3.controls['F3S4Q2'].hasError('invalidLeave')" class="help-block hidden" >Value is invalid.</span>
             </div>
           </div>
         </div>
 
-        <!-- user role -->
-        <!-- Employer Only/ Representative of employer -->
+        <!-- F3S4Q3 user role -->
+        <!-- Employer Only/ Representative of employer, required -->
         <!-- Date of 4 th day of Medical leave -->
-        <div class="form-group" *ngIf="(userRole===role1)">
+
+        <!-- ToDo:- need to show this 
+            field when you write more than 3 leaves
+        -->
+        <div class="form-group required" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">Date of 4 th day of Medical leave<span class="label worning">*</span></label>
           <div class="col-md-10 inputGroupContainer">
             <!-- ToDo :- add calender component -->
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
-              <input name="date_of_birth" placeholder="Select Date" class="form-control" type="text">
+              <input name="date_of_birth" formControlName="F3S4Q3" placeholder="Select Date" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S4Q3').touched">
+              <span [class.hidden]="!form3.controls['F3S4Q3'].hasError('required')" class="help-block hidden" >Date is required.</span>
             </div>
           </div>
         </div>
 
-        <!-- Associated body part(s) injured -->
+        <!-- F3S4Q4 Reason of late reporting -->
         <!-- Employer Only/ Representative of employer -->
 
+        <!-- ToDo:-  This feild is need to show ***see the reason below***-->
         <div class="form-group" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">Reason of late reporting</label>
           <div class="col-md-10 selectContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
               <select name="state" class="form-control selectpicker">
-                          <option value=" " disabled selected hidden>Please select a reason</option>
-                          <option>It can increase the cost of the claim</option>
-                          <option>It hurts employee morale</option>
-                          <option>Potential for litigation increases</option>
-                          <option>Reporting workers compensation claims too late may violate state law</option>
-                      </select>
+                <option value=" " disabled selected hidden>Please select a reason</option>
+                <option>It can increase the cost of the claim</option>
+                <option>It hurts employee morale</option>
+                <option>Potential for litigation increases</option>
+                <option>Reporting workers compensation claims too late may violate state law</option>
+              </select>
             </div>
+            <!-- ****** reason ******** -->
             <p class="help-block">• You are required to provide the reason if your incident report was submitted past the mandatory 10 days timeline
               from the 4 th day of medical leave.</p>
           </div>
         </div>
 
 
-        <!-- Hospital/ Clinic where the injured person was examined or treated -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
+        <!-- F3S4Q5 Hospital/ Clinic where the injured person was examined or treated -->
+        <!-- Employer Only/ Representative of employer, required-->
+        <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group" *ngIf="!(userRole===role4)">
+        <div class="form-group required" *ngIf="!(userRole===role4)">
           <label class="col-md-2 control-label">Hospital/ Clinic where the injured person was examined or treated</label>
           <div class="col-md-10 selectContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select name="state" class="form-control selectpicker">
-                          <option value=" " disabled selected hidden>Please select a hospital / clinic</option>
-                          <option>National Hospital of Sri Lanka, Colombo</option>
-                          <option>Castle Street Hospital for Women, Colombo</option>
-                          <option>Colombo South Teaching Hospital, Kalubowila</option>
-                          <option>Dental Institute, Colombo</option>
+              <select name="state" formControlName="F3S4Q5" class="form-control selectpicker">
+                <option value=" " disabled selected hidden>Please select a hospital / clinic</option>
+                <option>National Hospital of Sri Lanka, Colombo</option>
+                <option>Castle Street Hospital for Women, Colombo</option>
+                <option>Colombo South Teaching Hospital, Kalubowila</option>
+                <option>Dental Institute, Colombo</option>
 
-                          <option>De Soysa Hospital for Women, Colombo</option>
-                          <option>National Eye Hospital, Colombo</option>
-                          <option>National Institute of Mental Health (Angoda Mental Hospital)</option>
-                          <option>Sri Jayawardenepura General Hospital</option>
-                          <option>Avissawella Base Hospital</option>
-                          <option>Homagama Base Hospital</option>
-                        </select>
+                <option>De Soysa Hospital for Women, Colombo</option>
+                <option>National Eye Hospital, Colombo</option>
+                <option>National Institute of Mental Health (Angoda Mental Hospital)</option>
+                <option>Sri Jayawardenepura General Hospital</option>
+                <option>Avissawella Base Hospital</option>
+                <option>Homagama Base Hospital</option>
+              </select>
+            </div>
+            <div *ngIf="form3.get('F3S4Q5').touched">
+              <span [class.hidden]="!form3.controls['F3S4Q5'].hasError('required')" class="help-block hidden" >Hospital/Clinic is required.</span>
             </div>
           </div>
         </div>
 
-        <!-- Would you like to provide any witness information? -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S4Q6 Would you like to provide any witness information? -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
         <!-- <hr> -->
-        <div class="form-group" *ngIf="!(userRole===role1 || userRole===role2 
+        <div class="form-group required" *ngIf="!(userRole===role1 || userRole===role2 
         || userRole===role4)">
           <label class="col-md-2 control-label">Would you like to provide any witness information?</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
-                      <input type="radio" name="options" id="option1" autocomplete="off">Yes
-                    </label>
+              <input type="radio" name="F3S4Q6" formControlName="F3S4Q6" id="option1" autocomplete="off">Yes
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">No
-                    </label>
+              <input type="radio" name="F3S4Q6" formControlName="F3S4Q6" id="option2" autocomplete="off">No
+            </label>
+          </div>
+          <div *ngIf="form3.get('F3S4Q6').touched">
+            <span [class.hidden]="!form3.controls['F3S4Q6'].hasError('required')" class="help-block hidden" >This field is required.</span>
           </div>
         </div>
 
@@ -1057,11 +1168,11 @@
         <!-- Victim -->
 
         <hr>
-        <legend *ngIf="!(userRole===role1 || userRole===role2 || userRole===role4)">
+        <legend *ngIf="!((userRole===role1) || (userRole===role2) || (userRole===role4))">
           <h4>Section 5: Particulars of the Witness</h4>
         </legend>
 
-        <!-- NIC NO-->
+        <!-- F3S5Q1 NIC NO-->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
@@ -1072,28 +1183,35 @@
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="nic_nO" placeholder="NIC NO" class="form-control" type="text">
+              <input name="nic_nO" placeholder="NIC NO" formControlName="F3S5Q1" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S5Q1').touched">
+              <span [class.hidden]="!form1.controls['F3S5Q1'].hasError('invalidNic')" class="help-block hidden" >Invalid NIC no.
+              </span>
             </div>
           </div>
         </div>
 
-        <!-- Full Name -->
-        <!-- Victim’s Legal Representative -->
+        <!-- F3S5Q2 Full Name -->
+        <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group" *ngIf="!(userRole===role1 || userRole===role2 
+        <div class="form-group required" *ngIf="!(userRole===role1 || userRole===role2 
         || userRole===role4)">
-          <label class="col-md-2 control-label">Full Name<span class="label worning">*</span></label>
+          <label class="col-md-2 control-label">Full Name</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="first_name" placeholder="Full Name" class="form-control" type="text">
+              <input name="first_name" placeholder="Full Name" formControlName="F3S5Q2" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S5Q2').touched">
+              <span [class.hidden]="!form3.controls['F3S5Q2'].hasError('required')" class="help-block hidden" >FullName is required.</span>
             </div>
           </div>
         </div>
 
-        <!-- Contact No.-->
+        <!-- F3S5Q3 Contact No.-->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
@@ -1103,12 +1221,16 @@
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-              <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+              <input name="phone" formControlName="F3S5Q3" placeholder="(845)555-1212" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S5Q3').touched">
+              <span [class.hidden]="!form3.controls['F3S5Q3'].hasError('invalidPhone')" class="help-block hidden" >Invalid phone No.
+              </span>
             </div>
           </div>
         </div>
 
-        <!--Email-->
+        <!--F3S5Q4 Email-->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
@@ -1118,7 +1240,10 @@
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-              <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
+              <input name="email" formControlName="F3S5Q4" placeholder="E-Mail Address" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S5Q4').touched">
+              <span [class.hidden]="!form3.controls['F3S5Q4'].hasError('invalidEmail')" class="help-block hidden" >Email format error.</span>
             </div>
           </div>
         </div>
@@ -1128,16 +1253,16 @@
         <!-- Victim -->
 
         <hr>
-        <legend *ngIf="!(userRole===role1 || userRole===role2 || userRole===role4)">
+        <legend *ngIf="!((userRole===role1) || (userRole===role2) || (userRole===role4))">
           <h4>Section 6: Employment Details of the Witness</h4>
         </legend>
 
-        <!-- Employer's Organisation Name -->
+        <!-- F3S6Q1 Employer's Organisation Name -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group" *ngIf="!(userRole===role2 || userRole===role4)">
+        <div class="form-group" *ngIf="!((userRole===role2) || (userRole===role4))">
           <label class="col-md-2 control-label">Employer's Organisation Name</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -1147,7 +1272,7 @@
           </div>
         </div>
 
-        <!-- Employer's Mailing Address -->
+        <!-- F3S6Q2 Employer's Mailing Address -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
@@ -1166,8 +1291,8 @@
                 <p class="help-block">Street address, P.O. box, company name</p>
               </div>
             </div>
-            <!-- address-line2 input-->
 
+            <!-- address-line2 input-->
             <div class="control-group">
               <div class="control-group">
                 <div class="input-group">
@@ -1193,55 +1318,98 @@
 
 
 
-        <!-- What time did the injured person start work on the day of the accident? -->
+        <!-- ERROR F3S6Q3 What time did the injured person start work on the day of the accident? -->
         <!-- user role -->
-        <!-- Employer Only/ Representative of employer -->
-        <div class="form-group" *ngIf="(userRole===role1)">
-          <label class="col-md-2 control-label">What time did the injured person start work on the day of the accident?<span class="label worning">*</span></label>
+        <!-- Employer Only/ Representative of employer, required -->
+        <div class="form-group required" *ngIf="(userRole===role1)">
+          <label class="col-md-2 control-label">What time did the injured person start work on the day of the accident?</label>
           <div class="col-md-10 inputGroupContainer">
             <!-- ToDo :- add clock component -->
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
-              <input name="date_of_birth" placeholder="Select Time" class="form-control" type="text">
+              <input name="date_of_birth" formControlName="F3S6Q3" placeholder="Select Time" class="form-control" type="text">
+            </div>
+            <div *ngIf="form3.get('F3S6Q3').touched">
+              <span [class.hidden]="!form3.controls['F3S6Q3'].hasError('required')" class="help-block hidden" >Start date is required.</span>
             </div>
           </div>
         </div>
 
 
-        <!-- Was the injured person working overtime when the accident happened? -->
+        <!-- F3S6Q4 Was the injured person working overtime when the accident happened? -->
         <!-- Employer Only/ Representative of employer -->
         <!-- <hr> -->
         <div class="form-group" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">Was the injured person working overtime when the accident happened?</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
-                      <input type="radio" name="options" id="option1" autocomplete="off">Yes
-                    </label>
+              <input type="radio" name="F3S6Q4" formControlName="F3S6Q4" value="option1" autocomplete="off">Yes
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">No
-                    </label>
+              <input type="radio" name="F3S6Q4" formControlName="F3S6Q4" value="option2" autocomplete="off">No
+            </label>
+          </div>
+          <div *ngIf="form3.get('F3S6Q4').touched">
+            <span [class.hidden]="!form3.controls['F3S6Q4'].hasError('required')" class="help-block hidden" >This field is required.</span>
           </div>
         </div>
 
-        <!-- Was the person injured while performing official work duties? -->
-        <!-- Employer Only/ Representative of employer -->
+        <!-- F3S6Q5 Was the person injured while performing official work duties? -->
+        <!-- Employer Only/ Representative of employer, required -->
         <!-- <hr> -->
         <div class="form-group" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">Was the person injured while performing official work duties?</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
-                      <input type="radio" name="options" id="option1" autocomplete="off">Yes
-                    </label>
+              <input type="radio" name="F3S6Q5" value="option1" formControlName="F3S6Q5" autocomplete="off">Yes
+            </label>
             <label class="radio-inline">
-                      <input type="radio" name="options" id="option2" autocomplete="off">No
-                    </label>
+              <input type="radio" name="F3S6Q5" value="option2" formControlName="F3S6Q5" autocomplete="off">No
+            </label>
+          </div>
+          <div *ngIf="form3.get('F3S6Q5').touched">
+            <span [class.hidden]="!form3.controls['F3S6Q5'].hasError('required')" class="help-block hidden" >This field is required.</span>
           </div>
         </div>
 
-        <!-- Associated body part(s) injured -->
-        <!-- Employer Only/ Representative of employer -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <div class="form-group" *ngIf="(userRole===role1 || userRole===role2)">
+        <!-- F3S6Q6 Associated body part(s) injured -->
+        <!-- Employer Only/ Representative of employer, required -->
+        <div class="form-group required" *ngIf="(userRole===role1)">
+          <div class="col-md-12">
+            <p class="help-block">• Please provide details for the employer’s Work Injury Compensation Insurance policy (if any).</p>
+          </div>
+          <label class="col-md-2 control-label">Name of insurer</label>
+          <div class="col-md-10 selectContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+              <select name="state" class="form-control selectpicker" formControlName="F3S6Q6">
+                <option value="" disabled selected hidden>Please select a insure</option>
+                <option>AIA Insurance Lanka PLC</option>
+                <option>AIG Insurance Ltd. *</option>
+                <option>Allianz Insurance Lanka Ltd.</option>
+                <option>Allianz Life Insurance Lanka Ltd.</option>
+                <option>Amana Takaful PLC</option>
+                <option>Arpico Insurance PLC</option>
+                <option>Softlogic Life Insurance PLC</option>
+                <option>Fairfirst Insurance Limited.</option>
+                <option>Ceylinco Life Insurance Limited</option>
+                <option>Cooplife Insurance Limited.</option>
+                <option>HNB Assurance PLC</option>
+                <option>Janashakthi Insurance PLC</option>
+                <option>Life Insurance Corporation (Lanka) Ltd.</option>
+                <option>LOLC Life Assurance Limited</option>
+                <option>People's Insurance Ltd.</option>
+                <option>Sri Lanka Insurance Corporation Ltd.</option>
+              </select>
+            </div>
+            <div *ngIf="form3.get('F3S6Q6').touched">
+              <span [class.hidden]="!form3.controls['F3S6Q6'].hasError('required')" class="help-block hidden" >Insurer is required.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- F3S6Q7 Occupier Only/ Representative of occupier -->
+        <div class="form-group" *ngIf="(userRole===role2)">
           <div class="col-md-12">
             <p class="help-block">• Please provide details for the employer’s Work Injury Compensation Insurance policy (if any).</p>
           </div>
@@ -1250,30 +1418,31 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
               <select name="state" class="form-control selectpicker">
-                          <option value=" " disabled selected hidden>Please select a insure</option>
-                          <option>AIA Insurance Lanka PLC</option>
-                          <option>AIG Insurance Ltd. *</option>
-                          <option>Allianz Insurance Lanka Ltd.</option>
-                          <option>Allianz Life Insurance Lanka Ltd.</option>
-                          <option>Amana Takaful PLC</option>
-                          <option>Arpico Insurance PLC</option>
-                          <option>Softlogic Life Insurance PLC</option>
-                          <option>Fairfirst Insurance Limited.</option>
-                          <option>Ceylinco Life Insurance Limited</option>
-                          <option>Cooplife Insurance Limited.</option>
-                          <option>HNB Assurance PLC</option>
-                          <option>Janashakthi Insurance PLC</option>
-                          <option>Life Insurance Corporation (Lanka) Ltd.</option>
-                          <option>LOLC Life Assurance Limited</option>
-                          <option>People's Insurance Ltd.</option>
-                          <option>Sri Lanka Insurance Corporation Ltd.</option>
-                        </select>
+                <option value="" disabled selected hidden>Please select a insure</option>
+                <option>AIA Insurance Lanka PLC</option>
+                <option>AIG Insurance Ltd. *</option>
+                <option>Allianz Insurance Lanka Ltd.</option>
+                <option>Allianz Life Insurance Lanka Ltd.</option>
+                <option>Amana Takaful PLC</option>
+                <option>Arpico Insurance PLC</option>
+                <option>Softlogic Life Insurance PLC</option>
+                <option>Fairfirst Insurance Limited.</option>
+                <option>Ceylinco Life Insurance Limited</option>
+                <option>Cooplife Insurance Limited.</option>
+                <option>HNB Assurance PLC</option>
+                <option>Janashakthi Insurance PLC</option>
+                <option>Life Insurance Corporation (Lanka) Ltd.</option>
+                <option>LOLC Life Assurance Limited</option>
+                <option>People's Insurance Ltd.</option>
+                <option>Sri Lanka Insurance Corporation Ltd.</option>
+              </select>
             </div>
           </div>
         </div>
 
-        <!-- Insurance Policy No. -->
-        <!-- Employer Only/ Representative of employer -->
+
+        <!-- F3S6Q8 Insurance Policy No. -->
+        <!-- Employer Only/ Representative of employer, required-->
         <!-- Occupier Only/ Representative of occupier -->
         <!-- <hr> -->
         <div class="form-group" *ngIf="(userRole===role1 || userRole===role2)">
@@ -1290,7 +1459,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label"></label>
           <div class="col-md-3">
-            <button type="button" class="btn btn-default" (click)="formNext(2)">Previous <span class="glyphicon glyphicon-arrow-left"></span></button>
+            <button type="button" class="btn btn-default" (click)="formBack(2)">Previous <span class="glyphicon glyphicon-arrow-left"></span></button>
           </div>
           <div class="col-md-3">
             <button type="button" class="btn btn-success">Submit <span class="glyphicon glyphicon-send"></span></button>
