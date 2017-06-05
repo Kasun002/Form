@@ -62,6 +62,11 @@ mySettings: IMultiSelectSettings = {
 
   formNext(val){
     this.userRole=this.form1.get('youAre').value;
+    if(this.userRole==this.role3){
+      this.form2.removeControl('F2S3Q1');
+      this.form2.removeControl('F2S3Q2');
+      this.form2.removeControl('F2S3Q3');
+    }
     let value = this.userRole === this.role6? 3: val;
     this.formStatus=value;
   }
