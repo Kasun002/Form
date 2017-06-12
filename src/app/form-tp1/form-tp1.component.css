@@ -68,3 +68,8 @@
    content:"*";
    color:red;
 }
+
+.label-required { 
+   content:"*";
+   color:red;
+}

@@ -39,11 +39,11 @@ export class FormTp1Component implements OnInit {
     { id: 6, name: 'Blue', parentId: 5 },
     { id: 7, name: 'Red', parentId: 5 },
     { id: 8, name: 'White', parentId: 5 }
-];
+  ];
 
-mySettings: IMultiSelectSettings = {
-    enableSearch: true,
-};
+  mySettings: IMultiSelectSettings = {
+      enableSearch: true,
+  };
 
   constructor(
     private fb1: FormBuilder,
@@ -54,20 +54,129 @@ mySettings: IMultiSelectSettings = {
     ) { 
       this.formValidation();
       this.options = new DatePickerOptions();
-    }
+  }
 
   ngOnInit() {
     //this.form1Validation();
   }
+  
+  form2ControlRemove() {
+    if(this.userRole==this.role1) {
 
-  formNext(val){
-    this.userRole=this.form1.get('youAre').value;
-    if(this.userRole==this.role3){
+      this.form2.removeControl('F2S2Q1');
+
+    }else if(this.userRole==this.role2) {
+
+    }else if(this.userRole==this.role3) {
       this.form2.removeControl('F2S3Q1');
       this.form2.removeControl('F2S3Q2');
       this.form2.removeControl('F2S3Q3');
+
+    }else if(this.userRole==this.role4) {
+
+      this.form2.removeControl('F2S2Q1');
+
+    }else if(this.userRole==this.role5) {
+
+      this.form2.removeControl('F2S3Q1');
+      this.form2.removeControl('F2S3Q2');
+      this.form2.removeControl('F2S3Q3');
+    
+    }else if(this.userRole==this.role6) {
+
+      this.form2.removeControl('F2S1Q1');
+      this.form2.removeControl('F2S2Q1');
+      this.form2.removeControl('F2S3Q1');
+      this.form2.removeControl('F2S3Q2');
+      this.form2.removeControl('F2S3Q3');
+      this.form2.removeControl('F2S3Q4');
+
     }
+  }
+
+  form3ControlRemove() {
+    if(this.userRole==this.role1) {
+
+      this.form3.removeControl('F3S1Q1');
+      this.form3.removeControl('F3S2Q8');
+      this.form3.removeControl('F3S4Q6');
+      this.form3.removeControl('F3S5Q2');
+      this.form3.removeControl('F3S5Q2');
+    }
+    else if(this.userRole==this.role2) {
+      this.form3.removeControl('F3S1Q8');
+      this.form3.removeControl('F3S1Q9');
+      this.form3.removeControl('F3S1Q10');
+      this.form3.removeControl('F3S1Q11');
+      this.form3.removeControl('F3S2Q1');
+      this.form3.removeControl('F3S2Q5');
+      this.form3.removeControl('F3S4Q3');
+      this.form3.removeControl('F3S4Q6');
+      this.form3.removeControl('F3S5Q2');
+      this.form3.removeControl('F3S6Q3');
+      this.form3.removeControl('F3S6Q6');
+    }
+    else if(this.userRole==this.role3) {
+      this.form3.removeControl('F3S1Q1');
+      this.form3.removeControl('F3S2Q4');
+      this.form3.removeControl('F3S2Q4');
+      this.form3.removeControl('F3S2Q5');
+      this.form3.removeControl('F3S2Q8');
+      this.form3.removeControl('F3S4Q3');
+      this.form3.removeControl('F3S6Q3');
+      this.form3.removeControl('F3S6Q6');
+    }
+    else if(this.userRole==this.role4) {
+
+      this.form3.removeControl('F3S1Q1');
+      this.form3.removeControl('F2S1Q8');
+      this.form3.removeControl('F2S1Q9');
+      this.form3.removeControl('F2S1Q10');
+      this.form3.removeControl('F3S1Q8');
+      this.form3.removeControl('F3S1Q9');
+      this.form3.removeControl('F3S1Q10');
+      this.form3.removeControl('F3S1Q11');
+      this.form3.removeControl('F3S2Q1');
+      this.form3.removeControl('F3S2Q9');
+      this.form3.removeControl('F3S2Q10');
+      this.form3.removeControl('F3S2Q11');
+      this.form3.removeControl('F3S2Q4');
+      this.form3.removeControl('F3S2Q5');
+      this.form3.removeControl('F3S2Q8');
+      this.form3.removeControl('F3S4Q3');
+      this.form3.removeControl('F3S4Q5');
+      this.form3.removeControl('F3S4Q6');
+      this.form3.removeControl('F3S5Q2');
+      this.form3.removeControl('F3S6Q3');
+      this.form3.removeControl('F3S6Q6');
+    }
+    else if(this.userRole==this.role5) {
+
+      this.form2.removeControl('F3S1Q1');
+      this.form2.removeControl('F3S2Q4');
+      this.form2.removeControl('F3S2Q5');
+      this.form2.removeControl('F3S2Q8');
+      this.form2.removeControl('F3S4Q3');
+      this.form2.removeControl('F3S6Q3');
+      this.form3.removeControl('F3S6Q6');
+    }
+    else if(this.userRole==this.role6) {
+
+      this.form2.removeControl('F3S1Q1');
+      this.form2.removeControl('F3S2Q4');
+      this.form2.removeControl('F3S2Q5');
+      this.form2.removeControl('F3S2Q8');
+      this.form2.removeControl('F3S4Q3');
+      this.form2.removeControl('F3S6Q3');
+      this.form2.removeControl('F3S6Q6');
+    }
+  }
+
+  formNext(val){
+    this.userRole=this.form1.get('youAre').value;
     let value = this.userRole === this.role6? 3: val;
+    this.form2ControlRemove();
+    this.form3ControlRemove();
     this.formStatus=value;
   }
 
@@ -117,10 +226,12 @@ mySettings: IMultiSelectSettings = {
       F3S1Q9: ['', [Validators.required]],
       F3S1Q10: ['', [Validators.required]],
       F3S1Q11: ['', [Validators.required, this.validationService.phoneValidator]],
+      F3S1Q15: ['', [this.validationService.phoneValidator]],
       F3S2Q1: ['', [Validators.required]],
       F3S2Q3: ['', [Validators.required]],
       F3S2Q4: ['', [Validators.required]],
       F3S2Q5: ['', [Validators.required, this.validationService.salaryValidator]],
+      F3S2Q8: ['', [Validators.required]],
       F3S2Q9: ['', [Validators.required]],
       F3S2Q10: ['', [Validators.required]],
       F3S2Q11: ['', [Validators.required]],
