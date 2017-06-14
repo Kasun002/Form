@@ -91,7 +91,7 @@
           <div class="col-md-10 selectContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select name="state"  formControlName="youAre" class="form-control selectpicker">
+              <select name="state"  formControlName="youAre" class="form-control selectpicker" (change)="resetOtherForms()">
                 <!--<option value=" " >Please select your are..</option>-->
                 <option>Employer Only/ Representative of employer</option>
                 <option>Occupier Only/ Representative of occupier</option>

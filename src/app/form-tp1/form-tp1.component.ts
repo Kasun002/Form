@@ -59,6 +59,11 @@ export class FormTp1Component implements OnInit {
   ngOnInit() {
     //this.form1Validation();
   }
+
+  resetOtherForms(){
+    this.form2.reset();
+    this.form3.reset();
+  }
   
   form2ControlRemove() {
     if(this.userRole==this.role1) {
