@@ -175,8 +175,15 @@ export class FormTp1Component implements OnInit {
   formNext(val){
     this.userRole=this.form1.get('youAre').value;
     let value = this.userRole === this.role6? 3: val;
-    this.form2ControlRemove();
-    this.form3ControlRemove();
+
+    setTimeout(()=>{
+      if(this.userRole !== this.role6 && value === 2) {
+        this.form2ControlRemove();
+      }
+      if(value === 3) {
+        this.form3ControlRemove();
+      }
+    }, 3000)
     this.formStatus=value;
   }
 

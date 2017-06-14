@@ -391,7 +391,7 @@
               <input type="radio" name="F3S1Q1" value="option2" formControlName="F3S1Q1"autocomplete="off">Self-employed
             </label>
             <label class="radio-inline">
-              <input type="radio" name="F3S1Q1" value="option3" formControlName="F3S1Q1"autocomplete="off">Members of public
+              <input type="radio" namee="F3S1Q1" value="option3" formControlName="F3S1Q1"autocomplete="off">Members of public
             </label>
             <label class="radio-inline">
               <input type="radio" name="F3S1Q1" value="option4" formControlName="F3S1Q1"autocomplete="off">A trainee or student
@@ -407,9 +407,9 @@
         <!-- Employer Only/ Representative of employer, required -->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Treating Doctor -->
-        <!-- Victim -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Treating Doctor, required -->
+        <!-- Victim, required -->
         <div class="form-group required">
           <label class="col-md-2 control-label">Employee ID</label>
           <div class="col-md-10 inputGroupContainer">
@@ -427,9 +427,9 @@
         <!-- Employer Only/ Representative of employer, required -->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Treating Doctor -->
-        <!-- Victim -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Treating Doctor, required -->
+        <!-- Victim, required -->
         <div class="form-group required">
           <label class="col-md-2 control-label">NIC NO</label>
           <div class="col-md-10 inputGroupContainer">
@@ -447,9 +447,9 @@
         <!-- Employer Only/ Representative of employer, reuired-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Treating Doctor -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Treating Doctor, required -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
         <div class="form-group required">
           <label class="col-md-2 control-label">Full Name</label>
           <div class="col-md-10 inputGroupContainer">
@@ -468,9 +468,9 @@
         <!-- Employer Only/ Representative of employer , required-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Treating Doctor -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Treating Doctor, required   -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
 
         <div class="form-group required">
           <label class="col-md-2 control-label">Date of Birth</label>
@@ -489,8 +489,9 @@
         <!-- Employer Only/ Representative of employer , required-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Treating Doctor, required -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
         <!-- <hr> -->
         <div class="form-group required">
           <label class="col-md-2 control-label">Gender</label>
@@ -508,9 +509,9 @@
         <!-- Employer Only/ Representative of employer, required-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Treating Doctor -->
-        <!-- Victim -->
+        <!-- Treating Doctor, requied -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
         <div class="form-group required">
           <label class="col-md-2 control-label">Nationality</label>
           <div class="col-md-10 selectContainer">
@@ -533,11 +534,9 @@
         <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin, required -->
         <!-- Victim, required -->
-        <!-- Occupier Only/ Representative of occupier -->
-        <!-- Treating Doctor -->
 
-        <div class="form-group">
-          <label class="col-md-2 control-label">Address-1<span class="label-required" *ngIf="!((userRole===role2) || (userRole===role4))">*</span></label>
+        <div class="form-group required" *ngIf="!((userRole===role2) || (userRole===role4))">
+          <label class="col-md-2 control-label">Address</label>
           <div class="col-md-10">
             <!-- F3S1Q8 -->
             <div class="control-group">
@@ -627,10 +626,9 @@
         <!-- F3S1Q11 Contact No.-->
         <!-- Employer Only/ Representative of employer, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Treating Doctor -->
-        <!-- Victim -->
-        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role3) || (userRole===role6))">
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required, required -->
+        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role3) || (userRole===role6) || (userRole===role5))">
           <label class="col-md-2 control-label">Contact No.</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -646,6 +644,7 @@
         </div>
 
         <!-- F3S1Q15 Occupier Only/ Representative of occupier -->
+        <!-- Treating Doctor -->
         <div class="form-group" *ngIf="((userRole===role2) || (userRole===role4)) ">
           <label class="col-md-2 control-label">Contact No.</label>
           <div class="col-md-10 inputGroupContainer">
@@ -675,8 +674,8 @@
 
         <!-- F3S2Q1 Employer's Organisation Name -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
 
         <div class="form-group required" *ngIf="!(userRole===role1 || userRole===role2 || userRole===role4)">
           <label class="col-md-2 control-label">Employer's Organisation Name</label>
@@ -693,8 +692,8 @@
 
         <!-- F3S2Q2/F3S2Q9 Employer's Mailing Address -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
 
         <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role2) || (userRole===role4))">
           <label class="col-md-2 control-label">Employer's Mailing Address</label>
@@ -749,9 +748,9 @@
         <!-- Employer Only/ Representative of employer, required-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Treating Doctor -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Treating Doctor, required -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
 
         <div class="form-group required">
           <label class="col-md-2 control-label">Occupation</label>
@@ -872,9 +871,9 @@
         <!-- Employer Only/ Representative of employer, required -->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Treating Doctor -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Treating Doctor, required -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
         <!-- <hr> -->
         <div class="form-group required">
           <label class="col-md-2 control-label">Did the accident result in death of the injured person?</label>
@@ -898,9 +897,9 @@
         <!-- Employer Only/ Representative of employer, required-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Treating Doctor -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Treating Doctor, required --> 
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
         <div class="form-group required">
           <label class="col-md-2 control-label">Nature of injury</label>
           <div class="col-md-10 selectContainer">
@@ -973,9 +972,9 @@
         <!-- Employer Only/ Representative of employer, required -->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Treating Doctor -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Treating Doctor, required -->
+        <!-- Victim’s Next-of-kin, reuired -->
+        <!-- Victim, required -->
         <!-- ToDo 
           - multiple selector with search 
           - need to add data
@@ -1015,9 +1014,9 @@
         <!-- Employer Only/ Representative of employer, required -->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Treating Doctor -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Treating Doctor, required -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
 
         <!-- <hr> -->
         <div class="form-group required">
@@ -1040,9 +1039,9 @@
         <!-- Employer Only/ Representative of employer, required -->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Treating Doctor -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Treating Doctor, required -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
 
         <!-- ToDo:- need to hide this feild 
             according to radio btn value(show when select Yes)
@@ -1071,7 +1070,7 @@
             field when you write more than 3 leaves
         -->
         <div class="form-group required" *ngIf="(userRole===role1)">
-          <label class="col-md-2 control-label">Date of 4 th day of Medical leave<span class="label worning">*</span></label>
+          <label class="col-md-2 control-label">Date of 4 th day of Medical leave</label>
           <div class="col-md-10 inputGroupContainer">
             <!-- ToDo :- add calender component -->
             <div class="input-group">
@@ -1112,8 +1111,8 @@
         <!-- Employer Only/ Representative of employer, required-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Victim’s Legal Representative -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
 
         <div class="form-group required" *ngIf="!(userRole===role4)">
           <label class="col-md-2 control-label">Hospital/ Clinic where the injured person was examined or treated</label>
@@ -1143,8 +1142,8 @@
 
         <!-- F3S4Q6 Would you like to provide any witness information? -->
         <!-- Victim’s Legal Representative, required -->
-        <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Victim’s Next-of-kin, required -->
+        <!-- Victim, required -->
 
         <!-- <hr> -->
         <div class="form-group required" *ngIf="!(userRole===role1 || userRole===role2 
@@ -1196,7 +1195,7 @@
         <!-- F3S5Q2 Full Name -->
         <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin -->
-        <!-- Victim -->
+        <!-- Victim, required -->
 
         <div class="form-group required" *ngIf="!(userRole===role1 || userRole===role2 
         || userRole===role4)">
