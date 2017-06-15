@@ -60,9 +60,9 @@ export class FormTp1Component implements OnInit {
     //this.form1Validation();
   }
 
-  resetOtherForms(){
-    this.form2.reset();
-    this.form3.reset();
+  resetOtherForms() {
+      this.form2.reset();
+      this.form3.reset();
   }
   
   form2ControlRemove() {
@@ -120,6 +120,8 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S5Q2');
       this.form3.removeControl('F3S6Q3');
       this.form3.removeControl('F3S6Q6');
+      this.form3.removeControl('F3S6Q4');
+      this.form3.removeControl('F3S6Q5');
     }
     else if(this.userRole==this.role3) {
       this.form3.removeControl('F3S1Q1');
@@ -130,6 +132,8 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S4Q3');
       this.form3.removeControl('F3S6Q3');
       this.form3.removeControl('F3S6Q6');
+      this.form3.removeControl('F3S6Q4');
+      this.form3.removeControl('F3S6Q5');
     }
     else if(this.userRole==this.role4) {
 
@@ -154,26 +158,32 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S5Q2');
       this.form3.removeControl('F3S6Q3');
       this.form3.removeControl('F3S6Q6');
+      this.form3.removeControl('F3S6Q4');
+      this.form3.removeControl('F3S6Q5');
     }
     else if(this.userRole==this.role5) {
 
-      this.form2.removeControl('F3S1Q1');
-      this.form2.removeControl('F3S2Q4');
-      this.form2.removeControl('F3S2Q5');
-      this.form2.removeControl('F3S2Q8');
-      this.form2.removeControl('F3S4Q3');
-      this.form2.removeControl('F3S6Q3');
+      this.form3.removeControl('F3S1Q1');
+      this.form3.removeControl('F3S2Q4');
+      this.form3.removeControl('F3S2Q5');
+      this.form3.removeControl('F3S2Q8');
+      this.form3.removeControl('F3S4Q3');
+      this.form3.removeControl('F3S6Q3');
       this.form3.removeControl('F3S6Q6');
+      this.form3.removeControl('F3S6Q4');
+      this.form3.removeControl('F3S6Q5');
     }
     else if(this.userRole==this.role6) {
-
-      this.form2.removeControl('F3S1Q1');
-      this.form2.removeControl('F3S2Q4');
-      this.form2.removeControl('F3S2Q5');
-      this.form2.removeControl('F3S2Q8');
-      this.form2.removeControl('F3S4Q3');
-      this.form2.removeControl('F3S6Q3');
-      this.form2.removeControl('F3S6Q6');
+      this.form3.removeControl('F3S1Q1');
+      this.form3.removeControl('F3S2Q4');
+      this.form3.removeControl('F3S2Q5');
+      this.form3.removeControl('F3S2Q8');
+      this.form3.removeControl('F3S4Q3');
+      this.form3.removeControl('F3S4Q6');
+      this.form3.removeControl('F3S6Q3');
+      this.form3.removeControl('F3S6Q6');
+      this.form3.removeControl('F3S6Q4');
+      this.form3.removeControl('F3S6Q5');
     }
   }
 

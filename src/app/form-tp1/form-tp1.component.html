@@ -830,10 +830,10 @@
           <label class="col-md-2 control-label">Percentage of manual work performed by the injured person</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
-              <input type="radio" name="F3S2Q7" id="option1" formControlName="F3S2Q7" autocomplete="off">Equal or greater than 50%
+              <input type="radio" name="F3S2Q7" id="option1" autocomplete="off">Equal or greater than 50%
             </label>
             <label class="radio-inline">
-              <input type="radio" name="F3S2Q7" id="option2" formControlName="F3S2Q7" autocomplete="off">Less than 50%
+              <input type="radio" name="F3S2Q7" id="option2" autocomplete="off">Less than 50%
             </label>
           </div>
         </div>
@@ -1146,10 +1146,10 @@
         <!-- Victim, required -->
 
         <!-- <hr> -->
-        <div class="form-group required" *ngIf="!(userRole===role1 || userRole===role2 
-        || userRole===role4)">
+        <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role2) 
+        || (userRole === role4))">
           <label class="col-md-2 control-label">Would you like to provide any witness information?</label>
-          <div class="col-md-10 ">
+          <div class="col-md-10">
             <label class="radio-inline custom-radio-label">
               <input type="radio" name="F3S4Q6" formControlName="F3S4Q6" id="option1" autocomplete="off">Yes
             </label>
@@ -1339,7 +1339,7 @@
         <!-- F3S6Q4 Was the injured person working overtime when the accident happened? -->
         <!-- Employer Only/ Representative of employer -->
         <!-- <hr> -->
-        <div class="form-group" *ngIf="(userRole===role1)">
+        <div class="form-group required" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">Was the injured person working overtime when the accident happened?</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
@@ -1357,7 +1357,7 @@
         <!-- F3S6Q5 Was the person injured while performing official work duties? -->
         <!-- Employer Only/ Representative of employer, required -->
         <!-- <hr> -->
-        <div class="form-group" *ngIf="(userRole===role1)">
+        <div class="form-group required" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">Was the person injured while performing official work duties?</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
