@@ -493,17 +493,23 @@
         <!-- Victim’s Next-of-kin, required -->
         <!-- Victim, required -->
         <!-- <hr> -->
+
         <div class="form-group required">
           <label class="col-md-2 control-label">Gender</label>
           <div class="col-md-10">
             <label class="radio-inline custom-radio-label">
-              <input type="radio" name="F3S1Q6" id="option1" formControlName="F3S1Q6"autocomplete="off">Male
+              <input type="radio" name="F3S1Q6" value="a" formControlName="F3S1Q6" autocomplete="off">Male
             </label>
             <label class="radio-inline">
-              <input type="radio" name="F3S1Q6" id="option2" formControlName="F3S1Q6"autocomplete="off">Female
+              <input type="radio" name="F3S1Q6" value="b" formControlName="F3S1Q6" autocomplete="off">Female
             </label>
           </div>
+          <div *ngIf="form3.get('F3S1Q6').touched">
+            <span [class.hidden]="!form3.controls['F3S1Q6'].hasError('required')" class="help-block hidden" >Gender is required.</span>
+          </div>
         </div>
+
+
 
         <!-- F3S1Q7 Nationality -->
         <!-- Employer Only/ Representative of employer, required-->
@@ -826,14 +832,15 @@
         <!-- F3S2Q7 Percentage of manual work performed by the injured person -->
         <!-- Employer Only/ Representative of employer -->
         <!-- <hr> -->
+
         <div class="form-group" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">Percentage of manual work performed by the injured person</label>
-          <div class="col-md-10 ">
+          <div class="col-md-10">
             <label class="radio-inline custom-radio-label">
-              <input type="radio" name="F3S2Q7" id="option1" autocomplete="off">Equal or greater than 50%
+              <input type="radio" name="F3S2Q7" value="a" formControlName="F3S2Q7" autocomplete="off">Equal or greater than 50%
             </label>
             <label class="radio-inline">
-              <input type="radio" name="F3S2Q7" id="option2" autocomplete="off">Less than 50%
+              <input type="radio" name="F3S2Q7" value="b" formControlName="F3S2Q7" autocomplete="off">Less than 50%
             </label>
           </div>
         </div>
@@ -1146,7 +1153,7 @@
         <!-- Victim, required -->
 
         <!-- <hr> -->
-        <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role2) 
+     <!--    <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role2) 
         || (userRole === role4))">
           <label class="col-md-2 control-label">Would you like to provide any witness information?</label>
           <div class="col-md-10">
@@ -1155,6 +1162,22 @@
             </label>
             <label class="radio-inline">
               <input type="radio" name="F3S4Q6" formControlName="F3S4Q6" id="option2" autocomplete="off">No
+            </label>
+          </div>
+          <div *ngIf="form3.get('F3S4Q6').touched">
+            <span [class.hidden]="!form3.controls['F3S4Q6'].hasError('required')" class="help-block hidden" >This field is required.</span>
+          </div>
+        </div> -->
+
+        <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role2) 
+        || (userRole === role4))">
+          <label class="col-md-2 control-label">Would you like to provide any witness information?</label>
+          <div class="col-md-10">
+            <label class="radio-inline custom-radio-label">
+              <input type="radio" name="F3S4Q6" value="a" formControlName="F3S4Q6" autocomplete="off">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="F3S4Q6" value="b" formControlName="F3S4Q6" autocomplete="off">No
             </label>
           </div>
           <div *ngIf="form3.get('F3S4Q6').touched">
@@ -1177,20 +1200,22 @@
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group" *ngIf="!(userRole===role1 || userRole===role2 
-        || userRole===role4)">
+        <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role2) 
+        || (userRole===role4))">
           <label class="col-md-2 control-label">NIC NO</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="nic_nO" placeholder="NIC NO" formControlName="F3S5Q1" class="form-control" type="text">
+              <input name="nic" formControlName="F3S5Q1"  placeholder="NIC NO" class="form-control" type="text" maxlength="10">
             </div>
+
             <div *ngIf="form3.get('F3S5Q1').touched">
-              <span [class.hidden]="!form1.controls['F3S5Q1'].hasError('invalidNic')" class="help-block hidden" >Invalid NIC no.
+              <span [class.hidden]="!form3.controls['F3S5Q1'].hasError('invalidNic')" class="help-block hidden" >Invalid NIC no.
               </span>
             </div>
           </div>
         </div>
+
 
         <!-- F3S5Q2 Full Name -->
         <!-- Victim’s Legal Representative, required -->

@@ -60,9 +60,8 @@ export class FormTp1Component implements OnInit {
     //this.form1Validation();
   }
 
-  resetOtherForms() {
-      this.form2.reset();
-      this.form3.reset();
+  resetOtherForms(){
+    this.formCustom();
   }
   
   form2ControlRemove() {
@@ -104,8 +103,8 @@ export class FormTp1Component implements OnInit {
 
       this.form3.removeControl('F3S1Q1');
       this.form3.removeControl('F3S2Q8');
-      this.form3.removeControl('F3S4Q6');
-      this.form3.removeControl('F3S5Q2');
+      this.form3.removeControl('F3S4Q6')
+      this.form3.removeControl('F3S5Q1');
       this.form3.removeControl('F3S5Q2');
     }
     else if(this.userRole==this.role2) {
@@ -117,11 +116,13 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S2Q5');
       this.form3.removeControl('F3S4Q3');
       this.form3.removeControl('F3S4Q6');
+      this.form3.removeControl('F3S5Q1');
       this.form3.removeControl('F3S5Q2');
       this.form3.removeControl('F3S6Q3');
       this.form3.removeControl('F3S6Q6');
       this.form3.removeControl('F3S6Q4');
       this.form3.removeControl('F3S6Q5');
+
     }
     else if(this.userRole==this.role3) {
       this.form3.removeControl('F3S1Q1');
@@ -155,6 +156,7 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S4Q3');
       this.form3.removeControl('F3S4Q5');
       this.form3.removeControl('F3S4Q6');
+      this.form3.removeControl('F3S5Q1');
       this.form3.removeControl('F3S5Q2');
       this.form3.removeControl('F3S6Q3');
       this.form3.removeControl('F3S6Q6');
@@ -179,7 +181,6 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S2Q5');
       this.form3.removeControl('F3S2Q8');
       this.form3.removeControl('F3S4Q3');
-      this.form3.removeControl('F3S4Q6');
       this.form3.removeControl('F3S6Q3');
       this.form3.removeControl('F3S6Q6');
       this.form3.removeControl('F3S6Q4');
@@ -213,8 +214,8 @@ export class FormTp1Component implements OnInit {
   }
 
   public setMoment(moment: any): any {
-    this.momentValue = moment;
     // Do whatever you want to the return object 'moment'
+    this.momentValue = moment;
   }
 
   formValidation(){
@@ -253,6 +254,58 @@ export class FormTp1Component implements OnInit {
       F3S2Q3: ['', [Validators.required]],
       F3S2Q4: ['', [Validators.required]],
       F3S2Q5: ['', [Validators.required, this.validationService.salaryValidator]],
+      F3S2Q8: ['', [Validators.required]],
+      F3S2Q7: [''],
+      F3S2Q9: ['', [Validators.required]],
+      F3S2Q10: ['', [Validators.required]],
+      F3S2Q11: ['', [Validators.required]],
+      F3S3Q1: ['', [Validators.required]],
+      F3S3Q2: ['', [Validators.required]],
+      F3S3Q3: ['', [Validators.required]],
+      F3S4Q1: ['', [Validators.required]],
+      F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],
+      F3S4Q3: ['', [Validators.required]],
+      F3S4Q5: ['', [Validators.required]],
+      F3S4Q6: ['', [Validators.required]],
+      F3S5Q1: ['', [this.validationService.nicValidator]],
+      F3S5Q2: ['', [Validators.required]],
+      F3S5Q3: ['', [this.validationService.phoneValidator]],
+      F3S5Q4: ['', [this.validationService.emailValidator]],
+      F3S6Q3: ['', [Validators.required]],
+      F3S6Q4: ['', [Validators.required]],
+      F3S6Q5: ['', [Validators.required]],
+      F3S6Q6: ['', [Validators.required]],
+      F3S6Q7: ['', [Validators.required]],
+    });
+  }
+
+  formCustom(){
+    this.form2 = this.fb2.group({
+      F2S1Q1: ['', [Validators.required]],
+      F2S3Q1: ['', [Validators.required]],
+      F2S3Q2: ['', [Validators.required]],
+      F2S3Q3: ['', [Validators.required]],
+      F2S3Q4: ['', [Validators.required]],
+    });
+
+    this.form3 = this.fb3.group({
+      F3S1Q1: ['', [Validators.required]],
+      F3S1Q2: ['', [Validators.required]],
+      F3S1Q3: ['', [Validators.required]],
+      F3S1Q4: ['', [Validators.required]],
+      F3S1Q5: ['', [Validators.required, this.validationService.nicValidator]],
+      F3S1Q6: ['', [Validators.required]],
+      F3S1Q7: ['', [Validators.required]],
+      F3S1Q8: ['', [Validators.required]],
+      F3S1Q9: ['', [Validators.required]],
+      F3S1Q10: ['', [Validators.required]],
+      F3S1Q11: ['', [Validators.required, this.validationService.phoneValidator]],
+      F3S1Q15: ['', [this.validationService.phoneValidator]],
+      F3S2Q1: ['', [Validators.required]],
+      F3S2Q3: ['', [Validators.required]],
+      F3S2Q4: ['', [Validators.required]],
+      F3S2Q5: ['', [Validators.required, this.validationService.salaryValidator]],
+      F3S2Q7: [''],
       F3S2Q8: ['', [Validators.required]],
       F3S2Q9: ['', [Validators.required]],
       F3S2Q10: ['', [Validators.required]],
