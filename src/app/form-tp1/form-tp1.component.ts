@@ -5,6 +5,7 @@ import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-mul
 import {ValidationService} from './validation.service';
 import { DatePickerOptions, DateModel } from 'ng2-datepicker';
 
+
 @Component({
   selector: 'app-form-tp1',
   templateUrl: './form-tp1.component.html',
@@ -24,25 +25,83 @@ export class FormTp1Component implements OnInit {
   public role5='Victim’s Next-of-kin';
   public role6='Victim';
 
+  public noOfMedicalLeaves = 0;
+
   optionsModel: number[];
 
   date: DateModel;
   options: DatePickerOptions;
-  momentValue;
+  momentValueF2S1Q1;
+  momentValueF3S1Q5;
+  momentValueF3S2Q4;
+  momentValueF3S4Q3;
+  momentValueF3S6Q3;
 
-  myOptions: IMultiSelectOption[] = [
-    { id: 1, name: 'Car brands', isLabel: true },
-    { id: 2, name: 'Volvo', parentId: 1 },
-    { id: 3, name: 'Honda', parentId: 1 },
-    { id: 4, name: 'BMW', parentId: 1 },
-    { id: 5, name: 'Colors', isLabel: true },
-    { id: 6, name: 'Blue', parentId: 5 },
-    { id: 7, name: 'Red', parentId: 5 },
-    { id: 8, name: 'White', parentId: 5 }
+  // F3S3Q1 - Did the accident result in death of the injured person
+  personDead = null;
+
+  bodyParts: IMultiSelectOption[] = [
+    { id: 1, name: 'Body Parts', isLabel: true },
+    { id: 2, name: 'Multiple Head Injury', parentId: 1 },
+    { id: 3, name: 'Brain', parentId: 1 },
+    { id: 4, name: 'Ear(s)', parentId: 1 },
+    { id: 5, name: 'Eye(s)', parentId: 1 },
+    { id: 6, name: 'Nose', parentId: 1 },
+    { id: 7, name: 'Teeth', parentId: 1 },
+    { id: 8, name: 'Mouth', parentId: 1 },
+    { id: 9, name: 'Skull', parentId: 1 },
+    { id: 10, name: 'Soft Tissue', parentId: 1 },
+    { id: 11, name: 'Facial Bones', parentId: 1 },
+    { id: 12, name: 'Multiple Neck Injury', parentId: 1 },
+    { id: 13, name: 'Vertebrae', parentId: 1 },
+    { id: 14, name: 'Disc', parentId: 1 },
+    { id: 15, name: 'Spinal Cord', parentId: 1 },
+    { id: 16, name: 'Larynx', parentId: 1 },
+    { id: 17, name: 'Soft Tissue', parentId: 1 },
+    { id: 18, name: 'Trachea', parentId: 1 },
+    { id: 19, name: 'Multiple Upper Extremities', parentId: 1 },
+    { id: 20, name: 'Upper Arm', parentId: 1 },
+    { id: 21, name: 'Elbow', parentId: 1 },
+    { id: 22, name: 'Lower Arm', parentId: 1 },
+    { id: 23, name: 'Wrist', parentId: 1 },
+    { id: 24, name: 'Hand', parentId: 1 },
+    { id: 25, name: 'Finger(s)', parentId: 1 },
+    { id: 26, name: 'Shoulder(s)', parentId: 1 },
+    { id: 27, name: 'Wrist (s) & Hand(s)', parentId: 1 },
+    { id: 28, name: 'Multiple Trunk', parentId: 1 },
+    { id: 29, name: 'Upper Back Area ', parentId: 1 },
+    { id: 30, name: 'Lower Back Area', parentId: 1 },
+    { id: 31, name: 'Disc', parentId: 1 },
+    { id: 32, name: 'Chest', parentId: 1 },
+    { id: 33, name: 'Sacrum and Coccyx', parentId: 1 },
+    { id: 34, name: 'Pelvis', parentId: 1 },
+    { id: 35, name: 'Spinal Cord', parentId: 1 },
+    { id: 36, name: 'Internal Organs', parentId: 1 },
+    { id: 37, name: 'Heart', parentId: 1 },
+    { id: 38, name: 'Multiple Lower Extremities', parentId: 1 },
+    { id: 39, name: 'Hip', parentId: 1 },
+    { id: 40, name: 'Upper Leg', parentId: 1 },
+    { id: 41, name: 'Knee', parentId: 1 },
+    { id: 42, name: 'Lower Leg', parentId: 1 },
+    { id: 43, name: 'Ankle', parentId: 1 },
+    { id: 44, name: 'Foot', parentId: 1 },
+    { id: 45, name: 'Toes', parentId: 1 },
+    { id: 46, name: 'Big Toes', parentId: 1 },
+    { id: 47, name: 'Lungs', parentId: 1 },
+    { id: 48, name: 'Abdomen Including Groin', parentId: 1 },
+    { id: 49, name: 'Buttocks', parentId: 1 },
+    { id: 50, name: 'Lumbar & or Sacral Vertebrae', parentId: 1 },
+    { id: 51, name: 'Artificial Appliance', parentId: 1 },
+    { id: 52, name: 'Insufficient Info to Properly Identify', parentId: 1 },
+    { id: 53, name: 'No Physical Injury', parentId: 1 },
+    { id: 54, name: 'Multiple Body Parts', parentId: 1 },
+    { id: 55, name: 'Body Systems and Multiple Body', parentId: 1 },
+    { id: 56, name: 'Whole Body', parentId: 1 },
   ];
 
   mySettings: IMultiSelectSettings = {
       enableSearch: true,
+      buttonClasses: 'form-control',
   };
 
   constructor(
@@ -61,7 +120,8 @@ export class FormTp1Component implements OnInit {
   }
 
   resetOtherForms(){
-    this.formCustom();
+    this.form2Custom();
+    this.form3Custom();
   }
   
   form2ControlRemove() {
@@ -188,6 +248,52 @@ export class FormTp1Component implements OnInit {
     }
   }
 
+  // F3S4Q2 - No. of days of medical leave
+  getNoOfMedicalLeaves(){
+    this.momentValueF3S4Q3 = null;
+    this.noOfMedicalLeaves = this.form3.get('F3S4Q2').value;
+    if(this.noOfMedicalLeaves < 4) {
+      this.form3.removeControl('F3S4Q3');
+    }
+  }
+
+  // F3S4Q4 - Reason of late reporting
+  isReasonNeededForLateReport(){
+
+    var dateone = new Date();
+    var datetwo = new Date(this.momentValueF3S4Q3);
+    var timeDiff = Math.abs(dateone.getTime() - datetwo.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+
+    if(diffDays > 10) {
+      return true;
+    }
+    return false;
+  }
+
+  // F3S3Q1 - Did the accident result in death of the injured person
+  wasPersonDead(value){
+    this.personDead = value; 
+    if(value == 'yes'){
+      this.form3.removeControl('F3S3Q2');
+      this.form3.removeControl('F3S3Q3');
+    }else if(value == 'no'){
+      // this.form3 = this.fb3.group({
+      //   F3S3Q2: ['', [Validators.required]],
+      //   F3S3Q3: ['', [Validators.required]],
+      // });
+      // this.form3Custom();
+      // this.form2ControlRemove();
+    }
+  }
+
+  wasPersonHospitalised(){
+    if(this.form3.get('F3S4Q1').value == 'no'){
+      this.form3.removeControl('F3S4Q2');
+      this.form3.removeControl('F3S4Q3');
+    }
+  }
+
   formNext(val){
     this.userRole=this.form1.get('youAre').value;
     let value = this.userRole === this.role6? 3: val;
@@ -210,12 +316,28 @@ export class FormTp1Component implements OnInit {
   }
   
   onChange($event){
-
+    // console.log(this.optionsModel);
   }
 
-  public setMoment(moment: any): any {
+  public setMomentF2S1Q1(moment: any): any {
     // Do whatever you want to the return object 'moment'
-    this.momentValue = moment;
+    this.momentValueF2S1Q1 = moment;
+  }
+
+  public setMomentF3S1Q5(moment: any): any {
+    this.momentValueF3S1Q5 = moment;
+  }
+
+  public setMomentF3S2Q4(moment: any): any {
+    this.momentValueF3S2Q4 = moment;
+  }
+  
+  public setMomentF3S4Q3(moment: any): any {
+    this.momentValueF3S4Q3 = moment;
+  }
+
+  public setMomentF3S6Q3(moment: any): any {
+    this.momentValueF3S6Q3 = moment;
   }
 
   formValidation(){
@@ -279,7 +401,7 @@ export class FormTp1Component implements OnInit {
     });
   }
 
-  formCustom(){
+  form2Custom(){
     this.form2 = this.fb2.group({
       F2S1Q1: ['', [Validators.required]],
       F2S3Q1: ['', [Validators.required]],
@@ -287,7 +409,9 @@ export class FormTp1Component implements OnInit {
       F2S3Q3: ['', [Validators.required]],
       F2S3Q4: ['', [Validators.required]],
     });
+  }
 
+  form3Custom(){
     this.form3 = this.fb3.group({
       F3S1Q1: ['', [Validators.required]],
       F3S1Q2: ['', [Validators.required]],

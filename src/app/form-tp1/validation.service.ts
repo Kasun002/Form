@@ -18,7 +18,6 @@ export class ValidationService {
 	    if (control.value && !emailRegexp.test(control.value)) {
 	      return { invalidEmail: true };
 	    }
-
 	}
 
     phoneValidator(control: FormControl): { [key: string]: any } {
@@ -29,15 +28,16 @@ export class ValidationService {
 	}
 
 	salaryValidator(control: FormControl): { [key: string]: any } {
-	    var phoneRegexp = /^\d{1,9}$/;
-	    if (control.value && !phoneRegexp.test(control.value)) {
+	    var salaryRegexp = /^\d{1,9}$/;
+	    if (control.value && !salaryRegexp.test(control.value)) {
 	      return { invalidSalary: true };
 	    }
 	}
 
 	leaveValidator(control: FormControl): { [key: string]: any } {
-	    var phoneRegexp = /^[1-9][0-9]*$/;
-	    if (control.value && !phoneRegexp.test(control.value)) {
+	    // var phoneRegexp = /^[1-9][0-9]*$/;
+	    var leaveRegexp = /^\d{0,3}$/;
+	    if (control.value && !leaveRegexp.test(control.value)) {
 	      return { invalidLeave: true };
 	    }
 	}
