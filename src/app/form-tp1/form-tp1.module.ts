@@ -14,7 +14,7 @@ import { DateTimePickerModule } from 'ng-pick-datetime';
     ReactiveFormsModule,
     MultiselectDropdownModule,
     DatePickerModule,
-    DateTimePickerModule
+    DateTimePickerModule,
   ],
   declarations: [FormTp1Component],
 

@@ -24,7 +24,7 @@
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="first_name" formControlName="name"  placeholder="Full Name" class="form-control" type="text">
+              <input #name name="first_name" formControlName="name"  placeholder="Full Name" class="form-control" type="text">
             </div>
             <div *ngIf="form1.get('name').touched">
               <span [class.hidden]="!form1.controls['name'].hasError('required')" class="help-block hidden" >Name is required.</span>
@@ -149,7 +149,8 @@
           <label class="col-md-2 control-label">Select Date & Time</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
-                  <input class="form-control" [mode]="'dropdown'" formControlName="F2S1Q1" [ngModel]="momentValue | date: 'short'" [dateTimePicker]="momentValue" (dateTimePickerChange)="setMoment($event)" readonly />
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              <input class="form-control" [mode]="'dropdown'" [position]="'bottom'" [positionOffset]="'6%'" formControlName="F2S1Q1" [ngModel]="momentValueF2S1Q1 | date: 'short'" [dateTimePicker]="momentValueF2S1Q1" (dateTimePickerChange)="setMomentF2S1Q1($event)" readonly />
             </div>
             <div *ngIf="form2.get('F2S1Q1').touched">
               <span [class.hidden]="!form2.controls['F2S1Q1'].hasError('required')" class="help-block hidden" >Date & Time is required.</span>
@@ -227,14 +228,14 @@
         <!-- Occupier Only/ Representative of occupier, required-->
         <!-- Victim’s Legal Representative, required-->
         <!-- Victim’s Next-of-kin -->
-        <legend *ngIf="!(userRole===role6 || userRole===role1 || userRole===role4)">
+        <legend *ngIf="!((userRole===role6) || (userRole===role1) || (userRole===role4))">
           <hr>
           <h4>Section 3: How did the accident happen?</h4>
         </legend>
 
         <!-- Employer Only/ Representative of employer -->
         <!-- Treating Doctor, required -->
-        <legend *ngIf="(userRole===role1 || userRole===role4)">
+        <legend *ngIf="((userRole===role1) || (userRole===role4))">
           <hr>
           <h4>Section 2: How did the accident happen?</h4>
         </legend>
@@ -243,8 +244,8 @@
         <!-- Employer Only/ Representative of employer ,required-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Treating Doctor, required-->
-        <div class="form-group required" *ngIf="(userRole===role1 || userRole===role2 || 
-          userRole===role4)">
+        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role2) || 
+          (userRole===role4))">
           <label class='col-md-12 control-label control-label-custom' *ngIf="(userRole===role1)">Was any person, includin your employee, injured in the accident?
           </label>
           <label class='col-md-12 control-label control-label-custom' *ngIf="!(userRole===role1)">Any person injured in the accident?
@@ -271,8 +272,8 @@
         <!-- Employer Only/ Representative of employer, required-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Treating Doctor, required-->
-        <div class="form-group required" *ngIf="(userRole===role1 || userRole===role2 || 
-          userRole===role4)">
+        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role2) || 
+          (userRole===role4))">
           <label class="col-md-2 control-label">About the type of accident</label>
           <div class="col-md-10 selectContainer">
             <div class="input-group">
@@ -475,8 +476,8 @@
           <label class="col-md-2 control-label">Date of Birth</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
-              <input name="date_of_birth" formControlName='F3S1Q5' placeholder="Date of Birth" class="form-control" type="text">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              <input class="form-control" [mode]="'dropdown'" formControlName="F3S1Q5" [ngModel]="momentValueF3S1Q5 | date: 'short'" [dateTimePicker]="momentValueF3S1Q5" (dateTimePickerChange)="setMomentF3S1Q5($event)" [pickerType]="'date'" readonly />
             </div>
             <div *ngIf="form3.get('F3S1Q5').touched">
               <span [class.hidden]="!form3.controls['F3S1Q5'].hasError('required')" class="help-block hidden" >Date of birth is required.</span>
@@ -778,8 +779,8 @@
           <label class="col-md-2 control-label">Start Date of Employment</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
-              <input name="date_of_birth" placeholder="Select Date" class="form-control" type="text">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              <input class="form-control" [mode]="'dropdown'" formControlName="F3S2Q4" [ngModel]="momentValueF3S2Q4 | date: 'short'" [dateTimePicker]="momentValueF3S2Q4" (dateTimePickerChange)="setMomentF3S2Q4($event)" readonly />
             </div>
             <div *ngIf="form3.get('F3S2Q4').touched">
               <span [class.hidden]="!form3.controls['F3S2Q4'].hasError('required')" class="help-block hidden" >Start Date is required.</span>
@@ -885,10 +886,10 @@
           <label class="col-md-2 control-label">Did the accident result in death of the injured person?</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
-              <input type="radio" name="F3S3Q1" value="option1" formControlName="F3S3Q1" autocomplete="off">Yes
-            </label>
+              <input id=radio1 #radio1 type="radio" name="F3S3Q1" value="yes" formControlName="F3S3Q1" autocomplete="off" (click)="wasPersonDead(radio1.value)">Yes
+             </label>
             <label class="radio-inline">
-              <input type="radio" name="F3S3Q1" value="option2" formControlName="F3S3Q1" autocomplete="off">No
+              <input id=radio2 #radio2 type="radio" name="F3S3Q1" value="no" formControlName="F3S3Q1" autocomplete="off" (click)="wasPersonDead(radio2.value)">No
             </label>
           </div>
           <div *ngIf="form3.get('F3S3Q1').touched">
@@ -906,7 +907,7 @@
         <!-- Treating Doctor, required --> 
         <!-- Victim’s Next-of-kin, required -->
         <!-- Victim, required -->
-        <div class="form-group required">
+        <div class="form-group required" *ngIf="(this.form3.get('F3S3Q1').value == 'no')">
           <label class="col-md-2 control-label">Nature of injury</label>
           <div class="col-md-10 selectContainer">
             <div class="input-group">
@@ -988,22 +989,18 @@
         <!-- ToDo:- need to hide this feild 
             according to radio btn value(show when select no)
         -->
-        <div class="form-group required">
+        <div class="form-group required" *ngIf="(this.form3.get('F3S3Q1').value == 'no')">
           <label class="col-md-2 control-label">Associated body part(s) injured</label>
           <div class="col-md-10 selectContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
-              <select name="state" class="form-control selectpicker" formControlName="F3S3Q3">
-                <option>Multiple Head Injury</option>
-                <option>Skull</option>
-              </select>
+              <ss-multiselect-dropdown [settings]="mySettings" formControlName="F3S3Q3" [options]="bodyParts" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
             </div>
             <div *ngIf="form3.get('F3S3Q3').touched">
               <span [class.hidden]="!form3.controls['F3S3Q3'].hasError('required')" class="help-block hidden" >Associated body part(s) is required.</span>
             </div>
           </div>
         </div>
-
 
         <!-- Employer Only/ Representative of employer -->
         <!-- Occupier Only/ Representative of occupier -->
@@ -1029,10 +1026,10 @@
           <label class="col-md-2 control-label">Was the injured person hospitalised for more than 24 hours</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
-              <input type="radio" name="F3S4Q1" value="option1" formControlName="F3S4Q1" autocomplete="off">Yes
+              <input type="radio" name="F3S4Q1" value="option1" formControlName="F3S4Q1" autocomplete="off" (click)="wasPersonHospitalised()">Yes
             </label>
             <label class="radio-inline">
-              <input type="radio" name="F3S4Q1" value="option2" formControlName="F3S4Q1" autocomplete="off">No
+              <input type="radio" name="F3S4Q1" value="option2" formControlName="F3S4Q1" autocomplete="off" (click)="wasPersonHospitalised()">No
             </label>
           </div>
           <div *ngIf="form3.get('F3S4Q1').touched">
@@ -1052,15 +1049,15 @@
         <!-- ToDo:- need to hide this feild 
             according to radio btn value(show when select Yes)
         -->
-        <div class="form-group required">
+        <div class="form-group required" *ngIf="(this.form3.get('F3S4Q1').value == 'yes')">
           <label class="col-md-2 control-label">No. of days of medical leave</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-              <input name="medical_leave" formControlName="F3S4Q2" placeholder="Write here" class="form-control" type="text">
+              <input name="medical_leave" formControlName="F3S4Q2" placeholder="Write here" class="form-control" type="text" (keyup)="getNoOfMedicalLeaves()">
             </div>
             <div *ngIf="form3.get('F3S4Q2').touched">
-              <span [class.hidden]="!form3.controls['F3S4Q2'].hasError('required')" class="help-block hidden" >Medical leave is required.</span>
+              <span [class.hidden]="!form3.controls['F3S4Q2'].hasError('required')" class="help-block hidden" >Field is required.</span>
             </div>
             <div *ngIf="form3.get('F3S4Q2').touched">
               <span [class.hidden]="!form3.controls['F3S4Q2'].hasError('invalidLeave')" class="help-block hidden" >Value is invalid.</span>
@@ -1070,18 +1067,17 @@
 
         <!-- F3S4Q3 user role -->
         <!-- Employer Only/ Representative of employer, required -->
-        <!-- Date of 4 th day of Medical leave -->
+        <!-- Date of 4 th day of Medical leaves -->
 
-        <!-- ToDo:- need to show this 
+        <!-- ToDo:- need to show this ***
             field when you write more than 3 leaves
         -->
-        <div class="form-group required" *ngIf="(userRole===role1)">
+        <div class="form-group required" *ngIf="((userRole===role1) && (noOfMedicalLeaves > 3))">
           <label class="col-md-2 control-label">Date of 4 th day of Medical leave</label>
           <div class="col-md-10 inputGroupContainer">
-            <!-- ToDo :- add calender component -->
             <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
-              <input name="date_of_birth" formControlName="F3S4Q3" placeholder="Select Date" class="form-control" type="text">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              <input class="form-control" [mode]="'dropdown'" formControlName="F3S4Q3" [ngModel]="momentValueF3S4Q3 | date: 'short'" [dateTimePicker]="momentValueF3S4Q3" (dateTimePickerChange)="setMomentF3S4Q3($event)" readonly change="getFourthDayOfMedicalLeave()"/>
             </div>
             <div *ngIf="form3.get('F3S4Q3').touched">
               <span [class.hidden]="!form3.controls['F3S4Q3'].hasError('required')" class="help-block hidden" >Date is required.</span>
@@ -1093,7 +1089,7 @@
         <!-- Employer Only/ Representative of employer -->
 
         <!-- ToDo:-  This feild is need to show ***see the reason below***-->
-        <div class="form-group" *ngIf="(userRole===role1)">
+        <div class="form-group" *ngIf="((userRole===role1) && (noOfMedicalLeaves > 3) && isReasonNeededForLateReport())">
           <label class="col-md-2 control-label">Reason of late reporting</label>
           <div class="col-md-10 selectContainer">
             <div class="input-group">
@@ -1348,10 +1344,9 @@
         <div class="form-group required" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">What time did the injured person start work on the day of the accident?</label>
           <div class="col-md-10 inputGroupContainer">
-            <!-- ToDo :- add clock component -->
             <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
-              <input name="date_of_birth" formControlName="F3S6Q3" placeholder="Select Time" class="form-control" type="text">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              <input class="form-control" [mode]="'dropdown'" formControlName="F3S6Q3" [ngModel]="momentValueF3S6Q3 | date: 'short'" [dateTimePicker]="momentValueF3S6Q3" (dateTimePickerChange)="setMomentF3S6Q3($event)" readonly />
             </div>
             <div *ngIf="form3.get('F3S6Q3').touched">
               <span [class.hidden]="!form3.controls['F3S6Q3'].hasError('required')" class="help-block hidden" >Start date is required.</span>
