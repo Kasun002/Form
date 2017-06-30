@@ -5,10 +5,10 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-6">
-                            <a (click)="formSelector('log')" [ngClass]="{'active':formTogel}" id="login-form-link">Login</a>
+                            <a [ngClass]="{'active':formTogel}" id="login-form-link">Login</a>
                         </div>
                         <div class="col-xs-6">
-                            <a (click)="formSelector('reg')" [ngClass]="{'active':!formTogel}" id="register-form-link">Register</a>
+                            <a [ngClass]="{'active':!formTogel}" id="register-form-link">Register</a>
                         </div>
                     </div>
                     <hr>
@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="button" name="login-submit" id="login-submit" [routerLink]="['/home/insident_report']" tabindex="4" class="form-control btn btn-login" value="Log In">
+                                            <input (click)="reg()" type="button" name="login-submit" id="login-submit" [routerLink]="['/home/insident_report']" tabindex="4" class="form-control btn btn-login" value="Log In">
                                         </div>
                                     </div>
                                 </div>
