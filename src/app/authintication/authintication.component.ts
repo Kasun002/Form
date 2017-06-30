@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-authintication',
@@ -8,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class AuthinticationComponent implements OnInit {
 
   formTogel:boolean=true;
+  public login: FormGroup;
 
-  constructor() { }
+  constructor(private fb1: FormBuilder) { }
 
   ngOnInit() {
   }
@@ -22,6 +24,16 @@ export class AuthinticationComponent implements OnInit {
     }else{
       this.formTogel=true;
     }
+  }
+
+  formInit(){
+    // this.login = this.fb1.group({
+    //   name: ['', [Validators.required]],
+    //   nic: ['', [Validators.required, this.validationService.nicValidator]],
+    //   mobile: ['', [Validators.required,this.validationService.phoneValidator, Validators.maxLength(9)]],
+    //   email: ['', [this.validationService.emailValidator]],
+    //   youAre: ['', [Validators.required]]
+    // });
   }
 
 }

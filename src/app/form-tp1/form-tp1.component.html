@@ -149,7 +149,8 @@
           <label class="col-md-2 control-label">Select Date & Time</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
-                  <input class="form-control" [mode]="'dropdown'" formControlName="F2S1Q1" [ngModel]="momentValue | date: 'short'" [dateTimePicker]="momentValue" (dateTimePickerChange)="setMoment($event)" readonly />
+              <ng2-datepicker  formControlName="F2S1Q1" [options]="options" [(ngModel)]="date"></ng2-datepicker>
+                  <!--<input class="form-control" [mode]="'dropdown'" formControlName="F2S1Q1" [ngModel]="momentValue | date: 'short'" [dateTimePicker]="momentValue" (dateTimePickerChange)="setMoment($event)" readonly />-->
             </div>
             <div *ngIf="form2.get('F2S1Q1').touched">
               <span [class.hidden]="!form2.controls['F2S1Q1'].hasError('required')" class="help-block hidden" >Date & Time is required.</span>
