@@ -15,6 +15,7 @@ export class AuthinticationComponent implements OnInit {
 
   formTogel:boolean=true;
   public loginForm: FormGroup;
+  public registrationForm: FormGroup;
 
 
   user: Observable<any>;
@@ -42,12 +43,32 @@ export class AuthinticationComponent implements OnInit {
   login() {
     var username=this.loginForm.get('userName').value;
     var password=this.loginForm.get('password').value;
-    let res=this.afAuth.auth.signInWithEmailAndPassword(username,password);
-    this.router.navigate(['/home/insident_report']);
+    this.afAuth.auth.signInWithEmailAndPassword(username, password).then((user) => {
+     // user signed in
+      this.router.navigate(['/home/insident_report']);
+    }).catch((error) => {
+        alert(error.message);
+    });
   }
 
-  reg(){
-    this.afAuth.auth.createUserWithEmailAndPassword('abaywardanakasun@gmail.com','kasun@2015')
+  register(){
+    
+    var username = this.registrationForm.get('userName').value;
+    var email = this.registrationForm.get('email').value;
+    var password = this.registrationForm.get('password').value;
+    var confirmPassword = this.registrationForm.get('confirmPassword').value;
+
+    if(password !== confirmPassword) {
+      alert("Password & confirm password not same.");
+      return;
+    }
+
+    this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((user) => {
+     // user register
+      this.router.navigate(['/home/insident_report']);
+    }).catch((error) => {
+        alert(error.message);
+    });
   }
 
   logout() {
@@ -74,6 +95,13 @@ export class AuthinticationComponent implements OnInit {
     this.loginForm = this.fb1.group({
       userName: ['', [Validators.required]],
       password: ['', [Validators.required]],
+    });
+
+    this.registrationForm = this.fb1.group({
+      userName: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
     });
   }
 
