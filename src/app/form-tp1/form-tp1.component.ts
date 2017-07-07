@@ -12,17 +12,17 @@ import { DatePickerOptions, DateModel } from 'ng2-datepicker';
   styleUrls: ['./form-tp1.component.css']
 })
 export class FormTp1Component implements OnInit {
-  private formStatus: number = 1;
+  public formStatus: number = 1;
   public form1: FormGroup;
   public form2: FormGroup;
   public form3: FormGroup;
 
   public userRole:string;
   public role1='Employer Only/ Representative of employer';
-  public role2='Occupier Only/ Representative of occupier';
+  // public role2='Occupier Only/ Representative of occupier';
   public role3='Victim’s Legal Representative';
   public role4='Treating Doctor';
-  public role5='Victim’s Next-of-kin';
+  // public role5='Victim’s Next-of-kin';
   public role6='Victim';
 
   public noOfMedicalLeaves = 0;
@@ -129,9 +129,11 @@ export class FormTp1Component implements OnInit {
 
       this.form2.removeControl('F2S2Q1');
 
-    }else if(this.userRole==this.role2) {
+    }
+    // else if(this.userRole==this.role2) {
 
-    }else if(this.userRole==this.role3) {
+    // }
+    else if(this.userRole==this.role3) {
       this.form2.removeControl('F2S3Q1');
       this.form2.removeControl('F2S3Q2');
       this.form2.removeControl('F2S3Q3');
@@ -140,13 +142,15 @@ export class FormTp1Component implements OnInit {
 
       this.form2.removeControl('F2S2Q1');
 
-    }else if(this.userRole==this.role5) {
+    }
+    // else if(this.userRole==this.role5) {
 
-      this.form2.removeControl('F2S3Q1');
-      this.form2.removeControl('F2S3Q2');
-      this.form2.removeControl('F2S3Q3');
+    //   this.form2.removeControl('F2S3Q1');
+    //   this.form2.removeControl('F2S3Q2');
+    //   this.form2.removeControl('F2S3Q3');
     
-    }else if(this.userRole==this.role6) {
+    // }
+    else if(this.userRole==this.role6) {
 
       this.form2.removeControl('F2S1Q1');
       this.form2.removeControl('F2S2Q1');
@@ -167,23 +171,22 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S5Q1');
       this.form3.removeControl('F3S5Q2');
     }
-    else if(this.userRole==this.role2) {
-      this.form3.removeControl('F3S1Q8');
-      this.form3.removeControl('F3S1Q9');
-      this.form3.removeControl('F3S1Q10');
-      this.form3.removeControl('F3S1Q11');
-      this.form3.removeControl('F3S2Q1');
-      this.form3.removeControl('F3S2Q5');
-      this.form3.removeControl('F3S4Q3');
-      this.form3.removeControl('F3S4Q6');
-      this.form3.removeControl('F3S5Q1');
-      this.form3.removeControl('F3S5Q2');
-      this.form3.removeControl('F3S6Q3');
-      this.form3.removeControl('F3S6Q6');
-      this.form3.removeControl('F3S6Q4');
-      this.form3.removeControl('F3S6Q5');
-
-    }
+    // else if(this.userRole==this.role2) {
+    //   this.form3.removeControl('F3S1Q8');
+    //   this.form3.removeControl('F3S1Q9');
+    //   this.form3.removeControl('F3S1Q10');
+    //   this.form3.removeControl('F3S1Q11');
+    //   this.form3.removeControl('F3S2Q1');
+    //   this.form3.removeControl('F3S2Q5');
+    //   this.form3.removeControl('F3S4Q3');
+    //   this.form3.removeControl('F3S4Q6');
+    //   this.form3.removeControl('F3S5Q1');
+    //   this.form3.removeControl('F3S5Q2');
+    //   this.form3.removeControl('F3S6Q3');
+    //   this.form3.removeControl('F3S6Q6');
+    //   this.form3.removeControl('F3S6Q4');
+    //   this.form3.removeControl('F3S6Q5');
+    // }
     else if(this.userRole==this.role3) {
       this.form3.removeControl('F3S1Q1');
       this.form3.removeControl('F3S2Q4');
@@ -223,18 +226,18 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S6Q4');
       this.form3.removeControl('F3S6Q5');
     }
-    else if(this.userRole==this.role5) {
+    // else if(this.userRole==this.role5) {
 
-      this.form3.removeControl('F3S1Q1');
-      this.form3.removeControl('F3S2Q4');
-      this.form3.removeControl('F3S2Q5');
-      this.form3.removeControl('F3S2Q8');
-      this.form3.removeControl('F3S4Q3');
-      this.form3.removeControl('F3S6Q3');
-      this.form3.removeControl('F3S6Q6');
-      this.form3.removeControl('F3S6Q4');
-      this.form3.removeControl('F3S6Q5');
-    }
+    //   this.form3.removeControl('F3S1Q1');
+    //   this.form3.removeControl('F3S2Q4');
+    //   this.form3.removeControl('F3S2Q5');
+    //   this.form3.removeControl('F3S2Q8');
+    //   this.form3.removeControl('F3S4Q3');
+    //   this.form3.removeControl('F3S6Q3');
+    //   this.form3.removeControl('F3S6Q6');
+    //   this.form3.removeControl('F3S6Q4');
+    //   this.form3.removeControl('F3S6Q5');
+    // }
     else if(this.userRole==this.role6) {
       this.form3.removeControl('F3S1Q1');
       this.form3.removeControl('F3S2Q4');

@@ -94,10 +94,10 @@
               <select name="state"  formControlName="youAre" class="form-control selectpicker" (change)="resetOtherForms()">
                 <!--<option value=" " >Please select your are..</option>-->
                 <option>Employer Only/ Representative of employer</option>
-                <option>Occupier Only/ Representative of occupier</option>
+                <!-- <option>Occupier Only/ Representative of occupier</option> -->
                 <option >Victim’s Legal Representative</option>
                 <option >Treating Doctor</option>
-                <option >Victim’s Next-of-kin</option>
+                <!-- <option >Victim’s Next-of-kin</option> -->
                 <option >Victim</option>
               </select>
             </div>
@@ -171,14 +171,13 @@
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
-        <div class="form-group required" *ngIf="(userRole===role2 || (userRole===role3) || 
-        (userRole===role5))">
+        <div class="form-group required" *ngIf="((userRole===role3))">
           <label class="col-md-12 control-label">The accident happened at:</label>
           <div class="col-md-12">
-            <label class="radio-inline custom-radio-label" *ngIf="(userRole===role3 || userRole===role5)">
+            <label class="radio-inline custom-radio-label" *ngIf="(userRole===role3)">
               <input type="radio" name="options" id="option1" autocomplete="off">At premises belonging to the employer
             </label>
-            <label class="radio-inline" *ngIf="(userRole===role3 || userRole===role5)">
+            <label class="radio-inline" *ngIf="(userRole===role3)">
               <input type="radio" name="options" id="option2" autocomplete="off">At another organisation's premise
             </label>
             <label class="radio-inline" *ngIf="!(userRole===role3)">
@@ -196,8 +195,7 @@
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
-        <div class="form-group" *ngIf="((userRole===role2) || (userRole===role3) || 
-        (userRole===role5))">
+        <div class="form-group" *ngIf="((userRole===role3))">
           <!-- <label class="col-md-2 control-label">Organization Name<span class="label worning">*</span></label> -->
           <div class="col-md-12 inputGroupContainer">
             <div class="input-group">
@@ -211,8 +209,7 @@
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
-        <div class="form-group" *ngIf="(userRole===role2 || userRole===role3 || 
-        userRole===role5)">
+        <div class="form-group" *ngIf="(userRole===role3)">
           <!-- <label class='col-md-12 control-label-custom'>Address or details where the accident happened
                   </label> -->
           <div class="col-md-12 inputGroupContainer custom_input">
@@ -245,7 +242,7 @@
         <!-- Employer Only/ Representative of employer ,required-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Treating Doctor, required-->
-        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role2) || 
+        <div class="form-group required" *ngIf="((userRole===role1) || 
           (userRole===role4))">
           <label class='col-md-12 control-label control-label-custom' *ngIf="(userRole===role1)">Was any person, includin your employee, injured in the accident?
           </label>
@@ -273,8 +270,7 @@
         <!-- Employer Only/ Representative of employer, required-->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Treating Doctor, required-->
-        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role2) || 
-          (userRole===role4))">
+        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role4))">
           <label class="col-md-2 control-label">About the type of accident</label>
           <div class="col-md-10 selectContainer">
             <div class="input-group">
@@ -299,7 +295,7 @@
         <!-- Employer Only/ Representative of employer, required -->
         <!-- Occupier Only/ Representative of occupier, required -->
         <!-- Treating Doctor, required-->
-        <div class="form-group required" *ngIf="!((userRole===role3) || (userRole===role6) || (userRole===role5))">
+        <div class="form-group required" *ngIf="!((userRole===role3) || (userRole===role6))">
           <label class='col-md-12 control-label control-label-custom'>About the type of equipment or agencies that led to the accident
           </label>
           <div class="col-md-12 inputGroupContainer custom_input">
@@ -380,9 +376,11 @@
         </legend>
 
         <!-- F3S1Q1 -->
-        <!-- Occupier Only/ Representative of occupier, required -->
+        <!-- Occupier Only/ Representative of occupier, required 
+         *** this is only for role2 (Occupier Only/ Representative of occupier) ***
+        -->
         <!-- <hr> -->
-        <div class="form-group required" *ngIf="(userRole===role2)">
+        <!-- <div class="form-group required" *ngIf="(userRole===role2)">
           <label class="col-md-2 control-label">Is the injured person</label>
           <div class="col-md-10">
             <label class="radio-inline custom-radio-label">
@@ -401,7 +399,7 @@
           <div *ngIf="form3.get('F3S1Q1').touched">
             <span [class.hidden]="!form3.controls['F3S1Q1'].hasError('required')" class="help-block hidden" >Description is required.</span>
           </div>
-        </div>
+        </div> -->
 
         <!-- F3S1Q2 -->
         <!-- Employee ID -->
@@ -542,7 +540,7 @@
         <!-- Victim’s Next-of-kin, required -->
         <!-- Victim, required -->
 
-        <div class="form-group required" *ngIf="!((userRole===role2) || (userRole===role4))">
+        <div class="form-group required" *ngIf="!((userRole===role4))">
           <label class="col-md-2 control-label">Address</label>
           <div class="col-md-10">
             <!-- F3S1Q8 -->
@@ -592,7 +590,7 @@
 
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Treating Doctor -->
-        <div class="form-group" *ngIf="((userRole===role2) || (userRole===role4) )">
+        <div class="form-group" *ngIf="((userRole===role4) )">
           <label class="col-md-2 control-label">Address</label>
           <div class="col-md-10">
             <!-- F3S1Q12 -->
@@ -635,7 +633,7 @@
         <!-- Victim’s Legal Representative, required -->
         <!-- Victim’s Next-of-kin, required -->
         <!-- Victim, required, required -->
-        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role3) || (userRole===role6) || (userRole===role5))">
+        <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role3) || (userRole===role6))">
           <label class="col-md-2 control-label">Contact No.</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -652,7 +650,7 @@
 
         <!-- F3S1Q15 Occupier Only/ Representative of occupier -->
         <!-- Treating Doctor -->
-        <div class="form-group" *ngIf="((userRole===role2) || (userRole===role4)) ">
+        <div class="form-group" *ngIf="((userRole===role4)) ">
           <label class="col-md-2 control-label">Contact No.</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -684,7 +682,7 @@
         <!-- Victim’s Next-of-kin, required -->
         <!-- Victim, required -->
 
-        <div class="form-group required" *ngIf="!(userRole===role1 || userRole===role2 || userRole===role4)">
+        <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role4))">
           <label class="col-md-2 control-label">Employer's Organisation Name</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -702,7 +700,7 @@
         <!-- Victim’s Next-of-kin, required -->
         <!-- Victim, required -->
 
-        <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role2) || (userRole===role4))">
+        <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role4))">
           <label class="col-md-2 control-label">Employer's Mailing Address</label>
           <div class="col-md-10">
             <!-- F3S2Q9 -->
@@ -776,7 +774,7 @@
         <!-- user role -->
         <!-- Employer Only/ Representative of employer, required -->
         <!-- Occupier Only/ Representative of occupier -->
-        <div class="form-group required" *ngIf="(userRole===role1 || userRole===role2)">
+        <div class="form-group required" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">Start Date of Employment</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -815,7 +813,10 @@
 
 
         <!-- F3S2Q6 Occupier Only/ Representative of occupier -->
-        <div class="form-group" *ngIf="(userRole===role2)">
+        <!--  ***
+          this is only for role 02 (Occupier Only/ Representative of occupier)
+        *** -->
+        <!-- <div class="form-group" *ngIf="(userRole===role2)">
           <div class="control-group">
             <label class="col-md-2 control-label">Average Monthly Earnings</label>
             <div class="col-md-10 control-group">
@@ -828,7 +829,7 @@
                 expenses.</p>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- F3S2Q7 Percentage of manual work performed by the injured person -->
         <!-- Employer Only/ Representative of employer -->
@@ -849,7 +850,10 @@
 
         <!-- F3S2Q8 Occupier Only/ Representative of occupier, required -->
         <!-- <hr> -->
-        <div class="form-group required" *ngIf="(userRole===role2)">
+        <!--  ***
+          this is only for role 02 (Occupier Only/ Representative of occupier)
+        *** -->
+        <!-- <div class="form-group required" *ngIf="(userRole===role2)">
           <label class="col-md-2 control-label">Percentage of manual work performed by the injured person</label>
           <div class="col-md-10">
             <label class="radio-inline custom-radio-label">
@@ -862,7 +866,7 @@
           <div *ngIf="form3.get('F3S2Q8').touched">
             <span [class.hidden]="!form3.controls['F3S2Q8'].hasError('required')" class="help-block hidden" >Average monthly salary is required.</span>
           </div>
-        </div>
+        </div> -->
 
         <!-- Employer Only/ Representative of employer -->
         <!-- Occupier Only/ Representative of occupier -->
@@ -1165,8 +1169,7 @@
           </div>
         </div> -->
 
-        <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role2) 
-        || (userRole === role4))">
+        <div class="form-group required" *ngIf="!((userRole===role1) || (userRole === role4))">
           <label class="col-md-2 control-label">Would you like to provide any witness information?</label>
           <div class="col-md-10">
             <label class="radio-inline custom-radio-label">
@@ -1187,7 +1190,7 @@
         <!-- Victim -->
 
         <hr>
-        <legend *ngIf="!((userRole===role1) || (userRole===role2) || (userRole===role4))">
+        <legend *ngIf="!((userRole===role1) || (userRole===role4))">
           <h4>Section 5: Particulars of the Witness</h4>
         </legend>
 
@@ -1196,8 +1199,7 @@
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role2) 
-        || (userRole===role4))">
+        <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
           <label class="col-md-2 control-label">NIC NO</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -1218,8 +1220,7 @@
         <!-- Victim’s Next-of-kin -->
         <!-- Victim, required -->
 
-        <div class="form-group required" *ngIf="!(userRole===role1 || userRole===role2 
-        || userRole===role4)">
+        <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role4))">
           <label class="col-md-2 control-label">Full Name</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -1237,7 +1238,7 @@
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group" *ngIf="!(userRole===role1 || userRole===role2 || userRole===role4)">
+        <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
           <label class="col-md-2 control-label">Contact No.</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -1256,7 +1257,7 @@
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group" *ngIf="!(userRole===role1 || userRole===role2 || userRole===role4)">
+        <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
           <label class="col-md-2 control-label">Email</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -1274,7 +1275,7 @@
         <!-- Victim -->
 
         <hr>
-        <legend *ngIf="!((userRole===role1) || (userRole===role2) || (userRole===role4))">
+        <legend *ngIf="!((userRole===role1) || (userRole===role4))">
           <h4>Section 6: Employment Details of the Witness</h4>
         </legend>
 
@@ -1283,7 +1284,7 @@
         <!-- Victim’s Next-of-kin -->
         <!-- Victim -->
 
-        <div class="form-group" *ngIf="!((userRole===role2) || (userRole===role4))">
+        <div class="form-group" *ngIf="!((userRole===role4))">
           <label class="col-md-2 control-label">Employer's Organisation Name</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
@@ -1299,7 +1300,7 @@
         <!-- Victim -->
 
         <hr>
-        <div class="form-group" *ngIf="!(userRole===role2 || userRole===role4)">
+        <div class="form-group" *ngIf="!(userRole===role4)">
           <label class="col-md-2 control-label">Employer's Mailing Address</label>
           <div class="col-md-10">
 
@@ -1429,7 +1430,10 @@
         </div>
 
         <!-- F3S6Q7 Occupier Only/ Representative of occupier -->
-        <div class="form-group" *ngIf="(userRole===role2)">
+        <!--  ***
+          this is only for role 02 (Occupier Only/ Representative of occupier)
+        *** -->
+        <!-- <div class="form-group" *ngIf="(userRole===role2)">
           <div class="col-md-12">
             <p class="help-block">• Please provide details for the employer’s Work Injury Compensation Insurance policy (if any).</p>
           </div>
@@ -1458,14 +1462,14 @@
               </select>
             </div>
           </div>
-        </div>
+        </div> -->
 
 
         <!-- F3S6Q8 Insurance Policy No. -->
         <!-- Employer Only/ Representative of employer, required-->
         <!-- Occupier Only/ Representative of occupier -->
         <!-- <hr> -->
-        <div class="form-group" *ngIf="(userRole===role1 || userRole===role2)">
+        <div class="form-group" *ngIf="(userRole===role1)">
           <label class="col-md-2 control-label">Insurance Policy No.</label>
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">

@@ -21,7 +21,7 @@ export class ValidationService {
 	}
 
     phoneValidator(control: FormControl): { [key: string]: any } {
-	    var phoneRegexp = /^[7]\d{8}$/;
+	    var phoneRegexp = /^\d{9}$/;
 	    if (control.value && !phoneRegexp.test(control.value)) {
 	      return { invalidPhone: true };
 	    }
