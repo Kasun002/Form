@@ -18,19 +18,26 @@
                     <a href="#page-top"></a>
                 </li>
                 <li class="page-scroll">
-                    <a href="#portfolio">Portfolio</a>
+                    <a href="#portfolio">Home</a>
                 </li>
                 <li class="page-scroll">
                     <a href="#about">About</a>
                 </li>
                 <li class="page-scroll">
-                    <a href="#contact">Contact</a>
+                    <a href="#contact">Instructional Guides</a>
                 </li>
                 <li class="page-scroll">
-                    <a href="#contact">Contact</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Dropdown</button>
+                        <div class="dropdown-content">
+                            <a [routerLink]="['/login']">Login</a>
+                            <a href="#contact">Instructional Guides</a>
+                            <a href="#contact">Link 1</a>
+                        </div>
+                    </div>
+                    <!-- <a href="#contact">Contact Us</a> -->
                 </li>
                 <li class="page-scroll">
-                    <a [routerLink]="['/login']">Login</a>
                 </li>
             </ul>
         </div>
