@@ -11,6 +11,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { loginRouting, loginRoutingProviders } from './authintication.routes';
 import { AuthinticationComponent } from './authintication.component';
 
+import { ValidationService } from './validation.service';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyC41J8dq4DxbNdk8f8BY_MCW6D5KpCMjfU",
   authDomain: "ehealthsystem-c9a65.firebaseapp.com",
@@ -34,7 +36,7 @@ export const firebaseConfig = {
       AngularFireDatabaseModule,
       AngularFireAuthModule
   ],
-  providers: [ loginRoutingProviders ],
-  bootstrap: [AuthinticationComponent]
+  providers: [ loginRoutingProviders, ValidationService ],
+  bootstrap: [AuthinticationComponent],
 })
 export class AuthinticationModule { }

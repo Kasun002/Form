@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import {ValidationService} from './validation.service';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -19,21 +20,23 @@ export class AuthinticationComponent implements OnInit {
 
 
   user: Observable<any>;
-  items: FirebaseListObservable<any[]>;
+  users: FirebaseListObservable<any[]>;
   msgVal: string = '';
+  value: FirebaseObjectObservable<any>;
 
   constructor(private fb1: FormBuilder,
   public afAuth: AngularFireAuth, 
   public af: AngularFireDatabase,
   private router: Router,
+  private validationService : ValidationService,
   private route: ActivatedRoute) {
     this.formInit();
     // this.items = af.list('/messages', {
     //   query: {
     //     limitToLast: 50
     //   }
-    // });
-
+    // });  
+    this.users = af.list('/users');
     this.user = this.afAuth.authState;
   }
 
@@ -44,8 +47,10 @@ export class AuthinticationComponent implements OnInit {
     var username=this.loginForm.get('userName').value;
     var password=this.loginForm.get('password').value;
     this.afAuth.auth.signInWithEmailAndPassword(username, password).then((user) => {
-     // user signed in
+      // user signed in
+      this.user = user;
       this.router.navigate(['/home/insident_report']);
+
     }).catch((error) => {
         alert(error.message);
     });
@@ -64,11 +69,25 @@ export class AuthinticationComponent implements OnInit {
     }
 
     this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((user) => {
-     // user register
+      // user register
+      this.users = user;
+
+      this.af.object(`/users/${user.uid}`).update({
+        name: username,
+        email: email
+      });
       this.router.navigate(['/home/insident_report']);
+
     }).catch((error) => {
+        if(error['code'] === 'auth/invalid-email') {
+          alert("Invalieded emil address....");
+        }
+
         alert(error.message);
     });
+
+
+
   }
 
   logout() {
@@ -94,14 +113,14 @@ export class AuthinticationComponent implements OnInit {
   formInit(){
     this.loginForm = this.fb1.group({
       userName: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, this.validationService.passwordValidator]],
     });
 
     this.registrationForm = this.fb1.group({
       userName: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]],
+      email: ['', [Validators.required, this.validationService.emailValidator]],
+      password: ['', [Validators.required, this.validationService.passwordValidator]],
+      confirmPassword: ['', [Validators.required, this.validationService.passwordValidator]],
     });
   }
 
