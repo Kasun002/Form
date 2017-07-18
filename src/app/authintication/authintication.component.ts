@@ -4,6 +4,7 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import {ValidationService} from './validation.service';
+import * as firebase from 'firebase/app';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -36,18 +37,59 @@ export class AuthinticationComponent implements OnInit {
     //     limitToLast: 50
     //   }
     // });  
-    this.users = af.list('/users');
+    this.users = af.list('/users', { preserveSnapshot: true });
     this.user = this.afAuth.authState;
   }
 
   ngOnInit() {
   }
 
-  login() {
-    var username=this.loginForm.get('userName').value;
-    var password=this.loginForm.get('password').value;
-    this.afAuth.auth.signInWithEmailAndPassword(username, password).then((user) => {
-      // user signed in
+
+  userSignUp(){
+    
+    var username = this.loginForm.get('userName').value;
+    var nic = this.loginForm.get('nic').value;
+    // var password = this.registrationForm.get('password').value;
+    // var confirmPassword = this.registrationForm.get('confirmPassword').value;
+
+    let email = nic + "@mail.example";
+
+    // if(password !== confirmPassword) {
+    //   alert("Password & confirm password not same.");
+    //   return;
+    // }
+
+    if(!this.checkUserExists(nic)) {
+      console.log("<<<<<<<<<<< register >>>>>>>> -----");
+      // this.afAuth.auth.createUserWithEmailAndPassword(email, nic).then((user) => {
+      //   // user register
+      //   this.users = user;
+
+      //   this.af.object(`/users/${nic}`).update({
+      //     uuid: user.uid,
+      //     name: username,
+      //     email: email
+      //   });
+      //   this.router.navigate(['/home/insident_report']);
+
+      // }).catch((error) => {
+      //     if(error['code'] === 'auth/invalid-email') {
+      //       alert("Invalieded emil address....");
+      //     }
+
+      //     alert(error.message);
+      // });
+    }else{
+      console.log("<<<<<<<<<<< login >>>>>>>>>...");
+       // this.login(email, nic);
+    }
+  }
+
+  login(email, password) {
+    // var username=this.loginForm.get('userName').value;
+    // var password=this.loginForm.get('password').value;
+    this.afAuth.auth.signInWithEmailAndPassword(email, password).then((user) => {
+      // user login
       this.user = user;
       this.router.navigate(['/home/insident_report']);
 
@@ -56,39 +98,31 @@ export class AuthinticationComponent implements OnInit {
     });
   }
 
-  register(){
-    
-    var username = this.registrationForm.get('userName').value;
-    var email = this.registrationForm.get('email').value;
-    var password = this.registrationForm.get('password').value;
-    var confirmPassword = this.registrationForm.get('confirmPassword').value;
+  checkUserExists(nic) {
 
-    if(password !== confirmPassword) {
-      alert("Password & confirm password not same.");
-      return;
-    }
-
-    this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((user) => {
-      // user register
-      this.users = user;
-
-      this.af.object(`/users/${user.uid}`).update({
-        name: username,
-        email: email
-      });
-      this.router.navigate(['/home/insident_report']);
-
-    }).catch((error) => {
-        if(error['code'] === 'auth/invalid-email') {
-          alert("Invalieded emil address....");
+    const user = this.af.object(`users/${nic}`);
+      user.subscribe(data => {
+        console.log("<<<<<<< data >>>>>>>>>>", data);
+        if(data.$value !== null) {
+          console.log('User does not exist');
+        } else {
+          console.log('User does exist');
         }
-
-        alert(error.message);
-    });
-
-
-
+      });
+    // let isEquals = false;
+    // this.users = this.af.list('/users', { preserveSnapshot: true });
+    // this.users
+    //   .subscribe(snapshots => {
+    //     snapshots.forEach(snapshot => {
+    //       console.log("<<<<<<<<<< equal 222 >>>>>>>>");
+    //       if(snapshot.val().email === email) {
+    //         console.log("<<<<<<<<<< equal 333>>>>>>>>");
+    //         isEquals =  true;
+    //       }
+    //     });
+    //   });
   }
+  
 
   logout() {
       this.afAuth.auth.signOut();
@@ -113,15 +147,15 @@ export class AuthinticationComponent implements OnInit {
   formInit(){
     this.loginForm = this.fb1.group({
       userName: ['', [Validators.required]],
-      password: ['', [Validators.required, this.validationService.passwordValidator]],
+      nic: ['', [Validators.required, this.validationService.nicValidator]],
     });
 
-    this.registrationForm = this.fb1.group({
-      userName: ['', [Validators.required]],
-      email: ['', [Validators.required, this.validationService.emailValidator]],
-      password: ['', [Validators.required, this.validationService.passwordValidator]],
-      confirmPassword: ['', [Validators.required, this.validationService.passwordValidator]],
-    });
+    // this.registrationForm = this.fb1.group({
+    //   userName: ['', [Validators.required]],
+    //   email: ['', [Validators.required,]],
+    //   password: ['', [Validators.required]],
+    //   confirmPassword: ['', [Validators.required]],
+    // });
   }
 
 }

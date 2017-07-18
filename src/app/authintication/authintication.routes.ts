@@ -17,7 +17,7 @@ const loginRoutes: Routes = [
     redirectTo: '/',
     pathMatch: 'full'
   },
-  { path: 'login', component: AuthinticationComponent }
+  // { path: 'login', component: AuthinticationComponent }
 ];
 
 export const loginRoutingProviders: any[] = [];
