@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 import {ValidationService} from './validation.service';
 import { DatePickerOptions, DateModel } from 'ng2-datepicker';
@@ -16,6 +16,7 @@ export class FormTp1Component implements OnInit {
   public form1: FormGroup;
   public form2: FormGroup;
   public form3: FormGroup;
+  public items: FormArray;
 
   public userRole:string;
   public role1='Employer Only/ Representative of employer';
@@ -278,9 +279,18 @@ export class FormTp1Component implements OnInit {
   wasPersonDead(value){
     this.personDead = value; 
     if(value == 'yes'){
-      this.form3.removeControl('F3S3Q2');
-      this.form3.removeControl('F3S3Q3');
+      // this.form3.removeControl('F3S3Q2');
+      // this.form3.removeControl('F3S3Q3');
+      this.items = this.form3.get('items') as FormArray;
+      // this.items.push(this.createItem());
+      console.log("<<<<< this.items >>>>>>", this.items);
+      if(this.items && this.items.length > 0) {
+        this.items.removeAt(0);
+      }
     }else if(value == 'no'){
+      if(!this.items || this.items.length === 0) {
+        this.items.push(this.createItem());
+      }
       // this.form3 = this.fb3.group({
       //   F3S3Q2: ['', [Validators.required]],
       //   F3S3Q3: ['', [Validators.required]],
@@ -343,6 +353,14 @@ export class FormTp1Component implements OnInit {
     this.momentValueF3S6Q3 = moment;
   }
 
+  createItem(): FormGroup {
+    console.log("<<<<<<< ------- >>>>>>>");
+    return this.fb3.group({
+      F3S3Q2: ['', [Validators.required]],
+      // F3S3Q3: ['', [Validators.required]],
+    });
+  }
+
   formValidation(){
     this.form1 = this.fb1.group({
       name: ['', [Validators.required]],
@@ -385,7 +403,8 @@ export class FormTp1Component implements OnInit {
       F3S2Q10: ['', [Validators.required]],
       F3S2Q11: ['', [Validators.required]],
       F3S3Q1: ['', [Validators.required]],
-      F3S3Q2: ['', [Validators.required]],
+      items: this.fb3.array([ this.createItem() ]),
+      // F3S3Q2: ['', [Validators.required]],
       F3S3Q3: ['', [Validators.required]],
       F3S4Q1: ['', [Validators.required]],
       F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],
@@ -438,7 +457,7 @@ export class FormTp1Component implements OnInit {
       F3S2Q10: ['', [Validators.required]],
       F3S2Q11: ['', [Validators.required]],
       F3S3Q1: ['', [Validators.required]],
-      F3S3Q2: ['', [Validators.required]],
+      // F3S3Q2: ['', [Validators.required]],
       F3S3Q3: ['', [Validators.required]],
       F3S4Q1: ['', [Validators.required]],
       F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],

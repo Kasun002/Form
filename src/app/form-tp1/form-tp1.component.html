@@ -915,6 +915,7 @@
         <!-- Treating Doctor, required --> 
         <!-- Victim’s Next-of-kin, required -->
         <!-- Victim, required -->
+      <div formArrayName="items"> 
         <div class="form-group required" *ngIf="(this.form3.get('F3S3Q1').value == 'no')">
           <label class="col-md-2 control-label">Nature of injury</label>
           <div class="col-md-10 selectContainer">
@@ -977,11 +978,12 @@
                 <option>Multiple Injuries Including Both Physical & Psychological</option>
               </select>
             </div>
-            <div *ngIf="form3.get('F3S3Q2').touched">
+           <!--  <div *ngIf="form3.get('F3S3Q2').touched">
               <span [class.hidden]="!form3.controls['F3S3Q2'].hasError('required')" class="help-block hidden" >Nature of injury is required.</span>
-            </div>
+            </div> -->
           </div>
-        </div> 
+        </div>
+      </div>  
 
         <!-- F3S3Q3 Associated body part(s) injured -->
         <!-- Employer Only/ Representative of employer, required -->
