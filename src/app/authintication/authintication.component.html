@@ -4,11 +4,8 @@
             <div class="panel panel-login">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-xs-6">
-                            <a (click)="formSelector('log')" [ngClass]="{'active':formTogel}" id="login-form-link">Login</a>
-                        </div>
-                        <div class="col-xs-6">
-                            <a (click)="formSelector('reg')"  [ngClass]="{'active':!formTogel}" id="register-form-link">Register</a>
+                        <div class="col-xs-12">
+                            <a>Login</a>
                         </div>
                     </div>
                     <hr>
@@ -16,7 +13,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="login-form" [formGroup]="loginForm" *ngIf="formTogel">
+                            <form id="login-form" [formGroup]="loginForm" *ngIf="(loginType == loginTypeEmployee)">
                                 <div class="form-group">
                                     <input type="text" formControlName="userName" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                 </div>
@@ -25,39 +22,47 @@
                                     [class.hidden]="!loginForm.controls['userName'].hasError('required')" class="help-block hidden" >Name is required.</span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" formControlName="nic" name="nic" id="nic" tabindex="1" class="form-control" placeholder="NIC no." value="">
+                                    <input type="text" formControlName="nic" name="nic" id="nic" tabindex="1" class="form-control" placeholder="NIC no." value="" maxlength="10">
                                 </div>
                                 <div *ngIf="loginForm.get('nic').touched">
                                   <span 
-                                    [class.hidden]="!loginForm.controls['nic'].hasError('invalidnic')" class="help-block hidden" >Invailed NIC.</span>
+                                    [class.hidden]="!loginForm.controls['nic'].hasError('invalidNic')" class="help-block hidden" >Invailed NIC.</span>
                                 </div>
                                 <div *ngIf="loginForm.get('nic').touched">
                                   <span 
                                     [class.hidden]="!loginForm.controls['nic'].hasError('required')" class="help-block hidden" >NIC is required.</span>
                                 </div>
-                                <!-- <div class="form-group">
-                                    <input type="text" formControlName="userName" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-                                </div>
-                                <div *ngIf="loginForm.get('userName').touched">
-                                  <span [class.hidden]="!loginForm.controls['userName'].hasError('required')" class="help-block hidden" >UserName is required.</span>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" formControlName="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-                                </div>
-                                <div *ngIf="loginForm.get('password').touched">
-                                  <span [class.hidden]="!loginForm.controls['password'].hasError('invalidPassword')" class="help-block hidden" >Invalied Password.</span>
-                                </div>
-                                <div *ngIf="loginForm.get('password').touched">
-                                  <span [class.hidden]="!loginForm.controls['password'].hasError('required')" class="help-block hidden" >Password is required.</span>
-                                </div> -->
-                                <!--<div class="form-group text-center">
-                                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                        <label for="remember"> Remember Me</label>
-                                    </div>-->
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
                                             <input (click)="userSignUp()" type="button" name="login-submit" id="login-submit"  tabindex="4" class="form-control btn btn-login" value="Log In">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form id="register-form" [formGroup]="loginFormAdmin" *ngIf="loginType == loginTypeAdmin" >
+                                <div class="form-group">
+                                    <input type="email" formControlName="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                                </div>
+                                <div *ngIf="loginFormAdmin.get('email').touched">
+                                  <span [class.hidden]="!loginFormAdmin.controls['email'].hasError('invalidEmail')" class="help-block hidden" >Email format error.</span>
+                                </div>
+                                <div *ngIf="loginFormAdmin.get('email').touched">
+                                  <span [class.hidden]="!loginFormAdmin.controls['email'].hasError('required')" class="help-block hidden" >Email is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" formControlName="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                </div>
+                                <div *ngIf="loginFormAdmin.get('password').touched">
+                                  <span [class.hidden]="!loginFormAdmin.controls['password'].hasError('invalidPassword')" class="help-block hidden" >Invalied Password.</span>
+                                </div>
+                                <div *ngIf="loginFormAdmin.get('password').touched">
+                                  <span [class.hidden]="!loginFormAdmin.controls['password'].hasError('required')" class="help-block hidden" >Password is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input (click)="adminLogin()" type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Log in">
                                         </div>
                                     </div>
                                 </div>
@@ -70,42 +75,6 @@
                                             </div>
                                         </div>
                                     </div>-->
-                            </form>
-                            <form id="register-form" [formGroup]="registrationForm" *ngIf="!formTogel" >
-                                <!-- <div class="form-group">
-                                    <input type="email" formControlName="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
-                                </div>
-                                <div *ngIf="registrationForm.get('email').touched">
-                                  <span [class.hidden]="!registrationForm.controls['email'].hasError('invalidEmail')" class="help-block hidden" >Email format error.</span>
-                                </div>
-                                <div *ngIf="registrationForm.get('email').touched">
-                                  <span [class.hidden]="!registrationForm.controls['email'].hasError('required')" class="help-block hidden" >Email is required.</span>
-                                </div> -->
-                                <!-- <div class="form-group">
-                                    <input type="password" formControlName="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-                                </div>
-                                <div *ngIf="registrationForm.get('password').touched">
-                                  <span [class.hidden]="!registrationForm.controls['password'].hasError('invalidPassword')" class="help-block hidden" >Invalied Password.</span>
-                                </div>
-                                <div *ngIf="registrationForm.get('password').touched">
-                                  <span [class.hidden]="!registrationForm.controls['password'].hasError('required')" class="help-block hidden" >Password is required.</span>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" formControlName="confirmPassword" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
-                                </div>
-                                <div *ngIf="registrationForm.get('confirmPassword').touched">
-                                  <span [class.hidden]="!registrationForm.controls['confirmPassword'].hasError('invalidPassword')" class="help-block hidden" >Invalied Password.</span>
-                                </div>
-                                <div *ngIf="registrationForm.get('confirmPassword').touched">
-                                  <span [class.hidden]="!registrationForm.controls['confirmPassword'].hasError('required')" class="help-block hidden" >Password is required.</span>
-                                </div> -->
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-sm-offset-3">
-                                            <input (click)="register()" type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
-                                        </div>
-                                    </div>
-                                </div>
                             </form>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router ,NavigationEnd} from '@angular/router';
+import { Router ,NavigationEnd, NavigationExtras} from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,9 +7,17 @@ import { Router ,NavigationEnd} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(router :Router) { }
+  constructor(private router :Router) { }
 
   ngOnInit() {
+  }
+
+  getLoginUserType(type: string) {
+  	 const navigationExtras: NavigationExtras = {
+        queryParams: { 'type': type }
+      };
+
+      this.router.navigate(['/home/login'], navigationExtras);
   }
 
 }

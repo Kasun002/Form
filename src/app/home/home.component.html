@@ -30,8 +30,8 @@
                 <div class="dropdown">
                     <button class="dropbtn">Login</button>
                         <div class="dropdown-content">
-                            <a routerLink="/home/login">Employee</a>
-                            <a>Admin</a>
+                            <a (click)="getLoginUserType('emp')">Employee</a>
+                            <a (click)="getLoginUserType('admin')">Admin</a>
                         </div>
                     </div>
                     <!-- <a href="#contact">Contact Us</a> -->
