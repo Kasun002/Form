@@ -915,13 +915,13 @@
         <!-- Treating Doctor, required --> 
         <!-- Victim’s Next-of-kin, required -->
         <!-- Victim, required -->
-      <div formArrayName="items"> 
+      <div > 
         <div class="form-group required" *ngIf="(this.form3.get('F3S3Q1').value == 'no')">
           <label class="col-md-2 control-label">Nature of injury</label>
-          <div class="col-md-10 selectContainer">
-            <div class="input-group">
+          <div class="col-md-10 selectContainer" formArrayName="items" *ngFor="let item of form3.get('items').controls; let i = index;">
+            <div class="input-group" [formGroupName]="i">
               <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select name="state" class="form-control selectpicker" formControlName="F3S3Q2">
+              <select name="state" class="form-control selectpicker" formControlName="F3S3Q2" >
                 <option value="" disabled selected hidden>Please select nature of injury</option>
                 <option>No Physical Injury</option>
                 <option>Amputation</option>

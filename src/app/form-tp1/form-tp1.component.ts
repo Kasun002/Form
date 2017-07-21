@@ -277,26 +277,13 @@ export class FormTp1Component implements OnInit {
 
   // F3S3Q1 - Did the accident result in death of the injured person
   wasPersonDead(value){
-    this.personDead = value; 
     if(value == 'yes'){
-      // this.form3.removeControl('F3S3Q2');
-      // this.form3.removeControl('F3S3Q3');
-      this.items = this.form3.get('items') as FormArray;
-      // this.items.push(this.createItem());
-      console.log("<<<<< this.items >>>>>>", this.items);
-      if(this.items && this.items.length > 0) {
-        this.items.removeAt(0);
-      }
+      this.form3.addControl('items',new FormArray([]));
     }else if(value == 'no'){
-      if(!this.items || this.items.length === 0) {
-        this.items.push(this.createItem());
-      }
-      // this.form3 = this.fb3.group({
-      //   F3S3Q2: ['', [Validators.required]],
-      //   F3S3Q3: ['', [Validators.required]],
-      // });
-      // this.form3Custom();
-      // this.form2ControlRemove();
+      this.form3.addControl('items',new FormArray([this.fb3.group({
+        F3S3Q2: ['', [Validators.required]],
+        F3S3Q3: ['', [Validators.required]],
+      })]));
     }
   }
 
