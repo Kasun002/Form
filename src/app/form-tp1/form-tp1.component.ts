@@ -127,7 +127,7 @@ export class FormTp1Component implements OnInit {
   form2ControlRemove() {
     if(this.userRole==this.role1) {
 
-      this.form2.removeControl('F2S2Q1');
+      // this.form2.removeControl('F2S2Q1');
 
     }
     // else if(this.userRole==this.role2) {

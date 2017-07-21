@@ -159,28 +159,30 @@
           </div>
         </div>
 
-        <!-- Occupier Only/ Representative of occupier required-->
+        <!-- Employer Only/ Representative of employer ,required-->
+        <!-- Occupier Only/ Representative of occupier required-->  
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin, required-->
-        <legend *ngIf="!((userRole===role6) || (userRole===role1) || (userRole===role4))">
+        <legend *ngIf="!((userRole===role6) || (userRole===role4))">
           <hr>
           <h4>Section 2: Where did the accident happen?</h4>
         </legend>
 
         <!-- F2S2Q1 -->
+        <!-- Employer Only/ Representative of employer ,required-->
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
-        <div class="form-group required" *ngIf="((userRole===role3))">
+        <div class="form-group required" *ngIf="((userRole===role3) || (userRole===role1))">
           <label class="col-md-12 control-label">The accident happened at:</label>
           <div class="col-md-12">
-            <label class="radio-inline custom-radio-label" *ngIf="(userRole===role3)">
+            <label class="radio-inline custom-radio-label" *ngIf="((userRole===role3) || (userRole===role1))">
               <input type="radio" name="options" id="option1" autocomplete="off">At premises belonging to the employer
             </label>
-            <label class="radio-inline" *ngIf="(userRole===role3)">
+            <label class="radio-inline" *ngIf="((userRole===role3) || (userRole===role1))">
               <input type="radio" name="options" id="option2" autocomplete="off">At another organisation's premise
             </label>
-            <label class="radio-inline" *ngIf="!(userRole===role3)">
+            <label class="radio-inline" *ngIf="!((userRole===role3) || (userRole===role1))">
               <input type="radio" name="options" id="option3" autocomplete="off">At premises under the management / control of your organisation
             </label>
             <label class="radio-inline">
@@ -192,10 +194,11 @@
 
         <!-- ///////////////////////////////////// F2S2Q1 options /////////////////////////// -->
         <!-- F2S2Q2 -->
+        <!-- Employer Only/ Representative of employer-->
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
-        <div class="form-group" *ngIf="((userRole===role3))">
+        <div class="form-group" *ngIf="((userRole===role3) || (userRole===role1))">
           <!-- <label class="col-md-2 control-label">Organization Name<span class="label worning">*</span></label> -->
           <div class="col-md-12 inputGroupContainer">
             <div class="input-group">
@@ -209,9 +212,9 @@
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
-        <div class="form-group" *ngIf="(userRole===role3)">
-          <!-- <label class='col-md-12 control-label-custom'>Address or details where the accident happened
-                  </label> -->
+        <div class="form-group" *ngIf="((userRole===role3) || (userRole===role1))">
+          <!-- <label class='col-md-12 control-label-custom'>Address or details where the accident  happened
+          </label> -->
           <div class="col-md-12 inputGroupContainer custom_input">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
@@ -226,14 +229,14 @@
         <!-- Occupier Only/ Representative of occupier, required-->
         <!-- Victim’s Legal Representative, required-->
         <!-- Victim’s Next-of-kin -->
-        <legend *ngIf="!((userRole===role6) || (userRole===role1) || (userRole===role4))">
+        <legend *ngIf="!((userRole===role6) || (userRole===role4))">
           <hr>
           <h4>Section 3: How did the accident happen?</h4>
         </legend>
 
         <!-- Employer Only/ Representative of employer -->
         <!-- Treating Doctor, required -->
-        <legend *ngIf="((userRole===role1) || (userRole===role4))">
+        <legend *ngIf="((userRole===role4))">
           <hr>
           <h4>Section 2: How did the accident happen?</h4>
         </legend>
@@ -978,7 +981,7 @@
               <span [class.hidden]="!form3.controls['F3S3Q2'].hasError('required')" class="help-block hidden" >Nature of injury is required.</span>
             </div>
           </div>
-        </div>
+        </div> 
 
         <!-- F3S3Q3 Associated body part(s) injured -->
         <!-- Employer Only/ Representative of employer, required -->
@@ -1006,7 +1009,6 @@
             </div>
           </div>
         </div>
-
         <!-- Employer Only/ Representative of employer -->
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
