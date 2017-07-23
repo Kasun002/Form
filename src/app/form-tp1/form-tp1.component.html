@@ -203,12 +203,13 @@
           <div class="col-md-12 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-              <input name="organization_name" placeholder="Organization Name" class="form-control" type="text">
+              <input name="organization_name" placeholder="Organization Name" class="form-control" type="text" formControlName="F2S2Q2">
             </div>
           </div>
         </div>
 
         <!-- F2S2Q3 -->
+        <!-- Employer Only/ Representative of employer-->
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
         <!-- Victim’s Next-of-kin -->
@@ -218,7 +219,7 @@
           <div class="col-md-12 inputGroupContainer custom_input">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-              <textarea name="F2S2Q3" placeholder="Address or Details where the accident happened" class="form-control" rows="3"></textarea>
+              <textarea name="F2S2Q3" placeholder="Address or Details where the accident happened" class="form-control" rows="3" formControlName="F2S2Q3"></textarea>
             </div>
           </div>
         </div>
@@ -437,7 +438,7 @@
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="nic_nO" placeholder="NIC NO" formControlName='F3S1Q3' class="form-control" type="text">
+              <input name="nic_nO" placeholder="NIC NO" formControlName='F3S1Q3' class="form-control" type="text" maxlength="10">
             </div>
             <div *ngIf="form3.get('F3S1Q3').touched">
               <span [class.hidden]="!form3.controls['F3S1Q3'].hasError('required')" class="help-block hidden" >NIC NO is required.</span>
@@ -479,7 +480,7 @@
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-              <input class="form-control" [mode]="'dropdown'" formControlName="F3S1Q5" [ngModel]="momentValueF3S1Q5 | date: 'short'" [dateTimePicker]="momentValueF3S1Q5" (dateTimePickerChange)="setMomentF3S1Q5($event)" [pickerType]="'date'" readonly />
+              <input class="form-control" [mode]="'dropdown'" formControlName="F3S1Q5" [ngModel]="momentValueF3S1Q5 | date: 'short'" [value]="momentValueF3S1Q5"            (dateTimePickerChange)="setMomentF3S1Q5($event)" [pickerType]="'date'" readonly />
             </div>
             <div *ngIf="form3.get('F3S1Q5').touched">
               <span [class.hidden]="!form3.controls['F3S1Q5'].hasError('required')" class="help-block hidden" >Date of birth is required.</span>
@@ -914,103 +915,90 @@
         <!-- Victim’s Legal Representative, required -->
         <!-- Treating Doctor, required --> 
         <!-- Victim’s Next-of-kin, required -->
-        <!-- Victim, required -->
-      <div > 
+        <!-- Victim, required --> 
         <div class="form-group required" *ngIf="(this.form3.get('F3S3Q1').value == 'no')">
-          <label class="col-md-2 control-label">Nature of injury</label>
-          <div class="col-md-10 selectContainer" formArrayName="items" *ngFor="let item of form3.get('items').controls; let i = index;">
-            <div class="input-group" [formGroupName]="i">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select name="state" class="form-control selectpicker" formControlName="F3S3Q2" >
-                <option value="" disabled selected hidden>Please select nature of injury</option>
-                <option>No Physical Injury</option>
-                <option>Amputation</option>
-                <option>Angina Pectoris</option>
-                <option>Burn</option>
-                <option>Concussion</option>
-                <option>Contusion</option>
-                <option>Crushing</option>
-                <option>Dislocation</option>
-                <option>Electric Shock</option>
-                <option>Enucleation</option>
-                <option>Foreign Body</option>
-                <option>Fracture</option>
-                <option>Freezing</option>
-                <option>Hearing Loss or Impairment</option>
-                <option>Heat Prostration</option>
-                <option>Hernia</option>
-                <option>Infection</option>
-                <option>Inflammation</option>
-                <option>Laceration</option>
-                <option>Myocardial Infarction</option>
-                <option>Poisoning - General</option>
-                <option>Puncture</option>
-                <option>Rupture</option>
-                <option>Severance</option>
-                <option>Sprain or Tear</option>
-                <option>Strain or Tear</option>
-                <option>Syncope</option>
-                <option>Asphyxiation</option>
-                <option>Vascular</option>
-                <option>Vision Loss</option>
-                <option>All Other Specific Injuries, NOC</option>
-                <option>Dust Disease, NOC</option>
-                <option>Asbestosis</option>
-                <option>Black Lung</option>
-                <option>Byssinosis</option>
-                <option>Silicosis</option>
-                <option>Poisoning - Chemical, (Other Than Metals)</option>
-                <option>Respiratory Disorders</option>
-                <option>Poisoning - Metal</option>
-                <option>Dermatitis</option>
-                <option>Mental Disorder</option>
-                <option>Radiation</option>
-                <option>All Other Occupational Disease Injury, NOC</option>
-                <option>Loss of Hearing</option>
-                <option>Contagious Disease</option>
-                <option>Cancer</option>
-                <option>AIDS</option>
-                <option>VDT - Related Diseases</option>
-                <option>Carpal Tunnel Syndrome</option>
-                <option>Hepatitis C</option>
-                <option>All Other Cumulative Injury, NOC</option>
-                <option>Multiple Physical Injuries Only</option>
-                <option>Multiple Injuries Including Both Physical & Psychological</option>
-              </select>
+          <div formArrayName="PersonDead" *ngFor="let item of form3.get('PersonDead').controls; let i = index;">
+            <div [formGroupName]="i">
+              <label class="col-md-2 control-label">Nature of injury</label>
+              <div class="col-md-10 selectContainer">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                  <select name="state" class="form-control selectpicker" formControlName="F3S3Q2" >
+                    <option value="" disabled selected hidden>Please select nature of injury</option>
+                    <option>No Physical Injury</option>
+                    <option>Amputation</option>
+                    <option>Angina Pectoris</option>
+                    <option>Burn</option>
+                    <option>Concussion</option>
+                    <option>Contusion</option>
+                    <option>Crushing</option>
+                    <option>Dislocation</option>
+                    <option>Electric Shock</option>
+                    <option>Enucleation</option>
+                    <option>Foreign Body</option>
+                    <option>Fracture</option>
+                    <option>Freezing</option>
+                    <option>Hearing Loss or Impairment</option>
+                    <option>Heat Prostration</option>
+                    <option>Hernia</option>
+                    <option>Infection</option>
+                    <option>Inflammation</option>
+                    <option>Laceration</option>
+                    <option>Myocardial Infarction</option>
+                    <option>Poisoning - General</option>
+                    <option>Puncture</option>
+                    <option>Rupture</option>
+                    <option>Severance</option>
+                    <option>Sprain or Tear</option>
+                    <option>Strain or Tear</option>
+                    <option>Syncope</option>
+                    <option>Asphyxiation</option>
+                    <option>Vascular</option>
+                    <option>Vision Loss</option>
+                    <option>All Other Specific Injuries, NOC</option>
+                    <option>Dust Disease, NOC</option>
+                    <option>Asbestosis</option>
+                    <option>Black Lung</option>
+                    <option>Byssinosis</option>
+                    <option>Silicosis</option>
+                    <option>Poisoning - Chemical, (Other Than Metals)</option>
+                    <option>Respiratory Disorders</option>
+                    <option>Poisoning - Metal</option>
+                    <option>Dermatitis</option>
+                    <option>Mental Disorder</option>
+                    <option>Radiation</option>
+                    <option>All Other Occupational Disease Injury, NOC</option>
+                    <option>Loss of Hearing</option>
+                    <option>Contagious Disease</option>
+                    <option>Cancer</option>
+                    <option>AIDS</option>
+                    <option>VDT - Related Diseases</option>
+                    <option>Carpal Tunnel Syndrome</option>
+                    <option>Hepatitis C</option>
+                    <option>All Other Cumulative Injury, NOC</option>
+                    <option>Multiple Physical Injuries Only</option>
+                    <option>Multiple Injuries Including Both Physical & Psychological</option>
+                  </select>
+                </div>
+                <div *ngIf="['F3S3Q2'].touched">
+                  <span [class.hidden]="!['F3S3Q2'].hasError('required')" class="help-block hidden" >Nature of injury is required.</span>
+                </div>
+              </div>
+              <br class="hr" />
+              <label class="col-md-2 control-label">Associated body part(s) injured</label>
+              <div class="col-md-10 selectContainer">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
+                  <ss-multiselect-dropdown [settings]="mySettings" formControlName="F3S3Q3" [options]="bodyParts" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                </div>
+                <div *ngIf="['F3S3Q3'].touched">
+                  <span [class.hidden]="!['F3S3Q3'].hasError('required')" class="help-block hidden" >Associated body part(s) is required.</span>
+                </div>
+              </div>
             </div>
-           <!--  <div *ngIf="form3.get('F3S3Q2').touched">
-              <span [class.hidden]="!form3.controls['F3S3Q2'].hasError('required')" class="help-block hidden" >Nature of injury is required.</span>
-            </div> -->
           </div>
-        </div>
-      </div>  
+        </div>  
 
-        <!-- F3S3Q3 Associated body part(s) injured -->
-        <!-- Employer Only/ Representative of employer, required -->
-        <!-- Occupier Only/ Representative of occupier, required -->
-        <!-- Victim’s Legal Representative, required -->
-        <!-- Treating Doctor, required -->
-        <!-- Victim’s Next-of-kin, reuired -->
-        <!-- Victim, required -->
-        <!-- ToDo 
-          - multiple selector with search 
-          - need to add data
-        -->
-        <!-- ToDo:- need to hide this feild 
-            according to radio btn value(show when select no)
-        -->
-        <div class="form-group required" *ngIf="(this.form3.get('F3S3Q1').value == 'no')">
-          <label class="col-md-2 control-label">Associated body part(s) injured</label>
-          <div class="col-md-10 selectContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
-              <ss-multiselect-dropdown [settings]="mySettings" formControlName="F3S3Q3" [options]="bodyParts" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
-            </div>
-            <div *ngIf="form3.get('F3S3Q3').touched">
-              <span [class.hidden]="!form3.controls['F3S3Q3'].hasError('required')" class="help-block hidden" >Associated body part(s) is required.</span>
-            </div>
-          </div>
-        </div>
         <!-- Employer Only/ Representative of employer -->
         <!-- Occupier Only/ Representative of occupier -->
         <!-- Victim’s Legal Representative -->
@@ -1035,10 +1023,10 @@
           <label class="col-md-2 control-label">Was the injured person hospitalised for more than 24 hours</label>
           <div class="col-md-10 ">
             <label class="radio-inline custom-radio-label">
-              <input type="radio" name="F3S4Q1" value="option1" formControlName="F3S4Q1" autocomplete="off" (click)="wasPersonHospitalised()">Yes
+              <input #radio1 type="radio" name="F3S4Q1" value="yes" formControlName="F3S4Q1" autocomplete="off" (click)="wasPersonHospitalised(radio1.value)">Yes
             </label>
             <label class="radio-inline">
-              <input type="radio" name="F3S4Q1" value="option2" formControlName="F3S4Q1" autocomplete="off" (click)="wasPersonHospitalised()">No
+              <input #radio2 type="radio" name="F3S4Q1" value="no" formControlName="F3S4Q1" autocomplete="off" (click)="wasPersonHospitalised(radio2.value)">No
             </label>
           </div>
           <div *ngIf="form3.get('F3S4Q1').touched">
@@ -1059,17 +1047,19 @@
             according to radio btn value(show when select Yes)
         -->
         <div class="form-group required" *ngIf="(this.form3.get('F3S4Q1').value == 'yes')">
-          <label class="col-md-2 control-label">No. of days of medical leave</label>
-          <div class="col-md-10 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-              <input name="medical_leave" formControlName="F3S4Q2" placeholder="Write here" class="form-control" type="text" (keyup)="getNoOfMedicalLeaves()">
-            </div>
-            <div *ngIf="form3.get('F3S4Q2').touched">
-              <span [class.hidden]="!form3.controls['F3S4Q2'].hasError('required')" class="help-block hidden" >Field is required.</span>
-            </div>
-            <div *ngIf="form3.get('F3S4Q2').touched">
-              <span [class.hidden]="!form3.controls['F3S4Q2'].hasError('invalidLeave')" class="help-block hidden" >Value is invalid.</span>
+          <div formArrayName="personHospitalise" *ngFor="let item of form3.get('personHospitalise').controls; let i = index;">
+            <label class="col-md-2 control-label">No. of days of medical leave</label>
+            <div [formGroupName]="i" class="col-md-10 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                <input name="medical_leave" formControlName="F3S4Q2" placeholder="Write here" class="form-control" type="text" (keyup)="getNoOfMedicalLeaves()">
+              </div>
+              <div *ngIf="['F3S4Q2'].touched">
+                <span [class.hidden]="!['F3S4Q2'].hasError('required')" class="help-block hidden" >Field is required.</span>
+              </div>
+              <div *ngIf="['F3S4Q2'].touched">
+                <span [class.hidden]="!['F3S4Q2'].hasError('invalidLeave')" class="help-block hidden" >Value is invalid.</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1081,15 +1071,17 @@
         <!-- ToDo:- need to show this ***
             field when you write more than 3 leaves
         -->
-        <div class="form-group required" *ngIf="((userRole===role1) && (noOfMedicalLeaves > 3))">
-          <label class="col-md-2 control-label">Date of 4 th day of Medical leave</label>
-          <div class="col-md-10 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-              <input class="form-control" [mode]="'dropdown'" formControlName="F3S4Q3" [ngModel]="momentValueF3S4Q3 | date: 'short'" [dateTimePicker]="momentValueF3S4Q3" (dateTimePickerChange)="setMomentF3S4Q3($event)" readonly change="getFourthDayOfMedicalLeave()"/>
-            </div>
-            <div *ngIf="form3.get('F3S4Q3').touched">
-              <span [class.hidden]="!form3.controls['F3S4Q3'].hasError('required')" class="help-block hidden" >Date is required.</span>
+        <div class="form-group required" *ngIf="((this.form3.get('F3S4Q1').value == 'yes') && (userRole===role1) && (noOfMedicalLeaves > 3))">
+          <div formArrayName="medicalLeave" *ngFor="let item of form3.get('medicalLeave').controls; let i = index;">
+            <label class="col-md-2 control-label">Date of 4 th day of Medical leave</label>
+            <div [formGroupName]="i" class="col-md-10 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <input class="form-control" [mode]="'dropdown'" formControlName="F3S4Q3" [ngModel]="momentValueF3S4Q3 | date: 'short'" [dateTimePicker]="momentValueF3S4Q3" (dateTimePickerChange)="setMomentF3S4Q3($event)" readonly/>
+              </div>
+              <div *ngIf="['F3S4Q3'].touched">
+                <span [class.hidden]="!['F3S4Q3'].hasError('required')" class="help-block hidden" >Date is required.</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1098,22 +1090,27 @@
         <!-- Employer Only/ Representative of employer -->
 
         <!-- ToDo:-  This feild is need to show ***see the reason below***-->
-        <div class="form-group" *ngIf="((userRole===role1) && (noOfMedicalLeaves > 3) && isReasonNeededForLateReport())">
-          <label class="col-md-2 control-label">Reason of late reporting</label>
-          <div class="col-md-10 selectContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select name="state" class="form-control selectpicker">
-                <option value=" " disabled selected hidden>Please select a reason</option>
-                <option>It can increase the cost of the claim</option>
-                <option>It hurts employee morale</option>
-                <option>Potential for litigation increases</option>
-                <option>Reporting workers compensation claims too late may violate state law</option>
-              </select>
+        <div class="form-group" *ngIf="((this.form3.get('F3S4Q1').value == 'yes') && (userRole===role1) && (noOfMedicalLeaves > 3) && isReasonNeededForLateReport())">
+          <div formArrayName="reasonForLateReport" *ngFor="let item of form3.get('reasonForLateReport').controls; let i = index;">
+            <label class="col-md-2 control-label">Reason of late reporting</label>
+            <div [formGroupName]="i" class="col-md-10 selectContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select name="state" class="form-control selectpicker" formControlName="F3S4Q4">
+                  <option value=" " disabled selected hidden>Please select a reason</option>
+                  <option>It can increase the cost of the claim</option>
+                  <option>It hurts employee morale</option>
+                  <option>Potential for litigation increases</option>
+                  <option>Reporting workers compensation claims too late may violate state law</option>
+                </select>
+              </div>
+              <div *ngIf="['F3S4Q4'].touched">
+                <span [class.hidden]="!['F3S4Q4'].hasError('required')" class="help-block hidden" >Date is required.</span>
+              </div>
+              <!-- ****** reason ******** -->
+              <p class="help-block">• You are required to provide the reason if your incident report was submitted past the mandatory 10 days timeline
+                from the 4 th day of medical leave.</p>
             </div>
-            <!-- ****** reason ******** -->
-            <p class="help-block">• You are required to provide the reason if your incident report was submitted past the mandatory 10 days timeline
-              from the 4 th day of medical leave.</p>
           </div>
         </div>
 
