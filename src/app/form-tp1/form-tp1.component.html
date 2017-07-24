@@ -480,7 +480,7 @@
           <div class="col-md-10 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-              <input class="form-control" [mode]="'dropdown'" formControlName="F3S1Q5" [ngModel]="momentValueF3S1Q5 | date: 'short'" [value]="momentValueF3S1Q5"            (dateTimePickerChange)="setMomentF3S1Q5($event)" [pickerType]="'date'" readonly />
+              <input class="form-control" [mode]="'dropdown'" formControlName="F3S1Q5" [ngModel]="momentValueF3S1Q5 | date: 'short'" [dateTimePicker]="momentValueF3S1Q5" (dateTimePickerChange)="setMomentF3S1Q5($event)" [pickerType]="'date'" readonly />
             </div>
             <div *ngIf="form3.get('F3S1Q5').touched">
               <span [class.hidden]="!form3.controls['F3S1Q5'].hasError('required')" class="help-block hidden" >Date of birth is required.</span>
