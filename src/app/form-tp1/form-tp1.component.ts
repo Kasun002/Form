@@ -16,7 +16,10 @@ export class FormTp1Component implements OnInit {
   public form1: FormGroup;
   public form2: FormGroup;
   public form3: FormGroup;
-  public items: FormArray;
+  public PersonDead: FormArray;
+  public personHospitalise: FormArray;
+  public medicalLeave: FormArray;
+  public reasonForLateReport: FormArray;
 
   public userRole:string;
   public role1='Employer Only/ Representative of employer';
@@ -35,11 +38,8 @@ export class FormTp1Component implements OnInit {
   momentValueF2S1Q1;
   momentValueF3S1Q5;
   momentValueF3S2Q4;
-  momentValueF3S4Q3;
+  momentValueF3S4Q3 = null;
   momentValueF3S6Q3;
-
-  // F3S3Q1 - Did the accident result in death of the injured person
-  personDead = null;
 
   bodyParts: IMultiSelectOption[] = [
     { id: 1, name: 'Body Parts', isLabel: true },
@@ -128,11 +128,11 @@ export class FormTp1Component implements OnInit {
   form2ControlRemove() {
     if(this.userRole==this.role1) {
 
-      // this.form2.removeControl('F2S2Q1');
-
     }
     // else if(this.userRole==this.role2) {
-
+        // this.form2.removeControl('F2S2Q1');
+        // this.form2.removeControl('F2S2Q2');
+        // this.form2.removeControl('F2S2Q3');
     // }
     else if(this.userRole==this.role3) {
       this.form2.removeControl('F2S3Q1');
@@ -142,10 +142,14 @@ export class FormTp1Component implements OnInit {
     }else if(this.userRole==this.role4) {
 
       this.form2.removeControl('F2S2Q1');
+      this.form2.removeControl('F2S2Q2');
+      this.form2.removeControl('F2S2Q3');
 
     }
     // else if(this.userRole==this.role5) {
-
+    //   this.form2.removeControl('F2S2Q1');
+    //   this.form2.removeControl('F2S2Q2');
+    //   this.form2.removeControl('F2S2Q3');    
     //   this.form2.removeControl('F2S3Q1');
     //   this.form2.removeControl('F2S3Q2');
     //   this.form2.removeControl('F2S3Q3');
@@ -155,6 +159,8 @@ export class FormTp1Component implements OnInit {
 
       this.form2.removeControl('F2S1Q1');
       this.form2.removeControl('F2S2Q1');
+      this.form2.removeControl('F2S2Q2');
+      this.form2.removeControl('F2S2Q3');
       this.form2.removeControl('F2S3Q1');
       this.form2.removeControl('F2S3Q2');
       this.form2.removeControl('F2S3Q3');
@@ -255,19 +261,38 @@ export class FormTp1Component implements OnInit {
   // F3S4Q2 - No. of days of medical leave
   getNoOfMedicalLeaves(){
     this.momentValueF3S4Q3 = null;
-    this.noOfMedicalLeaves = this.form3.get('F3S4Q2').value;
-    if(this.noOfMedicalLeaves < 4) {
-      this.form3.removeControl('F3S4Q3');
+    this.noOfMedicalLeaves = this.form3.get('personHospitalise').value[0].F3S4Q2;
+
+    if((this.userRole===this.role1) && (this.noOfMedicalLeaves >= 4)) { 
+      this.form3.addControl('medicalLeave',new FormArray([this.fb3.group({
+        F3S4Q3: ['', [Validators.required]],
+      })]));
+    }else{
+      /*
+        TODO
+        Need to clear values in this controllers(F3S3Q2)
+      */
+      this.form3.addControl('medicalLeave',new FormArray([]));
+      this.form3.addControl('reasonForLateReport',new FormArray([]));
     }
+  }
+
+  createMedicalLeaveControler(): FormGroup {
+    return this.fb3.group({
+      F3S4Q3: ['', [Validators.required]],
+    });
   }
 
   // F3S4Q4 - Reason of late reporting
   isReasonNeededForLateReport(){
 
+    if(!this.momentValueF3S4Q3) {
+      return false;
+    }
     var dateone = new Date();
     var datetwo = new Date(this.momentValueF3S4Q3);
-    var timeDiff = Math.abs(dateone.getTime() - datetwo.getTime());
-    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+    var timeDiff = Math.abs(dateone.getTime()- datetwo.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
     if(diffDays > 10) {
       return true;
@@ -277,21 +302,37 @@ export class FormTp1Component implements OnInit {
 
   // F3S3Q1 - Did the accident result in death of the injured person
   wasPersonDead(value){
-    if(value == 'yes'){
-      this.form3.addControl('items',new FormArray([]));
+
+    if(value == 'yes' && this.form3.get('PersonDead')){
+      /*
+        TODO
+        Need to clear values in this controllers(F3S3Q2, F3S3Q3)
+      */
+      this.form3.addControl('PersonDead',new FormArray([]));
     }else if(value == 'no'){
-      this.form3.addControl('items',new FormArray([this.fb3.group({
+      this.form3.addControl('PersonDead',new FormArray([this.fb3.group({
         F3S3Q2: ['', [Validators.required]],
         F3S3Q3: ['', [Validators.required]],
       })]));
     }
   }
 
-  wasPersonHospitalised(){
-    if(this.form3.get('F3S4Q1').value == 'no'){
-      this.form3.removeControl('F3S4Q2');
-      this.form3.removeControl('F3S4Q3');
+  wasPersonHospitalised(value){
+
+    if(value == 'yes' && this.form3.get('personHospitalise')){
+      /*
+        TODO
+        Need to clear values in this controllers(F3S3Q2)
+      */
+      this.form3.addControl('personHospitalise',new FormArray([]));
+      this.form3.addControl('medicalLeave',new FormArray([]));
+      this.form3.addControl('reasonForLateReport',new FormArray([]));
+    }else if(value == 'no'){
+      this.form3.addControl('personHospitalise',new FormArray([this.fb3.group({
+        F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],
+      })]));
     }
+
   }
 
   formNext(val){
@@ -326,6 +367,7 @@ export class FormTp1Component implements OnInit {
 
   public setMomentF3S1Q5(moment: any): any {
     this.momentValueF3S1Q5 = moment;
+    console.log("<<<<<<<<<<<<<<<<< momentValueF3S1Q5 >>>>>>>>>>>>>>", this.momentValueF3S1Q5);
   }
 
   public setMomentF3S2Q4(moment: any): any {
@@ -338,13 +380,38 @@ export class FormTp1Component implements OnInit {
 
   public setMomentF3S6Q3(moment: any): any {
     this.momentValueF3S6Q3 = moment;
+
+    if(this.isReasonNeededForLateReport()){
+      
+      this.form3.addControl('reasonForLateReport',new FormArray([this.fb3.group({
+        F3S4Q4: ['', [Validators.required, this.validationService.leaveValidator]],
+      })]));
+
+    }else{
+      /*
+        TODO
+        Need to clear values in this controllers(F3S4Q4)
+      */
+      this.form3.addControl('reasonForLateReport',new FormArray([]));
+    }
   }
 
-  createItem(): FormGroup {
-    console.log("<<<<<<< ------- >>>>>>>");
+  createReasonForLateReportControler(): FormGroup {
+    return this.fb3.group({
+      F3S4Q4: ['', [Validators.required]],
+    });
+  }
+
+  createPersonDeadControler(): FormGroup {
     return this.fb3.group({
       F3S3Q2: ['', [Validators.required]],
-      // F3S3Q3: ['', [Validators.required]],
+      F3S3Q3: ['', [Validators.required]],
+    });
+  }
+
+  createPersonHospitaliseControler(): FormGroup {
+    return this.fb3.group({
+      F3S4Q2: ['', [Validators.required]],
     });
   }
 
@@ -361,6 +428,8 @@ export class FormTp1Component implements OnInit {
     // F2S1Q1 = Form2 Section 1 Question 1
     this.form2 = this.fb2.group({
       F2S1Q1: ['', [Validators.required]],
+      F2S2Q2: [''],
+      F2S2Q3: [''],
       F2S3Q1: ['', [Validators.required]],
       F2S3Q2: ['', [Validators.required]],
       F2S3Q3: ['', [Validators.required]],
@@ -390,12 +459,16 @@ export class FormTp1Component implements OnInit {
       F3S2Q10: ['', [Validators.required]],
       F3S2Q11: ['', [Validators.required]],
       F3S3Q1: ['', [Validators.required]],
-      items: this.fb3.array([ this.createItem() ]),
+      PersonDead: this.fb3.array([ this.createPersonDeadControler() ]),
       // F3S3Q2: ['', [Validators.required]],
-      F3S3Q3: ['', [Validators.required]],
+      // F3S3Q3: ['', [Validators.required]],
       F3S4Q1: ['', [Validators.required]],
-      F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],
-      F3S4Q3: ['', [Validators.required]],
+      // F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],
+      personHospitalise: this.fb3.array([ this.createPersonHospitaliseControler() ]),
+      // F3S4Q3: ['', [Validators.required]],
+      medicalLeave: this.fb3.array([ this.createMedicalLeaveControler() ]),
+      // F3S4Q4: ['', [Validators.required]],
+      reasonForLateReport: this.fb3.array([ this.createReasonForLateReportControler() ]),
       F3S4Q5: ['', [Validators.required]],
       F3S4Q6: ['', [Validators.required]],
       F3S5Q1: ['', [this.validationService.nicValidator]],
@@ -413,6 +486,8 @@ export class FormTp1Component implements OnInit {
   form2Custom(){
     this.form2 = this.fb2.group({
       F2S1Q1: ['', [Validators.required]],
+      F2S2Q2: [''],
+      F2S2Q3: [''],
       F2S3Q1: ['', [Validators.required]],
       F2S3Q2: ['', [Validators.required]],
       F2S3Q3: ['', [Validators.required]],
@@ -444,11 +519,16 @@ export class FormTp1Component implements OnInit {
       F3S2Q10: ['', [Validators.required]],
       F3S2Q11: ['', [Validators.required]],
       F3S3Q1: ['', [Validators.required]],
+      PersonDead: this.fb3.array([ this.createPersonDeadControler() ]),
       // F3S3Q2: ['', [Validators.required]],
-      F3S3Q3: ['', [Validators.required]],
+      // F3S3Q3: ['', [Validators.required]],
       F3S4Q1: ['', [Validators.required]],
-      F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],
-      F3S4Q3: ['', [Validators.required]],
+      // F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],
+      personHospitalise: this.fb3.array([ this.createPersonHospitaliseControler() ]),
+      // F3S4Q3: ['', [Validators.required]],
+      medicalLeave: this.fb3.array([ this.createMedicalLeaveControler() ]),
+      // F3S4Q4: ['', [Validators.required]],
+      reasonForLateReport: this.fb3.array([ this.createReasonForLateReportControler() ]),
       F3S4Q5: ['', [Validators.required]],
       F3S4Q6: ['', [Validators.required]],
       F3S5Q1: ['', [this.validationService.nicValidator]],
