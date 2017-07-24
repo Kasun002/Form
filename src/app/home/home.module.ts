@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomeComponent } from './home.component';
+import { HomeTemplateComponent } from '../home-template/home-template.component';
 import { homeRouting, homeRoutingProviders } from './home.routes';
 
 @NgModule({
@@ -11,6 +12,6 @@ import { homeRouting, homeRoutingProviders } from './home.routes';
     homeRouting
   ],
   declarations: [HomeComponent],
-  providers:[homeRoutingProviders]
+  providers:[homeRoutingProviders, HomeTemplateComponent]
 })
 export class HomeModule { }

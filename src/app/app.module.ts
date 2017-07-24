@@ -9,10 +9,12 @@ import { AuthinticationModule } from "./authintication/authintication.module";
 import { HomeModule } from "./home/home.module";
 import { FormTp1Module } from "./form-tp1/form-tp1.module";
 import { FormTp2Module } from "./form-tp2/form-tp2.module";
+import { HomeTemplateComponent } from './home-template/home-template.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeTemplateComponent,
   ],
   imports: [
     BrowserModule,
