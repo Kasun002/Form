@@ -25,11 +25,20 @@ p
     }
 
 /* start all section */
-#service, #divider, #about, #team, #newsletter,
+#service
+    {
+        padding-top: 85px;
+        padding-bottom: 0px;
+        position: relative;
+    }
+/* end all section */
+
+/* start all section */
+#divider, #about, #team, #newsletter,
  #pricing, #portfolio, #client, #contact
     {
-        padding-top: 100px;
-        padding-bottom: 100px;
+        padding-top: 10px;
+        padding-bottom: 0px;
         position: relative;
     }
 /* end all section */

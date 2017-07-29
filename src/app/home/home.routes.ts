@@ -6,6 +6,7 @@ import { FormTp1Component } from '../form-tp1';
 import { FormTp2Component } from '../form-tp2';
 import { HomeTemplateComponent } from '../home-template/home-template.component';
 import { AuthinticationComponent } from '../authintication';
+import { DashboardTemplateComponent } from '../dashboard-template/dashboard-template.component';
 
 const homeRoutes: Routes = [
   {
@@ -15,11 +16,14 @@ const homeRoutes: Routes = [
   },
   { path: '', component: HomeTemplateComponent},
   { path: 'home', component: HomeComponent,
-   children:[ {path:'insident_report',component: FormTp1Component},
-   {path:'form2',component: FormTp2Component},
-   {path:'login',component: AuthinticationComponent},
-   {path:'welcome',component: HomeTemplateComponent}] },
-   { path: '**', redirectTo: '' }
+    children:[ 
+      {path:'login',component: AuthinticationComponent},
+      {path:'insident_report',component: FormTp1Component},
+      {path:'form2',component: FormTp2Component},
+      {path:'dashboard',component: DashboardTemplateComponent},
+      {path:'welcome',component: DashboardTemplateComponent}
+    ]},
+  { path: '**', redirectTo: '' }
 ];
 
 export const homeRoutingProviders: any[] = [];

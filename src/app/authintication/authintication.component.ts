@@ -62,7 +62,8 @@ export class AuthinticationComponent implements OnInit {
     this.afAuth.auth.signInWithEmailAndPassword(email, nic).then((user) => {
       // user login
       this.user = user;
-      this.router.navigate(['/home/insident_report']);
+      // this.router.navigate(['/home/insident_report']);
+      this.router.navigate(['/home/bashboard']);
 
     }).catch((error) => {
         if(error['code'] === 'auth/user-not-found') {
@@ -75,7 +76,8 @@ export class AuthinticationComponent implements OnInit {
               name: username,
               email: email
             });
-            this.router.navigate(['/home/insident_report']);
+            // this.router.navigate(['/home/insident_report']);
+            this.router.navigate(['/home/bashboard']);
           }).catch((error) => {
               if(error['code'] === 'auth/invalid-email') {
                 alert("Invalieded emil address....");
@@ -98,7 +100,8 @@ export class AuthinticationComponent implements OnInit {
       this.user = user;
 
       // TODO :- need to change the route
-      this.router.navigate(['/home/insident_report']);
+      // this.router.navigate(['/home/insident_report']);
+      this.router.navigate(['/home/bashboard']);
 
     }).catch((error) => {
       alert(error.message);
