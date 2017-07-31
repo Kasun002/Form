@@ -14,13 +14,17 @@ const homeRoutes: Routes = [
     redirectTo: '/',
     pathMatch: 'full'
   },
-  { path: '', component: HomeTemplateComponent},
-  { path: 'home', component: HomeComponent,
+  { path: '', component: HomeComponent,
+    children:[
+      { path:'login',component: AuthinticationComponent},
+      {path: 'home', component: HomeTemplateComponent},
+      {path:'dashboard',component: DashboardTemplateComponent},
+    ]
+  },
+  { path: 'home', component: HomeTemplateComponent,
     children:[ 
-      {path:'login',component: AuthinticationComponent},
       {path:'insident_report',component: FormTp1Component},
       {path:'form2',component: FormTp2Component},
-      {path:'dashboard',component: DashboardTemplateComponent},
       {path:'welcome',component: DashboardTemplateComponent}
     ]},
   { path: '**', redirectTo: '' }

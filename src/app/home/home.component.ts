@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
         queryParams: { 'type': type }
       };
 
-      this.router.navigate(['/home/login'], navigationExtras);
+      this.router.navigate(['/login'], navigationExtras);
   }
 
 }
