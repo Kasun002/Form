@@ -6,8 +6,12 @@ import { Router ,NavigationEnd, NavigationExtras} from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  private routerLink:any;
 
-  constructor(private router :Router) { }
+  constructor(private router :Router) { 
+    this.routerLink=this.router.url;
+    console.log(this.routerLink,this.routerLink==='/dashboard');
+  }
 
   ngOnInit() {
   }
