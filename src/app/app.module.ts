@@ -11,12 +11,14 @@ import { FormTp1Module } from "./form-tp1/form-tp1.module";
 import { FormTp2Module } from "./form-tp2/form-tp2.module";
 import { HomeTemplateComponent } from './home-template/home-template.component';
 import { DashboardTemplateComponent } from './dashboard-template/dashboard-template.component';
+import { ReportsListComponent } from './reports-list/reports-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeTemplateComponent,
     DashboardTemplateComponent,
+    ReportsListComponent,
   ],
   imports: [
     BrowserModule,

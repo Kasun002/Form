@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private router :Router) { 
     this.routerLink=this.router.url;
-    console.log(this.routerLink,this.routerLink==='/dashboard');
+    console.log("this.routerLink >>>>>>>", this.routerLink);
   }
 
   ngOnInit() {

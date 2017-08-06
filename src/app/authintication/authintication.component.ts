@@ -63,7 +63,7 @@ export class AuthinticationComponent implements OnInit {
       // user login
       this.user = user;
       // this.router.navigate(['/home/insident_report']);
-      this.router.navigate(['/bashboard']);
+      this.router.navigate(['/reports-list']);
 
     }).catch((error) => {
         if(error['code'] === 'auth/user-not-found') {
@@ -77,7 +77,7 @@ export class AuthinticationComponent implements OnInit {
               email: email
             });
             // this.router.navigate(['/home/insident_report']);
-            this.router.navigate(['/bashboard']);
+            this.router.navigate(['/reports-list']);
           }).catch((error) => {
               if(error['code'] === 'auth/invalid-email') {
                 alert("Invalieded emil address....");
@@ -101,13 +101,12 @@ export class AuthinticationComponent implements OnInit {
 
       // TODO :- need to change the route
       // this.router.navigate(['/home/insident_report']);
-      this.router.navigate(['/bashboard']);
+      this.router.navigate(['/reports-list']);
 
     }).catch((error) => {
       alert(error.message);
     });    
   }
-  
 
   logout() {
       this.afAuth.auth.signOut();
