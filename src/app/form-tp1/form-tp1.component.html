@@ -3,14 +3,14 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
+                <a  class="simple-text">
                     EHealth System
                 </a>
             </div>
 
             <ul class="nav">
                 <li>
-                    <a routerLink="/dashboard">
+                    <a (click)="navigate()">
                         <i class="pe-7s-note2"></i>
                         <p>Reports List</p>
                     </a>
@@ -61,7 +61,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#">
+                            <a (click)="logout()">
                                 <p>Log out</p>
                             </a>
                         </li>
@@ -1569,12 +1569,12 @@
                 <nav class="pull-left">
                     <ul>
                         <li>
-                            <a routerLink="/home"  routerLinkActive="active">
+                            <a routerLink='/home'  >
                                 Home
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a>
                                 About
                             </a>
                         </li>

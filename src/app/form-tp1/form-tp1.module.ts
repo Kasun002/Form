@@ -5,6 +5,7 @@ import { FormTp1Component } from './form-tp1.component';
 import { ValidationService } from './validation.service';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { DatePickerModule } from 'ng2-datepicker';
+import { SharedService } from '../shared/shared.service';
 import { DateTimePickerModule } from 'ng-pick-datetime';
 
 @NgModule({
@@ -18,6 +19,6 @@ import { DateTimePickerModule } from 'ng-pick-datetime';
   ],
   declarations: [FormTp1Component],
 
-  providers:[ValidationService]
+  providers:[ValidationService,SharedService]
 })
 export class FormTp1Module { }

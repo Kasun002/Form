@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router ,NavigationEnd, NavigationExtras} from '@angular/router';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
+import { Router ,NavigationEnd,ActivatedRoute, NavigationExtras} from '@angular/router';
+import 'rxjs/add/operator/pairwise';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,12 +10,19 @@ import { Router ,NavigationEnd, NavigationExtras} from '@angular/router';
 export class HomeComponent implements OnInit {
   private routerLink:any;
 
-  constructor(private router :Router) { 
+  constructor(private router :Router, private route: ActivatedRoute,private ref :ChangeDetectorRef) { 
     this.routerLink=this.router.url;
+    //this.ref.detectChanges();
     console.log("this.routerLink >>>>>>>", this.routerLink);
   }
 
   ngOnInit() {
+    this.route
+      .queryParams
+      .subscribe(data => {
+        console.log(data);
+      });
+
   }
 
   getLoginUserType(type: string) {
