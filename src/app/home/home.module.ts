@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HomeComponent } from './home.component';
 import { HomeTemplateComponent } from '../home-template/home-template.component';
 import { homeRouting, homeRoutingProviders } from './home.routes';
+import { ActivateService } from '../shared/activate.service';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { homeRouting, homeRoutingProviders } from './home.routes';
     homeRouting
   ],
   declarations: [HomeComponent],
-  providers:[homeRoutingProviders, HomeTemplateComponent]
+  providers:[homeRoutingProviders, HomeTemplateComponent,ActivateService]
 })
 export class HomeModule { }

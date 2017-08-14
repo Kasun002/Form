@@ -14,7 +14,7 @@ import { AuthinticationComponent } from './';
 const loginRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   // { path: 'login', component: AuthinticationComponent }

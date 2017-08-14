@@ -8,27 +8,24 @@ import { HomeTemplateComponent } from '../home-template/home-template.component'
 import { AuthinticationComponent } from '../authintication';
 import { DashboardTemplateComponent } from '../dashboard-template/dashboard-template.component';
 import { ReportsListComponent } from '../reports-list/reports-list.component';
+import { ActivateService } from '../shared/activate.service';
 
 const homeRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   { path: '', component: HomeComponent,
     children:[
       { path:'login',component: AuthinticationComponent},
       {path: 'home', component: HomeTemplateComponent},
-      {path:'dashboard',component: DashboardTemplateComponent},
-      {path:'reports-list',component: ReportsListComponent},
-      {path:'form',component: FormTp1Component},
+      {path:'dashboard',component: DashboardTemplateComponent,canActivate: [ActivateService]},
+      {path:'reports-list',component: ReportsListComponent,canActivate: [ActivateService]},
+      {path:'form',component: FormTp1Component,canActivate: [ActivateService]},
     ]
   },
-  { path: 'home', component: HomeTemplateComponent,
-    children:[ 
-      {path:'form2',component: FormTp2Component},
-    ]},
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '/home' }
 ];
 
 export const homeRoutingProviders: any[] = [];

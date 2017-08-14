@@ -12,17 +12,14 @@ export class HomeComponent implements OnInit {
 
   constructor(private router :Router, private route: ActivatedRoute,private ref :ChangeDetectorRef) { 
     this.routerLink=this.router.url;
-    //this.ref.detectChanges();
-    console.log("this.routerLink >>>>>>>", this.routerLink);
   }
 
   ngOnInit() {
     this.route
       .queryParams
       .subscribe(data => {
-        console.log(data);
+        this.routerLink=this.router.url;
       });
-
   }
 
   getLoginUserType(type: string) {
