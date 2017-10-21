@@ -1,7 +1,7 @@
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="purple" data-image="assets/images/sidebar-5.jpg">
 
-        <div class="sidebar-wrapper">
+        <div class="sidebar-wrapper" (click)="navigateTO('/home')">
             <div class="logo">
                 <a  class="simple-text">
                     EHealth System
@@ -10,7 +10,7 @@
 
             <ul class="nav">
                 <li>
-                    <a (click)="navigate()">
+                    <a (click)="navigateTO('/reports-list')">
                         <i class="pe-7s-note2"></i>
                         <p>Reports List</p>
                     </a>
@@ -21,14 +21,14 @@
                         <p>Form</p>
                     </a>
                 </li>
-                <li>
-                    <a href="">
+                <!-- <li>
+                    <a>
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
-                </li>
+                </li> -->
                 <li>
-                    <a href="">
+                    <a>
                         <i class="pe-7s-user"></i>
                         <p>User Profile</p>
                     </a>
@@ -47,14 +47,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Form</a>
+                    <a class="navbar-brand">Incident Form</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-                                <p class="hidden-lg hidden-md">Search</p>
+                           <a>
+                              <i class="fa fa-search"></i>
+                              <p class="hidden-lg hidden-md">Search</p>
                             </a>
                         </li>
                     </ul>
@@ -76,19 +76,24 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-plain">
-                            <div class="header">
+                            <!-- <div class="header">
                                 <h4 class="title">Incident Form</h4>
                                 <p class="category"></p>
-                            </div>
+                            </div> -->
                               <form class="well form-horizontal" [formGroup]="form1" *ngIf="formStatus==1" novalidate>
                                 <div>
+
                                   <fieldset>
                                     <!-- Text input-->
-                                    
-                                    <div class="form-group">
+                                    <legend>
+                                      <!-- <hr> -->
+                                      <!-- <br/> -->
+                                      <h4>About You</h4>
+                                    </legend>
+                                    <!-- <div class="form-group">
                                       <div class="col-md-2"></div>
                                       <h4 class="col-md-10">About You</h4>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group required">
                                       <label class="col-md-2 control-label">Full Name</label>
                                       <div class="col-md-10 inputGroupContainer">
@@ -199,7 +204,7 @@
                                       <h3>About the Accident</h3>
                                     </legend>
                                     <legend *ngIf="userRole!==role6">
-                                      <hr>
+                                      <!-- <hr> -->
                                       <!-- <br/> -->
                                       <h4>Section 1: When did the accident happen?</h4>
                                     </legend>
@@ -217,10 +222,18 @@
                                         <div class="input-group">
 
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                          <input class="form-control" [mode]="'dropdown'" [position]="'bottom'" [positionOffset]="'6%'" formControlName="F2S1Q1" [ngModel]="momentValueF2S1Q1 | date: 'short'" [dateTimePicker]="momentValueF2S1Q1" (dateTimePickerChange)="setMomentF2S1Q1($event)" readonly />
+                                          <input 
+                                            class="form-control" 
+                                            [mode]="'dropdown'" [position]="'bottom'" 
+                                            [positionOffset]="'6%'" 
+                                            formControlName="F2S1Q1" 
+                                            [ngModel]="momentValueF2S1Q1 | date: 'short'" 
+                                            [dateTimePicker]="momentValueF2S1Q1" 
+                                            (dateTimePickerChange)="setMomentF2S1Q1($event)" readonly />
                                         </div>
                                         <div *ngIf="form2.get('F2S1Q1').touched">
                                           <span [class.hidden]="!form2.controls['F2S1Q1'].hasError('required')" class="help-block hidden" >Date & Time is required.</span>
+                                          <span [class.hidden]="!form2.controls['F2S1Q1'].hasError('invalidCurrentDate')" class="help-block hidden" >Invalied Date.</span>
                                         </div>
                                       </div>
                                     </div>
@@ -243,16 +256,16 @@
                                       <label class="col-md-12 control-label">The accident happened at:</label>
                                       <div class="col-md-12">
                                         <label class="radio-inline custom-radio-label" *ngIf="((userRole===role3) || (userRole===role1))">
-                                          <input type="radio" name="options" id="option1" autocomplete="off">At premises belonging to the employer
+                                          <input type="radio" name="F2S2Q1" id="option1" formControlName="F2S2Q1" autocomplete="off" value="At premises belonging to the employer">At premises belonging to the employer
                                         </label>
                                         <label class="radio-inline" *ngIf="((userRole===role3) || (userRole===role1))">
-                                          <input type="radio" name="options" id="option2" autocomplete="off">At another organisation's premise
+                                          <input type="radio" name="F2S2Q1" id="option2" formControlName="F2S2Q1" autocomplete="off" value="At another organisation's premise">At another organisation's premise
                                         </label>
                                         <label class="radio-inline" *ngIf="!((userRole===role3) || (userRole===role1))">
-                                          <input type="radio" name="options" id="option3" autocomplete="off">At premises under the management / control of your organisation
+                                          <input type="radio" name="F2S2Q1" id="option3" autocomplete="off" formControlName="F2S2Q1" value="At premises under the management / control of your organisation">At premises under the management / control of your organisation
                                         </label>
                                         <label class="radio-inline">
-                                          <input type="radio" name="options" id="option4"autocomplete="off">In a public place/ road
+                                          <input type="radio" name="F2S2Q1" id="option4"autocomplete="off" formControlName="F2S2Q1" value="In a public place/ road">In a public place/ road
                                         </label>
                                       </div>
                                     </div>
@@ -318,7 +331,7 @@
                                       </label>
                                       <label class='col-md-12 control-label control-label-custom' *ngIf="!(userRole===role1)">Any person injured in the accident?
                                       </label>
-                                      <h5 class='col-md-12 custom-list-header'>Any person is considered “ injured” under the following scenarios:</h5>
+                                      <h5 class='col-md-12 custom-list-header'>Any person is considered “injured” under the following scenarios:</h5>
                                       <ul class="col-md-12 custom-bullet">
                                         <li>Physical injuries e.g. fractures, cuts, burns, electrocution, muscle strains etc</li>
                                         <li>Death, or</li>
@@ -436,7 +449,7 @@
                                     <!-- Treating Doctor -->
                                     <!-- Victim’s Next-of-kin -->
                                     <!-- Victim -->
-                                    <hr>
+                                    <!-- <hr> -->
                                     <legend>
                                       <h4>Section 1: Particulars of the Injured Person</h4>
                                     </legend>
@@ -476,8 +489,8 @@
                                     <!-- Treating Doctor, required -->
                                     <!-- Victim, required -->
                                     <div class="form-group required">
-                                      <label class="col-md-2 control-label">Employee ID</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">Employee ID</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                           <input name="employee_id" formControlName='F3S1Q2' placeholder="Employee ID" class="form-control" type="text">
@@ -496,14 +509,16 @@
                                     <!-- Treating Doctor, required -->
                                     <!-- Victim, required -->
                                     <div class="form-group required">
-                                      <label class="col-md-2 control-label">NIC NO</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">NIC NO</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                           <input name="nic_nO" placeholder="NIC NO" formControlName='F3S1Q3' class="form-control" type="text" maxlength="10">
                                         </div>
                                         <div *ngIf="form3.get('F3S1Q3').touched">
                                           <span [class.hidden]="!form3.controls['F3S1Q3'].hasError('required')" class="help-block hidden" >NIC NO is required.</span>
+                                          <span [class.hidden]="!form3.controls['F3S1Q3'].hasError('invalidNic')" class="help-block hidden" >Invalid NIC no.
+                                          </span>
                                         </div>
                                       </div>
                                     </div>
@@ -516,8 +531,8 @@
                                     <!-- Victim’s Next-of-kin, required -->
                                     <!-- Victim, required -->
                                     <div class="form-group required">
-                                      <label class="col-md-2 control-label">Full Name</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">Full Name</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                           <input name="first_name" formControlName='F3S1Q4' placeholder="Full Name" class="form-control" type="text">
@@ -538,14 +553,25 @@
                                     <!-- Victim, required -->
 
                                     <div class="form-group required">
-                                      <label class="col-md-2 control-label">Date of Birth</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">Date of Birth</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                          <input class="form-control" [mode]="'dropdown'" formControlName="F3S1Q5" [ngModel]="momentValueF3S1Q5 | date: 'short'" [dateTimePicker]="momentValueF3S1Q5" (dateTimePickerChange)="setMomentF3S1Q5($event)" [pickerType]="'date'" readonly />
+                                          <input 
+                                            class="form-control" 
+                                            formControlName="F3S1Q5" 
+                                            [mode]="'dropdown'" 
+                                            [value]="momentValueF3S1Q5 | date" 
+                                            [ngModel]="momentValueF3S1Q5 | date: 'short'" 
+                                            [dateTimePicker]="momentValueF3S1Q5" 
+                                            (dateTimePickerChange)="setMomentF3S1Q5($event)" 
+                                            [pickerType]="'date'"
+                                            [returnObject]="'moment'" 
+                                            readonly />
                                         </div>
                                         <div *ngIf="form3.get('F3S1Q5').touched">
                                           <span [class.hidden]="!form3.controls['F3S1Q5'].hasError('required')" class="help-block hidden" >Date of birth is required.</span>
+                                          <span [class.hidden]="!form3.controls['F3S1Q5'].hasError('invalidDate')" class="help-block hidden" >Invalied Date.</span>
                                         </div>
                                       </div>
                                     </div>
@@ -560,8 +586,8 @@
                                     <!-- <hr> -->
 
                                     <div class="form-group required">
-                                      <label class="col-md-2 control-label">Gender</label>
-                                      <div class="col-md-10">
+                                      <label class="col-md-4 control-label">Gender</label>
+                                      <div class="col-md-8">
                                         <label class="radio-inline custom-radio-label">
                                           <input type="radio" name="F3S1Q6" value="a" formControlName="F3S1Q6" autocomplete="off">Male
                                         </label>
@@ -584,8 +610,8 @@
                                     <!-- Victim’s Next-of-kin, required -->
                                     <!-- Victim, required -->
                                     <div class="form-group required">
-                                      <label class="col-md-2 control-label">Nationality</label>
-                                      <div class="col-md-10 selectContainer">
+                                      <label class="col-md-4 control-label">Nationality</label>
+                                      <div class="col-md-8 selectContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                           <select name="state" class="form-control selectpicker" formControlName='F3S1Q7'>
@@ -607,8 +633,8 @@
                                     <!-- Victim, required -->
 
                                     <div class="form-group required" *ngIf="!((userRole===role4))">
-                                      <label class="col-md-2 control-label">Address</label>
-                                      <div class="col-md-10">
+                                      <label class="col-md-4 control-label">Address</label>
+                                      <div class="col-md-8">
                                         <!-- F3S1Q8 -->
                                         <div class="control-group">
                                           <div class="control-group">
@@ -657,14 +683,14 @@
                                     <!-- Occupier Only/ Representative of occupier -->
                                     <!-- Treating Doctor -->
                                     <div class="form-group" *ngIf="((userRole===role4) )">
-                                      <label class="col-md-2 control-label">Address</label>
-                                      <div class="col-md-10">
+                                      <label class="col-md-4 control-label">Address</label>
+                                      <div class="col-md-8">
                                         <!-- F3S1Q12 -->
                                         <div class="control-group">
                                           <div class="control-group">
                                             <div class="input-group">
                                               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                              <input id="address-line1" name="address-line1" type="text" placeholder="address line 1" class="form-control">
+                                              <input id="address-line1" formControlName='F3S1Q12' name="address-line1" type="text" placeholder="address line 1" class="form-control">
                                             </div>
                                             <p class="help-block">Street address, P.O. box, home name</p>
                                           </div>
@@ -675,7 +701,7 @@
                                           <div class="control-group">
                                             <div class="input-group">
                                               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                              <input id="address-line2" name="address-line2" type="text" placeholder="address line 2" class="form-control">
+                                              <input id="address-line2" formControlName='F3S1Q13' name="address-line2" type="text" placeholder="address line 2" class="form-control">
                                             </div>
                                             <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
                                           </div>
@@ -686,7 +712,7 @@
                                           <div class="control-group">
                                             <div class="input-group">
                                               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                              <input id="city" name="city" type="text" placeholder="city" class="form-control">
+                                              <input id="city" name="city" formControlName='F3S1Q14' type="text" placeholder="city" class="form-control">
                                             </div>
                                             <p class="help-block">City, town</p>
                                           </div>
@@ -700,8 +726,8 @@
                                     <!-- Victim’s Next-of-kin, required -->
                                     <!-- Victim, required, required -->
                                     <div class="form-group required" *ngIf="((userRole===role1) || (userRole===role3) || (userRole===role6))">
-                                      <label class="col-md-2 control-label">Contact No.</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">Contact No.</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
                                           <input name="phone"  formControlName="F3S1Q11" placeholder="772156498" class="form-control" type="text" maxlength="9">
@@ -717,8 +743,8 @@
                                     <!-- F3S1Q15 Occupier Only/ Representative of occupier -->
                                     <!-- Treating Doctor -->
                                     <div class="form-group" *ngIf="((userRole===role4)) ">
-                                      <label class="col-md-2 control-label">Contact No.</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">Contact No.</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
                                           <input name="phone" placeholder="772156498" formControlName="F3S1Q15" class="form-control" type="text" maxlength="9">
@@ -749,8 +775,8 @@
                                     <!-- Victim, required -->
 
                                     <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role4))">
-                                      <label class="col-md-2 control-label">Employer's Organisation Name</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">Employer's Organisation Name</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                                           <input name="organisation_name" formControlName="F3S2Q1" placeholder="Organisation Name" class="form-control" type="text">
@@ -767,8 +793,8 @@
                                     <!-- Victim, required -->
 
                                     <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role4))">
-                                      <label class="col-md-2 control-label">Employer's Mailing Address</label>
-                                      <div class="col-md-10">
+                                      <label class="col-md-4 control-label">Employer's Mailing Address</label>
+                                      <div class="col-md-8">
                                         <!-- F3S2Q9 -->
                                         <div class="control-group">
                                           <div class="control-group">
@@ -824,8 +850,8 @@
                                     <!-- Victim, required -->
 
                                     <div class="form-group required">
-                                      <label class="col-md-2 control-label">Occupation</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">Occupation</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                                             <input name="occupation" formControlName="F3S2Q3" placeholder="Occupation" class="form-control" type="text">
@@ -841,14 +867,25 @@
                                     <!-- Employer Only/ Representative of employer, required -->
                                     <!-- Occupier Only/ Representative of occupier -->
                                     <div class="form-group required" *ngIf="(userRole===role1)">
-                                      <label class="col-md-2 control-label">Start Date of Employment</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">Start Date of Employment</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                          <input class="form-control" [mode]="'dropdown'" formControlName="F3S2Q4" [ngModel]="momentValueF3S2Q4 | date: 'short'" [dateTimePicker]="momentValueF3S2Q4" (dateTimePickerChange)="setMomentF3S2Q4($event)" readonly />
+                                          <input 
+                                            class="form-control" 
+                                            [mode]="'dropdown'" 
+                                            formControlName="F3S2Q4" 
+                                            [ngModel]="momentValueF3S2Q4 | date: 'short'" 
+                                            [dateTimePicker]="momentValueF3S2Q4" 
+                                            (dateTimePickerChange)="setMomentF3S2Q4($event)" 
+                                            [value]="momentValueF3S2Q4 | date"
+                                            [returnObject]="'moment'"
+                                            [pickerType]="'date'"
+                                            readonly />
                                         </div>
                                         <div *ngIf="form3.get('F3S2Q4').touched">
                                           <span [class.hidden]="!form3.controls['F3S2Q4'].hasError('required')" class="help-block hidden" >Start Date is required.</span>
+                                          <span [class.hidden]="!form3.controls['F3S2Q4'].hasError('invalidDate')" class="help-block hidden" >Invalied Date.</span>
                                         </div>
                                       </div>
                                     </div>
@@ -858,8 +895,8 @@
                                     <!-- Employer Only/ Representative of employer, required -->
                                     <div class="form-group required" *ngIf="(userRole===role1)">
                                       <div class="control-group">
-                                        <label class="col-md-2 control-label">Average Monthly Earnings</label>
-                                        <div class="col-md-10 control-group">
+                                        <label class="col-md-4 control-label">Average Monthly Earnings</label>
+                                        <div class="col-md-8 control-group">
                                           <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                                             <input id="warnings" name="warnings" formControlName="F3S2Q5" type="text" placeholder="Write here" class="form-control">
@@ -884,8 +921,8 @@
                                     *** -->
                                     <!-- <div class="form-group" *ngIf="(userRole===role2)">
                                       <div class="control-group">
-                                        <label class="col-md-2 control-label">Average Monthly Earnings</label>
-                                        <div class="col-md-10 control-group">
+                                        <label class="col-md-4 control-label">Average Monthly Earnings</label>
+                                        <div class="col-md-8 control-group">
                                           <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                                             <input id="warnings" name="warnings" type="text" placeholder="Write here" class="form-control">
@@ -902,13 +939,13 @@
                                     <!-- <hr> -->
 
                                     <div class="form-group" *ngIf="(userRole===role1)">
-                                      <label class="col-md-2 control-label">Percentage of manual work performed by the injured person</label>
-                                      <div class="col-md-10">
+                                      <label class="col-md-4 control-label">Percentage of manual work performed by the injured person</label>
+                                      <div class="col-md-8">
                                         <label class="radio-inline custom-radio-label">
-                                          <input type="radio" name="F3S2Q7" value="a" formControlName="F3S2Q7" autocomplete="off">Equal or greater than 50%
+                                          <input type="radio" name="F3S2Q7" value="greater than 50%" formControlName="F3S2Q7" autocomplete="off">Equal or greater than 50%
                                         </label>
                                         <label class="radio-inline">
-                                          <input type="radio" name="F3S2Q7" value="b" formControlName="F3S2Q7" autocomplete="off">Less than 50%
+                                          <input type="radio" name="F3S2Q7" value="Less than 50%" formControlName="F3S2Q7" autocomplete="off">Less than 50%
                                         </label>
                                       </div>
                                     </div>
@@ -920,8 +957,8 @@
                                       this is only for role 02 (Occupier Only/ Representative of occupier)
                                     *** -->
                                     <!-- <div class="form-group required" *ngIf="(userRole===role2)">
-                                      <label class="col-md-2 control-label">Percentage of manual work performed by the injured person</label>
-                                      <div class="col-md-10">
+                                      <label class="col-md-4 control-label">Percentage of manual work performed by the injured person</label>
+                                      <div class="col-md-8">
                                         <label class="radio-inline custom-radio-label">
                                           <input type="radio" name="F3S2Q8" id="option1" autocomplete="off" formControlName="F3S2Q8">Equal or greater than 50%
                                         </label>
@@ -954,8 +991,8 @@
                                     <!-- Victim, required -->
                                     <!-- <hr> -->
                                     <div class="form-group required">
-                                      <label class="col-md-2 control-label">Did the accident result in death of the injured person?</label>
-                                      <div class="col-md-10 ">
+                                      <label class="col-md-4 control-label">Did the accident result in death of the injured person?</label>
+                                      <div class="col-md-8 ">
                                         <label class="radio-inline custom-radio-label">
                                           <input id=radio1 #radio1 type="radio" name="F3S3Q1" value="yes" formControlName="F3S3Q1" autocomplete="off" (click)="wasPersonDead(radio1.value)">Yes
                                          </label>
@@ -978,11 +1015,12 @@
                                     <!-- Treating Doctor, required --> 
                                     <!-- Victim’s Next-of-kin, required -->
                                     <!-- Victim, required --> 
-                                    <div class="form-group required" *ngIf="(this.form3.get('F3S3Q1').value == 'no')">
+                                    <div class="form-group required" *ngIf="(form3.get('PersonDead') && form3.get('F3S3Q1').value == 'no')">
                                       <div formArrayName="PersonDead" *ngFor="let item of form3.get('PersonDead').controls; let i = index;">
                                         <div [formGroupName]="i">
-                                          <label class="col-md-2 control-label">Nature of injury</label>
-                                          <div class="col-md-10 selectContainer">
+                                          
+                                          <label class="col-md-4 control-label">Nature of injury</label>
+                                          <div class="col-md-8 selectContainer">
                                             <div class="input-group">
                                               <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                               <select name="state" class="form-control selectpicker" formControlName="F3S3Q2" >
@@ -1042,19 +1080,20 @@
                                                 <option>Multiple Injuries Including Both Physical & Psychological</option>
                                               </select>
                                             </div>
-                                            <div *ngIf="['F3S3Q2'].touched">
-                                              <span [class.hidden]="!['F3S3Q2'].hasError('required')" class="help-block hidden" >Nature of injury is required.</span>
+                                            <div *ngIf="personDeadController && personDeadController.controls[0].controls['F3S3Q2'].touched">
+                                              <span [class.hidden]="!personDeadController.controls[0].controls['F3S3Q2'].hasError('required')" class="help-block hidden" >Nature of injury is required.</span>
                                             </div>
                                           </div>
+
                                           <br class="hr" />
-                                          <label class="col-md-2 control-label">Associated body part(s) injured</label>
-                                          <div class="col-md-10 selectContainer">
+                                          <label class="col-md-4 control-label">Associated body part(s) injured</label>
+                                          <div class="col-md-8 selectContainer">
                                             <div class="input-group">
                                               <span class="input-group-addon"><i class="glyphicon glyphicon-remove"></i></span>
                                               <ss-multiselect-dropdown [settings]="mySettings" formControlName="F3S3Q3" [options]="bodyParts" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
                                             </div>
-                                            <div *ngIf="['F3S3Q3'].touched">
-                                              <span [class.hidden]="!['F3S3Q3'].hasError('required')" class="help-block hidden" >Associated body part(s) is required.</span>
+                                            <div *ngIf="personDeadController && personDeadController.controls[0].controls['F3S3Q3'].touched">
+                                              <span [class.hidden]="!personDeadController.controls[0].controls['F3S3Q3'].hasError('required')" class="help-block hidden" >Associated body part(s) is required.</span>
                                             </div>
                                           </div>
                                         </div>
@@ -1082,8 +1121,8 @@
 
                                     <!-- <hr> -->
                                     <div class="form-group required">
-                                      <label class="col-md-2 control-label">Was the injured person hospitalised for more than 24 hours</label>
-                                      <div class="col-md-10 ">
+                                      <label class="col-md-4 control-label">Was the injured person hospitalised for more than 24 hours</label>
+                                      <div class="col-md-8 ">
                                         <label class="radio-inline custom-radio-label">
                                           <input #radio1 type="radio" name="F3S4Q1" value="yes" formControlName="F3S4Q1" autocomplete="off" (click)="wasPersonHospitalised(radio1.value)">Yes
                                         </label>
@@ -1108,19 +1147,19 @@
                                     <!-- ToDo:- need to hide this feild 
                                         according to radio btn value(show when select Yes)
                                     -->
-                                    <div class="form-group required" *ngIf="(this.form3.get('F3S4Q1').value == 'yes')">
+                                    <div class="form-group required" *ngIf="( form3.get('personHospitalise') && form3.get('F3S4Q1').value == 'yes')">
+
                                       <div formArrayName="personHospitalise" *ngFor="let item of form3.get('personHospitalise').controls; let i = index;">
-                                        <label class="col-md-2 control-label">No. of days of medical leave</label>
-                                        <div [formGroupName]="i" class="col-md-10 inputGroupContainer">
+                                        <label class="col-md-4 control-label">No. of days of medical leave</label>
+                                        <div [formGroupName]="i" class="col-md-8 inputGroupContainer">
                                           <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                                             <input name="medical_leave" formControlName="F3S4Q2" placeholder="Write here" class="form-control" type="text" (keyup)="getNoOfMedicalLeaves()">
                                           </div>
-                                          <div *ngIf="['F3S4Q2'].touched">
-                                            <span [class.hidden]="!['F3S4Q2'].hasError('required')" class="help-block hidden" >Field is required.</span>
-                                          </div>
-                                          <div *ngIf="['F3S4Q2'].touched">
-                                            <span [class.hidden]="!['F3S4Q2'].hasError('invalidLeave')" class="help-block hidden" >Value is invalid.</span>
+
+                                          <div *ngIf="personHospitaliseController && personHospitaliseController.controls[0].controls['F3S4Q2'].touched">
+                                            <span [class.hidden]="!personHospitaliseController.controls[0].controls['F3S4Q2'].hasError('required')" class="help-block hidden" >Field is required.</span>
+                                            <span [class.hidden]="!personHospitaliseController.controls[0].controls['F3S4Q2'].hasError('invalidLeave')" class="help-block hidden" >Value is invalid.</span>
                                           </div>
                                         </div>
                                       </div>
@@ -1133,16 +1172,28 @@
                                     <!-- ToDo:- need to show this ***
                                         field when you write more than 3 leaves
                                     -->
-                                    <div class="form-group required" *ngIf="((this.form3.get('F3S4Q1').value == 'yes') && (userRole===role1) && (noOfMedicalLeaves > 3))">
+                                    <div class="form-group required" *ngIf="(form3.get('medicalLeave') && (form3.get('F3S4Q1').value == 'yes') && (userRole===role1) && (noOfMedicalLeaves > 3))">
                                       <div formArrayName="medicalLeave" *ngFor="let item of form3.get('medicalLeave').controls; let i = index;">
-                                        <label class="col-md-2 control-label">Date of 4 th day of Medical leave</label>
-                                        <div [formGroupName]="i" class="col-md-10 inputGroupContainer">
+                                        <label class="col-md-4 control-label">Date of 4 th day of Medical leave</label>
+                                        <div [formGroupName]="i" class="col-md-8 inputGroupContainer">
                                           <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                            <input class="form-control" [mode]="'dropdown'" formControlName="F3S4Q3" [ngModel]="momentValueF3S4Q3 | date: 'short'" [dateTimePicker]="momentValueF3S4Q3" (dateTimePickerChange)="setMomentF3S4Q3($event)" readonly/>
+                                            <input 
+                                              class="form-control" 
+                                              [mode]="'dropdown'" 
+                                              formControlName="F3S4Q3" 
+                                              [value]="momentValueF3S4Q3 | date"
+                                              [ngModel]="momentValueF3S4Q3 | date: 'short'" 
+                                              [dateTimePicker]="momentValueF3S4Q3" 
+                                              (dateTimePickerChange)="setMomentF3S4Q3($event)"
+                                              [returnObject]="'moment'" 
+                                              [pickerType]="'date'"
+                                              readonly/>
                                           </div>
-                                          <div *ngIf="['F3S4Q3'].touched">
-                                            <span [class.hidden]="!['F3S4Q3'].hasError('required')" class="help-block hidden" >Date is required.</span>
+
+                                          <div *ngIf="medicalLeaveController && medicalLeaveController.controls[0].controls['F3S4Q3'].touched">
+                                            <span [class.hidden]="!medicalLeaveController.controls[0].controls['F3S4Q3'].hasError('required')" class="help-block hidden" >Date is required.</span>
+                                            <span [class.hidden]="!medicalLeaveController.controls[0].controls['F3S4Q3'].hasError('invalidLeave4thDate')" class="help-block hidden" >Date is invalid.</span>
                                           </div>
                                         </div>
                                       </div>
@@ -1152,10 +1203,10 @@
                                     <!-- Employer Only/ Representative of employer -->
 
                                     <!-- ToDo:-  This feild is need to show ***see the reason below***-->
-                                    <div class="form-group" *ngIf="((this.form3.get('F3S4Q1').value == 'yes') && (userRole===role1) && (noOfMedicalLeaves > 3) && isReasonNeededForLateReport())">
+                                    <div class="form-group" *ngIf="(form3.get('reasonForLateReport') && (form3.get('F3S4Q1').value == 'yes') && (userRole===role1) && (noOfMedicalLeaves > 3) && isReasonNeededForLateReport())">
                                       <div formArrayName="reasonForLateReport" *ngFor="let item of form3.get('reasonForLateReport').controls; let i = index;">
-                                        <label class="col-md-2 control-label">Reason of late reporting</label>
-                                        <div [formGroupName]="i" class="col-md-10 selectContainer">
+                                        <label class="col-md-4 control-label">Reason of late reporting</label>
+                                        <div [formGroupName]="i" class="col-md-8 selectContainer">
                                           <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                             <select name="state" class="form-control selectpicker" formControlName="F3S4Q4">
@@ -1166,9 +1217,9 @@
                                               <option>Reporting workers compensation claims too late may violate state law</option>
                                             </select>
                                           </div>
-                                          <div *ngIf="['F3S4Q4'].touched">
-                                            <span [class.hidden]="!['F3S4Q4'].hasError('required')" class="help-block hidden" >Date is required.</span>
-                                          </div>
+                                          <!-- <div *ngIf="['F3S4Q4'].touched">
+                                            <span [class.hidden]="!['F3S4Q4'].hasError('required')" class="help-block hidden" >Feild is required.</span>
+                                          </div> -->
                                           <!-- ****** reason ******** -->
                                           <p class="help-block">• You are required to provide the reason if your incident report was submitted past the mandatory 10 days timeline
                                             from the 4 th day of medical leave.</p>
@@ -1185,8 +1236,8 @@
                                     <!-- Victim, required -->
 
                                     <div class="form-group required" *ngIf="!(userRole===role4)">
-                                      <label class="col-md-2 control-label">Hospital/ Clinic where the injured person was examined or treated</label>
-                                      <div class="col-md-10 selectContainer">
+                                      <label class="col-md-4 control-label">Hospital/ Clinic where the injured person was examined or treated</label>
+                                      <div class="col-md-8 selectContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                           <select name="state" formControlName="F3S4Q5" class="form-control selectpicker">
@@ -1218,8 +1269,8 @@
                                     <!-- <hr> -->
                                  <!--    <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role2) 
                                     || (userRole === role4))">
-                                      <label class="col-md-2 control-label">Would you like to provide any witness information?</label>
-                                      <div class="col-md-10">
+                                      <label class="col-md-4 control-label">Would you like to provide any witness information?</label>
+                                      <div class="col-md-8">
                                         <label class="radio-inline custom-radio-label">
                                           <input type="radio" name="F3S4Q6" formControlName="F3S4Q6" id="option1" autocomplete="off">Yes
                                         </label>
@@ -1233,13 +1284,13 @@
                                     </div> -->
 
                                     <div class="form-group required" *ngIf="!((userRole===role1) || (userRole === role4))">
-                                      <label class="col-md-2 control-label">Would you like to provide any witness information?</label>
-                                      <div class="col-md-10">
+                                      <label class="col-md-4 control-label">Would you like to provide any witness information?</label>
+                                      <div class="col-md-8">
                                         <label class="radio-inline custom-radio-label">
-                                          <input type="radio" name="F3S4Q6" value="a" formControlName="F3S4Q6" autocomplete="off">Yes
+                                          <input #radio1 type="radio" name="F3S4Q6" value="yes" formControlName="F3S4Q6" autocomplete="off" (click)="likeToProvideInformation(radio1.value)">Yes
                                         </label>
                                         <label class="radio-inline">
-                                          <input type="radio" name="F3S4Q6" value="b" formControlName="F3S4Q6" autocomplete="off">No
+                                          <input #radio2 type="radio" name="F3S4Q6" value="no" formControlName="F3S4Q6" autocomplete="off" (click)="likeToProvideInformation(radio2.value)">No
                                         </label>
                                       </div>
                                       <div *ngIf="form3.get('F3S4Q6').touched">
@@ -1248,170 +1299,180 @@
                                     </div>
 
 
+                                    <div *ngIf="(form3.get('witnessDetails') && form3.get('F3S4Q6') && (form3.get('F3S4Q6').value == 'yes'))">
                                     <!-- Victim’s Legal Representative -->
                                     <!-- Victim’s Next-of-kin -->
                                     <!-- Victim -->
 
-                                    <hr>
-                                    <legend *ngIf="!((userRole===role1) || (userRole===role4))">
-                                      <h4>Section 5: Particulars of the Witness</h4>
-                                    </legend>
+                                      <hr>
+                                      <legend *ngIf="!((userRole===role1) || (userRole===role4))">
+                                        <h4>Section 5: Particulars of the Witness</h4>
+                                      </legend>
 
-                                    <!-- F3S5Q1 NIC NO-->
-                                    <!-- Victim’s Legal Representative -->
-                                    <!-- Victim’s Next-of-kin -->
-                                    <!-- Victim -->
-
-                                    <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
-                                      <label class="col-md-2 control-label">NIC NO</label>
-                                      <div class="col-md-10 inputGroupContainer">
-                                        <div class="input-group">
-                                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                          <input name="nic" formControlName="F3S5Q1"  placeholder="NIC NO" class="form-control" type="text" maxlength="10">
-                                        </div>
-
-                                        <div *ngIf="form3.get('F3S5Q1').touched">
-                                          <span [class.hidden]="!form3.controls['F3S5Q1'].hasError('invalidNic')" class="help-block hidden" >Invalid NIC no.
-                                          </span>
-                                        </div>
-                                      </div>
-                                    </div>
-
-
-                                    <!-- F3S5Q2 Full Name -->
-                                    <!-- Victim’s Legal Representative, required -->
-                                    <!-- Victim’s Next-of-kin -->
-                                    <!-- Victim, required -->
-
-                                    <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role4))">
-                                      <label class="col-md-2 control-label">Full Name</label>
-                                      <div class="col-md-10 inputGroupContainer">
-                                        <div class="input-group">
-                                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                          <input name="first_name" placeholder="Full Name" formControlName="F3S5Q2" class="form-control" type="text">
-                                        </div>
-                                        <div *ngIf="form3.get('F3S5Q2').touched">
-                                          <span [class.hidden]="!form3.controls['F3S5Q2'].hasError('required')" class="help-block hidden" >FullName is required.</span>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <!-- F3S5Q3 Contact No.-->
-                                    <!-- Victim’s Legal Representative -->
-                                    <!-- Victim’s Next-of-kin -->
-                                    <!-- Victim -->
-
-                                    <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
-                                      <label class="col-md-2 control-label">Contact No.</label>
-                                      <div class="col-md-10 inputGroupContainer">
-                                        <div class="input-group">
-                                          <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                                          <input name="phone" formControlName="F3S5Q3" placeholder="721234567" maxlength="9" class="form-control" type="text">
-                                        </div>
-                                        <div *ngIf="form3.get('F3S5Q3').touched">
-                                          <span [class.hidden]="!form3.controls['F3S5Q3'].hasError('invalidPhone')" class="help-block hidden" >Invalid phone No.
-                                          </span>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <!-- F3S5Q4 Email-->
-                                    <!-- Victim’s Legal Representative -->
-                                    <!-- Victim’s Next-of-kin -->
-                                    <!-- Victim -->
-
-                                    <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
-                                      <label class="col-md-2 control-label">Email</label>
-                                      <div class="col-md-10 inputGroupContainer">
-                                        <div class="input-group">
-                                          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                          <input name="email" formControlName="F3S5Q4" placeholder="E-Mail Address" class="form-control" type="text">
-                                        </div>
-                                        <div *ngIf="form3.get('F3S5Q4').touched">
-                                          <span [class.hidden]="!form3.controls['F3S5Q4'].hasError('invalidEmail')" class="help-block hidden" >Email format error.</span>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <!-- Victim’s Legal Representative -->
-                                    <!-- Victim’s Next-of-kin -->
-                                    <!-- Victim -->
-
-                                    <hr>
-                                    <legend *ngIf="!((userRole===role1) || (userRole===role4))">
-                                      <h4>Section 6: Employment Details of the Witness</h4>
-                                    </legend>
-
-                                    <!-- F3S6Q1 Employer's Organisation Name -->
-                                    <!-- Victim’s Legal Representative -->
-                                    <!-- Victim’s Next-of-kin -->
-                                    <!-- Victim -->
-
-                                    <div class="form-group" *ngIf="!((userRole===role4))">
-                                      <label class="col-md-2 control-label">Employer's Organisation Name</label>
-                                      <div class="col-md-10 inputGroupContainer">
-                                        <div class="input-group">
-                                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                          <input name="organisation_name" placeholder="Organisation Name" class="form-control" type="text">
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <!-- F3S6Q2 Employer's Mailing Address -->
-                                    <!-- Victim’s Legal Representative -->
-                                    <!-- Victim’s Next-of-kin -->
-                                    <!-- Victim -->
-
-                                    <hr>
-                                    <div class="form-group" *ngIf="!(userRole===role4)">
-                                      <label class="col-md-2 control-label">Employer's Mailing Address</label>
-                                      <div class="col-md-10">
-
-                                        <div class="control-group">
-                                          <div class="control-group">
+                                      <div formArrayName="witnessDetails" *ngFor="let item of form3.get('witnessDetails').controls; let i = index;">
+                                        <div [formGroupName]="i">  
+                                    
+                                        <!-- F3S5Q1 NIC NO-->
+                                        <!-- Victim’s Legal Representative -->
+                                        <!-- Victim’s Next-of-kin -->
+                                        <!-- Victim -->
+                                        <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
+                                          <label class="col-md-4 control-label">NIC NO</label>
+                                          <div class="col-md-8 inputGroupContainer">
                                             <div class="input-group">
-                                              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                              <input id="address-line1" name="address-line1" type="text" placeholder="address line 1" class="form-control">
+                                              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                              <input name="nic" formControlName="F3S5Q1"  placeholder="NIC NO" class="form-control" type="text" maxlength="10">
                                             </div>
-                                            <p class="help-block">Street address, P.O. box, company name</p>
+                                            <div *ngIf="witnessDetailsController && witnessDetailsController.controls[0].controls['F3S5Q1'].touched">
+                                              <span [class.hidden]="!witnessDetailsController.controls[0].controls['F3S5Q1'].hasError('invalidNic')" class="help-block hidden" >Invalid NIC no.</span>
+                                            </div>
                                           </div>
                                         </div>
 
-                                        <!-- address-line2 input-->
-                                        <div class="control-group">
-                                          <div class="control-group">
-                                            <div class="input-group">
-                                              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                              <input id="address-line2" name="address-line2" type="text" placeholder="address line 2" class="form-control">
-                                            </div>
-                                            <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
-                                          </div>
-                                        </div>
 
-                                        <!-- city input-->
-                                        <div class="control-group">
-                                          <div class="control-group">
-                                            <div class="input-group">
-                                              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                              <input id="city" name="city" type="text" placeholder="city" class="form-control">
+                                          <!-- F3S5Q2 Full Name -->
+                                          <!-- Victim’s Legal Representative, required -->
+                                          <!-- Victim’s Next-of-kin -->
+                                          <!-- Victim, required -->
+
+                                          <div class="form-group required" *ngIf="!((userRole===role1) || (userRole===role4))">
+                                            <label class="col-md-4 control-label">Full Name</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                              <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                <input name="first_name" placeholder="Full Name" formControlName="F3S5Q2" class="form-control" type="text">
+                                              </div>
+                                              <div *ngIf="witnessDetailsController && witnessDetailsController.controls[0].controls['F3S5Q2'].touched">
+                                                <span [class.hidden]="!witnessDetailsController.controls[0].controls['F3S5Q2'].hasError('required')" class="help-block hidden" >FullName is required.</span>
+                                              </div>
                                             </div>
-                                            <p class="help-block">City, town</p>
+                                          </div>
+
+                                          <!-- F3S5Q3 Contact No.-->
+                                          <!-- Victim’s Legal Representative -->
+                                          <!-- Victim’s Next-of-kin -->
+                                          <!-- Victim -->
+
+                                          <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
+                                            <label class="col-md-4 control-label">Contact No.</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                              <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                                <input name="phone" formControlName="F3S5Q3" placeholder="721234567" maxlength="9" class="form-control" type="text">
+                                              </div>
+                                              <div *ngIf="witnessDetailsController && witnessDetailsController.controls[0].controls['F3S5Q3'].touched">
+                                                <span [class.hidden]="!witnessDetailsController.controls[0].controls['F3S5Q3'].hasError('invalidPhone')" class="help-block hidden" >Invalid phone No.</span>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <!-- F3S5Q4 Email-->
+                                          <!-- Victim’s Legal Representative -->
+                                          <!-- Victim’s Next-of-kin -->
+                                          <!-- Victim -->
+
+                                          <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
+                                            <label class="col-md-4 control-label">Email</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                              <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                                <input name="email" formControlName="F3S5Q4" placeholder="E-Mail Address" class="form-control" type="text">
+                                              </div>
+                                              <div *ngIf="witnessDetailsController && witnessDetailsController.controls[0].controls['F3S5Q4'].touched">
+                                                <span [class.hidden]="!witnessDetailsController.controls[0].controls['F3S5Q4'].hasError('invalidEmail')" class="help-block hidden" >Email format error.</span>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <!-- Victim’s Legal Representative -->
+                                          <!-- Victim’s Next-of-kin -->
+                                          <!-- Victim -->
+
+                                          <hr>
+                                          <legend *ngIf="!((userRole===role1) || (userRole===role4))">
+                                            <h4>Section 6: Employment Details of the Witness</h4>
+                                          </legend>
+
+                                          <!-- F3S6Q1 Employer's Organisation Name -->
+                                          <!-- Victim’s Legal Representative -->
+                                          <!-- Victim’s Next-of-kin -->
+                                          <!-- Victim -->
+
+                                          <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
+                                            <label class="col-md-4 control-label">Employer's Organisation Name</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                              <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                                <input name="organisation_name" formControlName="F3S6Q1" placeholder="Organisation Name" class="form-control" type="text">
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <!-- F3S6Q2 Employer's Mailing Address -->
+                                          <!-- Victim’s Legal Representative -->
+                                          <!-- Victim’s Next-of-kin -->
+                                          <!-- Victim -->
+
+                                          <hr>
+                                          <div class="form-group" *ngIf="!((userRole===role1) || (userRole===role4))">
+                                            <label class="col-md-4 control-label">Employer's Mailing Address</label>
+                                            <div class="col-md-8">
+
+                                              <!-- F3S6Q9 -->
+                                              <div class="control-group">
+                                                <div class="control-group">
+                                                  <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                                    <input id="address-line1" formControlName="F3S6Q9" name="address-line1" type="text" placeholder="address line 1" class="form-control">
+                                                  </div>
+                                                  <p class="help-block">Street address, P.O. box, company name</p>
+                                                </div>
+                                              </div>
+
+                                              <!-- F3S6Q10 -->
+                                              <!-- address-line2 input-->
+                                              <div class="control-group">
+                                                <div class="control-group">
+                                                  <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                                    <input id="address-line2" formControlName="F3S6Q10" name="address-line2" type="text" placeholder="address line 2" class="form-control">
+                                                  </div>
+                                                  <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                                                </div>
+                                              </div>
+
+                                              <!-- F3S6Q11 -->
+                                              <!-- city input-->
+                                              <div class="control-group">
+                                                <div class="control-group">
+                                                  <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                                    <input id="city" name="city" formControlName="F3S6Q11" type="text" placeholder="city" class="form-control">
+                                                  </div>
+                                                  <p class="help-block">City, town</p>
+                                                </div>
+                                              </div>
+                                            </div>
                                           </div>
                                         </div>
-                                      </div>
+                                      </div>  
                                     </div>
-
-
-
                                     <!-- ERROR F3S6Q3 What time did the injured person start work on the day of the accident? -->
                                     <!-- user role -->
                                     <!-- Employer Only/ Representative of employer, required -->
                                     <div class="form-group required" *ngIf="(userRole===role1)">
-                                      <label class="col-md-2 control-label">What time did the injured person start work on the day of the accident?</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">What time did the injured person start work on the day of the accident?</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                          <input class="form-control" [mode]="'dropdown'" formControlName="F3S6Q3" [ngModel]="momentValueF3S6Q3 | date: 'short'" [dateTimePicker]="momentValueF3S6Q3" (dateTimePickerChange)="setMomentF3S6Q3($event)" readonly />
+                                          <input 
+                                            class="form-control" 
+                                            [mode]="'dropdown'" formControlName="F3S6Q3" 
+                                            [ngModel]="momentValueF3S6Q3 | date: 'short'" 
+                                            [dateTimePicker]="momentValueF3S6Q3" 
+                                            (dateTimePickerChange)="setMomentF3S6Q3($event)"
+                                            [returnObject]="'moment'" 
+                                            readonly />
                                         </div>
                                         <div *ngIf="form3.get('F3S6Q3').touched">
                                           <span [class.hidden]="!form3.controls['F3S6Q3'].hasError('required')" class="help-block hidden" >Start date is required.</span>
@@ -1424,8 +1485,8 @@
                                     <!-- Employer Only/ Representative of employer -->
                                     <!-- <hr> -->
                                     <div class="form-group required" *ngIf="(userRole===role1)">
-                                      <label class="col-md-2 control-label">Was the injured person working overtime when the accident happened?</label>
-                                      <div class="col-md-10 ">
+                                      <label class="col-md-4 control-label">Was the injured person working overtime when the accident happened?</label>
+                                      <div class="col-md-8 ">
                                         <label class="radio-inline custom-radio-label">
                                           <input type="radio" name="F3S6Q4" formControlName="F3S6Q4" value="option1" autocomplete="off">Yes
                                         </label>
@@ -1442,8 +1503,8 @@
                                     <!-- Employer Only/ Representative of employer, required -->
                                     <!-- <hr> -->
                                     <div class="form-group required" *ngIf="(userRole===role1)">
-                                      <label class="col-md-2 control-label">Was the person injured while performing official work duties?</label>
-                                      <div class="col-md-10 ">
+                                      <label class="col-md-4 control-label">Was the person injured while performing official work duties?</label>
+                                      <div class="col-md-8 ">
                                         <label class="radio-inline custom-radio-label">
                                           <input type="radio" name="F3S6Q5" value="option1" formControlName="F3S6Q5" autocomplete="off">Yes
                                         </label>
@@ -1458,12 +1519,12 @@
 
                                     <!-- F3S6Q6 Associated body part(s) injured -->
                                     <!-- Employer Only/ Representative of employer, required -->
-                                    <div class="form-group required" *ngIf="(userRole===role1)">
+                                    <div class="form-group" *ngIf="(userRole===role1)">
                                       <div class="col-md-12">
                                         <p class="help-block">• Please provide details for the employer’s Work Injury Compensation Insurance policy (if any).</p>
                                       </div>
-                                      <label class="col-md-2 control-label">Name of insurer</label>
-                                      <div class="col-md-10 selectContainer">
+                                      <label class="col-md-4 control-label">Name of insurer</label>
+                                      <div class="col-md-8 selectContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                           <select name="state" class="form-control selectpicker" formControlName="F3S6Q6">
@@ -1486,9 +1547,9 @@
                                             <option>Sri Lanka Insurance Corporation Ltd.</option>
                                           </select>
                                         </div>
-                                        <div *ngIf="form3.get('F3S6Q6').touched">
+                                        <!-- <div *ngIf="form3.get('F3S6Q6').touched">
                                           <span [class.hidden]="!form3.controls['F3S6Q6'].hasError('required')" class="help-block hidden" >Insurer is required.</span>
-                                        </div>
+                                        </div> -->
                                       </div>
                                     </div>
 
@@ -1500,8 +1561,8 @@
                                       <div class="col-md-12">
                                         <p class="help-block">• Please provide details for the employer’s Work Injury Compensation Insurance policy (if any).</p>
                                       </div>
-                                      <label class="col-md-2 control-label">Name of insurer</label>
-                                      <div class="col-md-10 selectContainer">
+                                      <label class="col-md-4 control-label">Name of insurer</label>
+                                      <div class="col-md-8 selectContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                           <select name="state" class="form-control selectpicker">
@@ -1533,11 +1594,11 @@
                                     <!-- Occupier Only/ Representative of occupier -->
                                     <!-- <hr> -->
                                     <div class="form-group" *ngIf="(userRole===role1)">
-                                      <label class="col-md-2 control-label">Insurance Policy No.</label>
-                                      <div class="col-md-10 inputGroupContainer">
+                                      <label class="col-md-4 control-label">Insurance Policy No.</label>
+                                      <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                          <input name="date_of_birth" placeholder="Write here" class="form-control" type="text">
+                                          <input name="date_of_birth" placeholder="Write here" class="form-control"  type="text" formControlName="F3S6Q8">
                                         </div>
                                       </div>
                                     </div>
@@ -1549,7 +1610,7 @@
                                         <button type="button" class="btn btn-default" (click)="formBack(2)">Previous <span class="glyphicon glyphicon-arrow-left"></span></button>
                                       </div>
                                       <div class="col-md-3">
-                                        <button type="button" class="btn btn-success">Submit <span class="glyphicon glyphicon-send"></span></button>
+                                        <button type="button" class="btn btn-success" [disabled]="!form3.invalid" (click)="!form3.valid && submit()">Submit <span class="glyphicon glyphicon-send"></span></button>
                                       </div>
                                       <div class="col-md-3">
                                         <button type="button" class="btn btn-default" [disabled]="true">Next <span class="glyphicon glyphicon-arrow-right"></span></button>
@@ -1569,7 +1630,7 @@
                 <nav class="pull-left">
                     <ul>
                         <li>
-                            <a routerLink='/home'  >
+                            <a (click)="navigateTO('/home')">
                                 Home
                             </a>
                         </li>

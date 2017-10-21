@@ -74,3 +74,7 @@ body {
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+.logout {
+    background-color: #5ee18c;
+}

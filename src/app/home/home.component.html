@@ -27,16 +27,19 @@
                     <a href="#contact">Instructional Guides</a>
                 </li>
                 <li class="page-scroll">
-                <div class="dropdown">
-                    <button class="dropbtn">Login</button>
+                    <a [routerLink]="['/form']">Dashboard</a>
+                </li>
+                <li *ngIf='!hasLoggedIn()' class="page-scroll">
+                    <div class="dropdown">
+                        <button class="dropbtn">Login</button>
                         <div class="dropdown-content">
                             <a (click)="getLoginUserType('emp')">Employee</a>
                             <a (click)="getLoginUserType('admin')">Admin</a>
                         </div>
                     </div>
-                    <!-- <a href="#contact">Contact Us</a> -->
                 </li>
-                <li class="page-scroll">
+                <li class="page-scroll logout" *ngIf='hasLoggedIn()'>
+                    <a (click)="logout()">Logout</a>
                 </li>
             </ul>
         </div>

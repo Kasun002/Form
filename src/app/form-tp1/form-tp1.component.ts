@@ -5,6 +5,8 @@ import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-mul
 import { ValidationService } from './validation.service';
 import { SharedService } from '../shared/shared.service';
 import { DatePickerOptions, DateModel } from 'ng2-datepicker';
+import swal from 'sweetalert2';
+import * as _ from "lodash";
 
 
 @Component({
@@ -21,6 +23,12 @@ export class FormTp1Component implements OnInit {
   public personHospitalise: FormArray;
   public medicalLeave: FormArray;
   public reasonForLateReport: FormArray;
+  public witnessDetails: FormArray;
+  public personDeadController = null;
+  public personHospitaliseController = null;
+  public medicalLeaveController = null;
+  public reasonForLateReportController = null;
+  public witnessDetailsController = null;
 
   public userRole: string;
   public role1 = 'Employer Only/ Representative of employer';
@@ -112,7 +120,7 @@ export class FormTp1Component implements OnInit {
     private fb3: FormBuilder,
     private validationService: ValidationService,
     private service: SharedService,
-    private router: Router
+    private router: Router,
   ) {
     this.formValidation();
     this.options = new DatePickerOptions();
@@ -132,13 +140,12 @@ export class FormTp1Component implements OnInit {
     //console.log(kas)
     
   }
-  navigate(){
-    console.log("kas")
-    this.router.navigate(["/dashboard"]);
+  navigateTO(path){
+    this.router.navigate([path]);
   }
 
   form2ControlRemove() {
-    if (this.userRole == this.role1) {
+    if(this.userRole == this.role1) {
 
     }
     // else if(this.userRole==this.role2) {
@@ -146,12 +153,13 @@ export class FormTp1Component implements OnInit {
     // this.form2.removeControl('F2S2Q2');
     // this.form2.removeControl('F2S2Q3');
     // }
-    else if (this.userRole == this.role3) {
+    else if(this.userRole == this.role3) {
       this.form2.removeControl('F2S3Q1');
       this.form2.removeControl('F2S3Q2');
       this.form2.removeControl('F2S3Q3');
 
-    } else if (this.userRole == this.role4) {
+    } 
+    else if(this.userRole == this.role4) {
 
       this.form2.removeControl('F2S2Q1');
       this.form2.removeControl('F2S2Q2');
@@ -167,7 +175,7 @@ export class FormTp1Component implements OnInit {
     //   this.form2.removeControl('F2S3Q3');
 
     // }
-    else if (this.userRole == this.role6) {
+    else if(this.userRole == this.role6) {
 
       this.form2.removeControl('F2S1Q1');
       this.form2.removeControl('F2S2Q1');
@@ -184,11 +192,22 @@ export class FormTp1Component implements OnInit {
   form3ControlRemove() {
     if (this.userRole == this.role1) {
 
-      this.form3.removeControl('F3S1Q1');
+      // this.form3.removeControl('F3S1Q1');
+      this.form3.removeControl('F3S1Q12');
+      this.form3.removeControl('F3S1Q13');
+      this.form3.removeControl('F3S1Q14');
+      this.form3.removeControl('F3S1Q15');
       this.form3.removeControl('F3S2Q8');
-      this.form3.removeControl('F3S4Q6')
-      this.form3.removeControl('F3S5Q1');
+      this.form3.removeControl('F3S4Q6');
+      // this.form3.removeControl('F3S5Q1');
       this.form3.removeControl('F3S5Q2');
+      if(this.form3.get('witnessDetails')) {
+        this.form3.removeControl('witnessDetails');
+      }
+      this.form3.removeControl('F3S2Q1');
+      this.form3.removeControl('F3S2Q9');
+      this.form3.removeControl('F3S2Q10');
+      this.form3.removeControl('F3S2Q11');
     }
     // else if(this.userRole==this.role2) {
     //   this.form3.removeControl('F3S1Q8');
@@ -205,9 +224,15 @@ export class FormTp1Component implements OnInit {
     //   this.form3.removeControl('F3S6Q6');
     //   this.form3.removeControl('F3S6Q4');
     //   this.form3.removeControl('F3S6Q5');
+    // this.form3.removeControl('F3S1Q15');
+    // this.form3.removeControl('F3S2Q7');
     // }
     else if (this.userRole == this.role3) {
-      this.form3.removeControl('F3S1Q1');
+      // this.form3.removeControl('F3S1Q1');
+      this.form3.removeControl('F3S1Q12');
+      this.form3.removeControl('F3S1Q13');
+      this.form3.removeControl('F3S1Q14');
+      this.form3.removeControl('F3S1Q15');
       this.form3.removeControl('F3S2Q4');
       this.form3.removeControl('F3S2Q4');
       this.form3.removeControl('F3S2Q5');
@@ -217,10 +242,19 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S6Q6');
       this.form3.removeControl('F3S6Q4');
       this.form3.removeControl('F3S6Q5');
+      
+      if(this.form3.get('medicalLeave')) {
+        this.form3.removeControl('medicalLeave');
+      }
+
+      if(this.form3.get('reasonForLateReport')) {
+        this.form3.removeControl('reasonForLateReport');
+      }
+      this.form3.removeControl('F3S6Q8');
+      this.form3.removeControl('F3S2Q7');
     }
     else if (this.userRole == this.role4) {
-
-      this.form3.removeControl('F3S1Q1');
+      // this.form3.removeControl('F3S1Q1');
       this.form3.removeControl('F2S1Q8');
       this.form3.removeControl('F2S1Q9');
       this.form3.removeControl('F2S1Q10');
@@ -238,12 +272,29 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S4Q3');
       this.form3.removeControl('F3S4Q5');
       this.form3.removeControl('F3S4Q6');
-      this.form3.removeControl('F3S5Q1');
+      // this.form3.removeControl('F3S5Q1');
       this.form3.removeControl('F3S5Q2');
       this.form3.removeControl('F3S6Q3');
       this.form3.removeControl('F3S6Q6');
       this.form3.removeControl('F3S6Q4');
       this.form3.removeControl('F3S6Q5');
+      if(this.form3.get('witnessDetails')) {
+        this.form3.removeControl('witnessDetails');
+      }
+
+      if(this.form3.get('medicalLeave')) {
+        this.form3.removeControl('medicalLeave');
+      }
+
+      if(this.form3.get('reasonForLateReport')) {
+        this.form3.removeControl('reasonForLateReport');
+      }
+      this.form3.removeControl('F3S6Q8');
+      this.form3.removeControl('F3S2Q1');
+      this.form3.removeControl('F3S2Q9');
+      this.form3.removeControl('F3S2Q10');
+      this.form3.removeControl('F3S2Q11');
+      this.form3.removeControl('F3S2Q7');
     }
     // else if(this.userRole==this.role5) {
 
@@ -256,9 +307,15 @@ export class FormTp1Component implements OnInit {
     //   this.form3.removeControl('F3S6Q6');
     //   this.form3.removeControl('F3S6Q4');
     //   this.form3.removeControl('F3S6Q5');
+    // this.form3.removeControl('F3S1Q15');
+    // this.form3.removeControl('F3S2Q7');
     // }
     else if (this.userRole == this.role6) {
-      this.form3.removeControl('F3S1Q1');
+      // this.form3.removeControl('F3S1Q1');
+      this.form3.removeControl('F3S1Q12');
+      this.form3.removeControl('F3S1Q13');
+      this.form3.removeControl('F3S1Q14');
+      this.form3.removeControl('F3S1Q15');
       this.form3.removeControl('F3S2Q4');
       this.form3.removeControl('F3S2Q5');
       this.form3.removeControl('F3S2Q8');
@@ -267,33 +324,18 @@ export class FormTp1Component implements OnInit {
       this.form3.removeControl('F3S6Q6');
       this.form3.removeControl('F3S6Q4');
       this.form3.removeControl('F3S6Q5');
+      if(this.form3.get('medicalLeave')) {
+        this.form3.removeControl('medicalLeave');
+      }
+
+      if(this.form3.get('reasonForLateReport')) {
+        this.form3.removeControl('reasonForLateReport');
+      }
+      this.form3.removeControl('F3S6Q8');
+      this.form3.removeControl('F3S2Q7');      
     }
   }
 
-  // F3S4Q2 - No. of days of medical leave
-  getNoOfMedicalLeaves() {
-    this.momentValueF3S4Q3 = null;
-    this.noOfMedicalLeaves = this.form3.get('personHospitalise').value[0].F3S4Q2;
-
-    if ((this.userRole === this.role1) && (this.noOfMedicalLeaves >= 4)) {
-      this.form3.addControl('medicalLeave', new FormArray([this.fb3.group({
-        F3S4Q3: ['', [Validators.required]],
-      })]));
-    } else {
-      /*
-        TODO
-        Need to clear values in this controllers(F3S3Q2)
-      */
-      this.form3.addControl('medicalLeave', new FormArray([]));
-      this.form3.addControl('reasonForLateReport', new FormArray([]));
-    }
-  }
-
-  createMedicalLeaveControler(): FormGroup {
-    return this.fb3.group({
-      F3S4Q3: ['', [Validators.required]],
-    });
-  }
 
   // F3S4Q4 - Reason of late reporting
   isReasonNeededForLateReport() {
@@ -316,35 +358,122 @@ export class FormTp1Component implements OnInit {
   wasPersonDead(value) {
 
     if (value == 'yes' && this.form3.get('PersonDead')) {
-      /*
-        TODO
-        Need to clear values in this controllers(F3S3Q2, F3S3Q3)
-      */
-      this.form3.addControl('PersonDead', new FormArray([]));
+
+      if(this.personDeadController) {
+        let contoller= this.personDeadController.controls[0];  
+        
+        if(contoller.controls['F3S3Q2']) {
+          contoller.controls['F3S3Q2'].reset();
+        }
+
+        if(contoller.controls['F3S3Q3']) {
+          contoller.controls['F3S3Q3'].reset();
+        }
+      }
+
+      this.form3.removeControl('PersonDead');
+      // this.form3.addControl('PersonDead', new FormArray([]));
     } else if (value == 'no') {
       this.form3.addControl('PersonDead', new FormArray([this.fb3.group({
         F3S3Q2: ['', [Validators.required]],
         F3S3Q3: ['', [Validators.required]],
       })]));
+
+      this.personDeadController = this.form3.controls['PersonDead'];
     }
   }
 
   wasPersonHospitalised(value) {
 
-    if (value == 'yes' && this.form3.get('personHospitalise')) {
-      /*
-        TODO
-        Need to clear values in this controllers(F3S3Q2)
-      */
-      this.form3.addControl('personHospitalise', new FormArray([]));
-      this.form3.addControl('medicalLeave', new FormArray([]));
-      this.form3.addControl('reasonForLateReport', new FormArray([]));
-    } else if (value == 'no') {
+    if (value == 'no' && this.form3.get('personHospitalise')) {
+
+      if(this.personHospitaliseController) {
+        let contoller= this.personHospitaliseController.controls[0];  
+        
+        if(contoller.controls['F3S4Q2']) {
+          contoller.controls['F3S4Q2'].reset();
+        }
+        
+      }
+
+      if(this.medicalLeaveController) {
+        let contoller= this.medicalLeaveController.controls[0];  
+        
+        if(contoller.controls['F3S4Q3']) {
+          contoller.controls['F3S4Q3'].reset();
+        } 
+      }
+
+      if(this.reasonForLateReportController) {
+        let contoller= this.reasonForLateReportController.controls[0];  
+        
+        if(contoller.controls['F3S4Q4']) {
+          contoller.controls['F3S4Q4'].reset();
+        }
+      }
+      this.form3.removeControl('personHospitalise');
+      
+      if(this.form3.get('medicalLeave')) {
+        this.form3.removeControl('medicalLeave');
+      }
+
+      if(this.form3.get('reasonForLateReport')) {
+        this.form3.removeControl('reasonForLateReport');
+      }
+
+    } else if (value == 'yes') {
+
       this.form3.addControl('personHospitalise', new FormArray([this.fb3.group({
         F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],
       })]));
-    }
 
+      this.personHospitaliseController = this.form3.controls['personHospitalise'];
+    }
+  }
+
+  // F3S4Q2 - No. of days of medical leave
+  getNoOfMedicalLeaves() {
+    this.momentValueF3S4Q3 = null;
+    this.noOfMedicalLeaves = this.form3.get('personHospitalise').value[0].F3S4Q2;
+
+    if ((this.userRole === this.role1) && (this.noOfMedicalLeaves >= 4)) {
+      this.form3.addControl('medicalLeave', new FormArray([this.fb3.group({
+        F3S4Q3: ['', [Validators.required, this.validationService.leaves4thDateValidator]],
+      })]));
+
+      this.medicalLeaveController = this.form3.controls['medicalLeave'];
+    } else {
+
+      if(this.medicalLeaveController) {
+        let contoller= this.medicalLeaveController.controls[0];  
+        
+        if(contoller.controls['F3S4Q3']) {
+          contoller.controls['F3S4Q3'].reset();
+        }
+      }
+
+      if(this.reasonForLateReportController) {
+        let contoller= this.reasonForLateReportController.controls[0];  
+        
+        if(contoller.controls['F3S4Q4']) {
+          contoller.controls['F3S4Q4'].reset();
+        }
+      }
+
+      if(this.form3.get('medicalLeave')) {
+        this.form3.removeControl('medicalLeave');
+      }
+
+      if(this.form3.get('reasonForLateReport')) {
+        this.form3.removeControl('reasonForLateReport');
+      }
+    }
+  }
+
+  createMedicalLeaveControler(): FormGroup {
+    return this.fb3.group({
+      F3S4Q3: ['', [Validators.required, this.validationService.leaves4thDateValidator]],
+    });
   }
 
   formNext(val) {
@@ -368,6 +497,111 @@ export class FormTp1Component implements OnInit {
     this.formStatus = value;
   }
 
+  submit() {
+    let form1 = this.form1.value;
+    let form2 = this.form2.value;
+    let form3 = this.form3.value;
+      
+    if(form3.PersonDead && form3.PersonDead.length > 0) {
+      let personDeadObj = form3.PersonDead[0];
+      if(personDeadObj.F3S3Q2) {
+        form3.F3S3Q2 = personDeadObj.F3S3Q2;
+      }
+
+      if(personDeadObj.F3S3Q3 && personDeadObj.F3S3Q3.length > 0) {
+        form3.F3S3Q3 = {};
+
+        for (var i = 0; personDeadObj.F3S3Q3.length > i; i++) {
+          form3.F3S3Q3[i] = personDeadObj.F3S3Q3[i];
+        }
+      }
+
+      delete form3.PersonDead;
+    }
+
+    if(form3.personHospitalise && form3.personHospitalise.length > 0) {
+      let personHospitalise = form3.personHospitalise[0].F3S4Q2;
+      if(personHospitalise) {
+        form3.F3S4Q2 = personHospitalise;
+      }
+      delete form3.personHospitalise; 
+    }
+
+    if(form3.medicalLeave && form3.medicalLeave.length > 0 ) {
+      let medicalLeave = form3.medicalLeave[0].F3S4Q3;
+      if(medicalLeave) {
+        form3.F3S4Q3 = medicalLeave;
+      }
+      delete form3.medicalLeave;
+    }
+
+    if(form3.reasonForLateReport && form3.reasonForLateReport.length > 0) {
+      let reasonForLateReport = form3.reasonForLateReport[0].F3S4Q4;
+      if(reasonForLateReport) {
+        form3.F3S4Q4 = reasonForLateReport;
+      }
+      delete form3.reasonForLateReport; 
+    }
+
+    form1 = this.removeEmpltyFeilds(form1);
+    form2 = this.removeEmpltyFeilds(form2);
+    form3 = this.removeEmpltyFeilds(form3);
+
+    form1 = _.merge(form1, _.merge(form2, form3));
+    
+    let data = {
+      name: 'Report 010',
+      content: form1
+    };
+
+    let form;
+    this.service.postReport(data).subscribe(
+      (response) => {
+        let msgDetails = {};
+        if(response.json().success) {
+          let result = response.json().data;
+
+          msgDetails = {
+            title: 'Report Submit!',
+            type: 'success',
+            confirmButtonText: 'Yes, delete it!',
+          };
+
+          swal({
+            title: 'Report Submit!',
+            html: 'Report successfully submited.<br/>Report ID: '+ result.id+'<br/> Report Name: '+ result.name + '<br/> Do you want to download your report as pdf?',
+            type: 'success',
+            showCancelButton: true,
+            confirmButtonText: 'Download',
+            cancelButtonText: 'Cancel'
+          }).then(() => {
+            let that=this;
+            that.service.downloadReportAsPdf(result.id);
+          });
+          
+        }else{
+
+          msgDetails = {
+            title: 'Error!',
+            text: 'Error occurred while submit report details.',
+            type: 'error',
+            confirmButtonText: 'Ok'
+          };
+
+          this.service.showMessage(msgDetails);
+        }
+      });
+  }
+
+  removeEmpltyFeilds(form) {
+    for (const key of Object.keys(form)) {
+      if(!form[key] || form[key] == "") {
+        delete form[key];
+      }
+    }
+    return form;
+  }
+
   onChange($event) {
     // console.log(this.optionsModel);
   }
@@ -379,7 +613,6 @@ export class FormTp1Component implements OnInit {
 
   public setMomentF3S1Q5(moment: any): any {
     this.momentValueF3S1Q5 = moment;
-    console.log("<<<<<<<<<<<<<<<<< momentValueF3S1Q5 >>>>>>>>>>>>>>", this.momentValueF3S1Q5);
   }
 
   public setMomentF3S2Q4(moment: any): any {
@@ -388,24 +621,34 @@ export class FormTp1Component implements OnInit {
 
   public setMomentF3S4Q3(moment: any): any {
     this.momentValueF3S4Q3 = moment;
+
+    if(this.isReasonNeededForLateReport()) {
+
+      this.form3.addControl('reasonForLateReport', new FormArray([this.fb3.group({
+        F3S4Q4: ['', [Validators.required]],
+      })]));
+
+      this.reasonForLateReportController = this.form3.controls['reasonForLateReport'];
+
+    }else {
+
+      if(this.reasonForLateReportController) {
+        let contoller= this.reasonForLateReportController.controls[0];  
+        
+        if(contoller.controls['F3S4Q4']) {
+          contoller.controls['F3S4Q4'].reset();
+        }
+      }
+
+      if(this.form3.get('reasonForLateReport')) {
+        this.form3.removeControl('reasonForLateReport');
+      }
+    }
   }
 
   public setMomentF3S6Q3(moment: any): any {
     this.momentValueF3S6Q3 = moment;
 
-    if (this.isReasonNeededForLateReport()) {
-
-      this.form3.addControl('reasonForLateReport', new FormArray([this.fb3.group({
-        F3S4Q4: ['', [Validators.required, this.validationService.leaveValidator]],
-      })]));
-
-    } else {
-      /*
-        TODO
-        Need to clear values in this controllers(F3S4Q4)
-      */
-      this.form3.addControl('reasonForLateReport', new FormArray([]));
-    }
   }
 
   createReasonForLateReportControler(): FormGroup {
@@ -423,8 +666,78 @@ export class FormTp1Component implements OnInit {
 
   createPersonHospitaliseControler(): FormGroup {
     return this.fb3.group({
-      F3S4Q2: ['', [Validators.required]],
+      F3S4Q2: ['', [Validators.required, this.validationService.leaveValidator]],
     });
+  }
+
+  createWitnessDetailsControler(): FormGroup {
+    
+    return this.fb3.group({
+      F3S5Q1: ['', [this.validationService.nicValidator]],
+      F3S5Q2: ['', [Validators.required]],
+      F3S5Q3: ['', [this.validationService.phoneValidator]],
+      F3S5Q4: ['', [this.validationService.emailValidator]],
+      F3S6Q1: [''],
+      F3S6Q9: [''],
+      F3S6Q10: [''],
+      F3S6Q11: [''],
+    });
+  }
+
+  likeToProvideInformation(value) {
+    if (value == 'no' && this.form3.get('witnessDetails')) {
+
+      if(this.witnessDetailsController) {
+        let contoller= this.witnessDetailsController.controls[0];  
+        
+        if(contoller.controls['F3S5Q1']) {
+          contoller.controls['F3S5Q1'].reset();
+        }
+
+        if(contoller.controls['F3S5Q2']) {
+          contoller.controls['F3S5Q2'].reset();
+        }
+
+        if(contoller.controls['F3S5Q3']) {
+          contoller.controls['F3S5Q3'].reset();
+        }
+
+        if(contoller.controls['F3S5Q4']) {
+          contoller.controls['F3S5Q4'].reset();
+        }
+
+        if(contoller.controls['F3S6Q1']) {
+          contoller.controls['F3S5Q3'].reset();
+        }
+
+        if(contoller.controls['F3S6Q9']) {
+          contoller.controls['F3S6Q9'].reset();
+        }
+
+        if(contoller.controls['F3S6Q10']) {
+          contoller.controls['F3S6Q10'].reset();
+        }
+
+        if(contoller.controls['F3S6Q11']) {
+          contoller.controls['F3S6Q11'].reset();
+        }
+      }
+
+      this.form3.removeControl('witnessDetails');
+    } else if (value == 'yes') {
+
+      this.form3.addControl('witnessDetails', new FormArray([this.fb3.group({
+        F3S5Q1: ['', [this.validationService.nicValidator]],
+        F3S5Q2: ['', [Validators.required]],
+        F3S5Q3: ['', [this.validationService.phoneValidator]],
+        F3S5Q4: ['', [this.validationService.emailValidator]],
+        F3S6Q1: [''],
+        F3S6Q9: [''],
+        F3S6Q10: [''],
+        F3S6Q11: [''],
+      })]));
+      this.witnessDetailsController = this.form3.controls['witnessDetails'];
+    }
   }
 
   formValidation() {
@@ -439,7 +752,8 @@ export class FormTp1Component implements OnInit {
     // F-form S-section Q-question
     // F2S1Q1 = Form2 Section 1 Question 1
     this.form2 = this.fb2.group({
-      F2S1Q1: ['', [Validators.required]],
+      F2S1Q1: ['', [Validators.required, this.validationService.currentDateValidator]],
+      F2S2Q1: ['', [Validators.required]],
       F2S2Q2: [''],
       F2S2Q3: [''],
       F2S3Q1: ['', [Validators.required]],
@@ -449,17 +763,20 @@ export class FormTp1Component implements OnInit {
     });
 
     this.form3 = this.fb3.group({
-      F3S1Q1: ['', [Validators.required]],
+      // F3S1Q1: ['', [Validators.required]],
       F3S1Q2: ['', [Validators.required]],
-      F3S1Q3: ['', [Validators.required]],
+      F3S1Q3: ['', [Validators.required, this.validationService.nicValidator]],
       F3S1Q4: ['', [Validators.required]],
-      F3S1Q5: ['', [Validators.required, this.validationService.nicValidator]],
+      F3S1Q5: ['', [Validators.required, this.validationService.dateValidator]],
       F3S1Q6: ['', [Validators.required]],
       F3S1Q7: ['', [Validators.required]],
       F3S1Q8: ['', [Validators.required]],
       F3S1Q9: ['', [Validators.required]],
       F3S1Q10: ['', [Validators.required]],
       F3S1Q11: ['', [Validators.required, this.validationService.phoneValidator]],
+      F3S1Q12: [''],
+      F3S1Q13: [''],
+      F3S1Q14: [''],
       F3S1Q15: ['', [this.validationService.phoneValidator]],
       F3S2Q1: ['', [Validators.required]],
       F3S2Q3: ['', [Validators.required]],
@@ -483,21 +800,25 @@ export class FormTp1Component implements OnInit {
       reasonForLateReport: this.fb3.array([this.createReasonForLateReportControler()]),
       F3S4Q5: ['', [Validators.required]],
       F3S4Q6: ['', [Validators.required]],
-      F3S5Q1: ['', [this.validationService.nicValidator]],
-      F3S5Q2: ['', [Validators.required]],
-      F3S5Q3: ['', [this.validationService.phoneValidator]],
-      F3S5Q4: ['', [this.validationService.emailValidator]],
+      witnessDetails: this.fb3.array([this.createWitnessDetailsControler()]),
+      // F3S5Q1: ['', [this.validationService.nicValidator]],
+      // F3S5Q2: ['', [Validators.required]],
+      // F3S5Q3: ['', [this.validationService.phoneValidator]],
+      // F3S5Q4: ['', [this.validationService.emailValidator]],
+
       F3S6Q3: ['', [Validators.required]],
       F3S6Q4: ['', [Validators.required]],
       F3S6Q5: ['', [Validators.required]],
-      F3S6Q6: ['', [Validators.required]],
-      F3S6Q7: ['', [Validators.required]],
+      F3S6Q6: [''],
+      // F3S6Q7: ['', [Validators.required]],
+      F3S6Q8: ['']
     });
   }
 
   form2Custom() {
     this.form2 = this.fb2.group({
-      F2S1Q1: ['', [Validators.required]],
+      F2S1Q1: ['', [Validators.required, this.validationService.currentDateValidator]],
+      F2S2Q1: ['', [Validators.required]],
       F2S2Q2: [''],
       F2S2Q3: [''],
       F2S3Q1: ['', [Validators.required]],
@@ -509,17 +830,20 @@ export class FormTp1Component implements OnInit {
 
   form3Custom() {
     this.form3 = this.fb3.group({
-      F3S1Q1: ['', [Validators.required]],
+      // F3S1Q1: ['', [Validators.required]],
       F3S1Q2: ['', [Validators.required]],
-      F3S1Q3: ['', [Validators.required]],
+      F3S1Q3: ['', [Validators.required, this.validationService.nicValidator]],
       F3S1Q4: ['', [Validators.required]],
-      F3S1Q5: ['', [Validators.required, this.validationService.nicValidator]],
+      F3S1Q5: ['', [Validators.required, this.validationService.dateValidator]],
       F3S1Q6: ['', [Validators.required]],
       F3S1Q7: ['', [Validators.required]],
       F3S1Q8: ['', [Validators.required]],
       F3S1Q9: ['', [Validators.required]],
       F3S1Q10: ['', [Validators.required]],
       F3S1Q11: ['', [Validators.required, this.validationService.phoneValidator]],
+      F3S1Q12: [''],
+      F3S1Q13: [''],
+      F3S1Q14: [''],
       F3S1Q15: ['', [this.validationService.phoneValidator]],
       F3S2Q1: ['', [Validators.required]],
       F3S2Q3: ['', [Validators.required]],
@@ -543,15 +867,23 @@ export class FormTp1Component implements OnInit {
       reasonForLateReport: this.fb3.array([this.createReasonForLateReportControler()]),
       F3S4Q5: ['', [Validators.required]],
       F3S4Q6: ['', [Validators.required]],
-      F3S5Q1: ['', [this.validationService.nicValidator]],
-      F3S5Q2: ['', [Validators.required]],
-      F3S5Q3: ['', [this.validationService.phoneValidator]],
-      F3S5Q4: ['', [this.validationService.emailValidator]],
+
+      witnessDetails: this.fb3.array([this.createWitnessDetailsControler()]),
+      // F3S5Q1: ['', [this.validationService.nicValidator]],
+      // F3S5Q2: ['', [Validators.required]],
+      // F3S5Q3: ['', [this.validationService.phoneValidator]],
+      // F3S5Q4: ['', [this.validationService.emailValidator]],
+      // F3S6Q1: [''],
+      // F3S6Q9: [''],
+      // F3S6Q10: [''],
+      // F3S6Q11: [''],
+      
       F3S6Q3: ['', [Validators.required]],
       F3S6Q4: ['', [Validators.required]],
       F3S6Q5: ['', [Validators.required]],
-      F3S6Q6: ['', [Validators.required]],
-      F3S6Q7: ['', [Validators.required]],
+      F3S6Q6: [''],
+      // F3S6Q7: ['', [Validators.required]],
+      F3S6Q8: ['']
     });
   }
 }

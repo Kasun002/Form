@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { appRouting, appRoutingProviders }  from './app.routes';
 import { AppComponent } from './app.component';
+import { NgProgressModule } from 'ngx-progressbar';
 
 import { AuthinticationModule } from "./authintication/authintication.module";
 import { HomeModule } from "./home/home.module";
@@ -18,7 +19,7 @@ import { ReportsListComponent } from './reports-list/reports-list.component';
     AppComponent,
     HomeTemplateComponent,
     DashboardTemplateComponent,
-    ReportsListComponent,
+    ReportsListComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,8 @@ import { ReportsListComponent } from './reports-list/reports-list.component';
     AuthinticationModule,
     HomeModule,
     FormTp1Module,
-    FormTp2Module
+    FormTp2Module,
+    NgProgressModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { HomeComponent } from './home.component';
 import { HomeTemplateComponent } from '../home-template/home-template.component';
 import { homeRouting, homeRoutingProviders } from './home.routes';
 import { ActivateService } from '../shared/activate.service';
+import { SharedService } from '../shared/shared.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { ActivateService } from '../shared/activate.service';
     homeRouting
   ],
   declarations: [HomeComponent],
-  providers:[homeRoutingProviders, HomeTemplateComponent,ActivateService]
+  providers:[homeRoutingProviders, HomeTemplateComponent, ActivateService, SharedService]
 })
 export class HomeModule { }

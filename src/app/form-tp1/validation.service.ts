@@ -28,7 +28,7 @@ export class ValidationService {
 	}
 
 	salaryValidator(control: FormControl): { [key: string]: any } {
-	    var salaryRegexp = /^\d{1,9}$/;
+	    var salaryRegexp = /^[1-9]\d*$/;
 	    if (control.value && !salaryRegexp.test(control.value)) {
 	      return { invalidSalary: true };
 	    }
@@ -36,9 +36,48 @@ export class ValidationService {
 
 	leaveValidator(control: FormControl): { [key: string]: any } {
 	    // var phoneRegexp = /^[1-9][0-9]*$/;
-	    var leaveRegexp = /^\d{0,3}$/;
+	    var leaveRegexp = /^[1-9]\d*$/;
 	    if (control.value && !leaveRegexp.test(control.value)) {
 	      return { invalidLeave: true };
+	    }
+	}
+
+	dateValidator(control: FormControl): { [key: string]: any } {
+	    let selectedDate = new Date(control.value);
+	    let currentDate = new Date();
+	    
+	    if (selectedDate.getFullYear() > currentDate.getFullYear()) {
+	      
+	      	return { invalidDate: true };
+	    }else if(selectedDate.getFullYear() == currentDate.getFullYear() &&
+	      	selectedDate.getMonth() > currentDate.getMonth()) {
+	    	
+	    	return { invalidDate: true };
+	    }else if(selectedDate.getFullYear() == currentDate.getFullYear() &&
+	      	selectedDate.getMonth() == currentDate.getMonth() &&
+	       	selectedDate.getDate() >= currentDate.getDate()) {
+	    	
+	    	return { invalidDate: true };
+	    }
+	}
+
+	currentDateValidator(control: FormControl): { [key: string]: any } {
+	    let selectedDate = new Date(control.value);
+	    let currentDate = new Date();
+	    if (selectedDate > currentDate) {
+	      return { invalidCurrentDate: true };
+	    }
+	}
+
+	leaves4thDateValidator(control: FormControl): { [key: string]: any } {
+	    let selectedDate = new Date(control.value);
+	    let currentDate = new Date();
+	    
+	    // 4th day of maxDate = currentDate + 4Days 
+	    currentDate.setDate(currentDate.getDate() + 4);
+	    
+	    if (selectedDate > currentDate) {
+	      	return { invalidLeave4thDate: true };
 	    }
 	}
 }

@@ -20,7 +20,7 @@ const homeRoutes: Routes = [
     children:[
       { path:'login',component: AuthinticationComponent},
       {path: 'home', component: HomeTemplateComponent},
-      {path:'dashboard',component: DashboardTemplateComponent,canActivate: [ActivateService]},
+      // {path:'dashboard',component: DashboardTemplateComponent,canActivate: [ActivateService]},
       {path:'reports-list',component: ReportsListComponent,canActivate: [ActivateService]},
       {path:'form',component: FormTp1Component,canActivate: [ActivateService]},
     ]
