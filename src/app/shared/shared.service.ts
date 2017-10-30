@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { AngularFireAuth } from 'angularfire2/auth';
+// import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+// import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response } from '@angular/http';
@@ -13,14 +13,15 @@ import {NgProgressService} from 'ngx-progressbar'
 export class SharedService {
 
   user: Observable<any>;
-  users: FirebaseListObservable<any[]>;
+  // users: FirebaseListObservable<any[]>;
   msgVal: string = '';
-  value: FirebaseObjectObservable<any>;
+  // value: FirebaseObjectObservable<any>;
   currentRouter:string;
   nativeWindow: any;
 
-  constructor(public afAuth: AngularFireAuth,
-    public af: AngularFireDatabase,
+  constructor(
+    // public afAuth: AngularFireAuth,
+    // public af: AngularFireDatabase,
     private router: Router,
     private http: Http,
     public progressService: NgProgressService
@@ -29,7 +30,7 @@ export class SharedService {
 }
 
   logout() {
-    this.afAuth.auth.signOut();
+    // this.afAuth.auth.signOut();
     this.router.navigate(['/home'])
   }
   /**

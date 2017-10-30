@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+// import { AngularFireModule } from 'angularfire2';
+// import { AngularFireDatabaseModule } from 'angularfire2/database';
+// import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { loginRouting, loginRoutingProviders } from './authintication.routes';
 import { AuthinticationComponent } from './authintication.component';
@@ -32,9 +32,9 @@ export const firebaseConfig = {
       ReactiveFormsModule,
       loginRouting,
       HttpModule,
-      AngularFireModule.initializeApp(firebaseConfig),
-      AngularFireDatabaseModule,
-      AngularFireAuthModule
+      // AngularFireModule.initializeApp(firebaseConfig),
+      // AngularFireDatabaseModule,
+      // AngularFireAuthModule
   ],
   providers: [ loginRoutingProviders, ValidationService ],
   bootstrap: [AuthinticationComponent],
