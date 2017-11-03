@@ -6,8 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Response } from '@angular/http';
 import swal from 'sweetalert2';
 import 'rxjs/Rx' ;
-import {NgProgressService} from 'ngx-progressbar'
-
+import { NgProgress } from 'ngx-progressbar';
 
 @Injectable()
 export class SharedService {
@@ -24,7 +23,7 @@ export class SharedService {
     // public af: AngularFireDatabase,
     private router: Router,
     private http: Http,
-    public progressService: NgProgressService
+    public ngProgress: NgProgress
   ) { 
   this.nativeWindow = this.getNativeWindow();
 }
@@ -49,7 +48,7 @@ export class SharedService {
 
   getReports(): Observable<any> {
     
-    this.progressService.start();
+    this.ngProgress.start();
 
     return this.http.get('http://localhost:8090/api/forms')
       .map(
@@ -59,21 +58,21 @@ export class SharedService {
       )
       .finally(() => {
         /** request completed */
-        this.progressService.done();
+        this.ngProgress.done();
 
       });
   }
 
   postReport(data) {
     /** request started */
-    this.progressService.start();
+    this.ngProgress.start();
 
     const body = data;
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post('http://localhost:8090/api/form', body, headers)
       .finally(() => {
         /** request completed */
-        this.progressService.done();
+        this.ngProgress.done();
 
       });
   }
