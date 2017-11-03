@@ -10,15 +10,15 @@ function initialize() {
       scrollwheel: false
     };
   
-    map = new google.maps.Map(document.getElementById('map-canvas'),  mapOptions);
+    // map = new google.maps.Map(document.getElementById('map-canvas'),  mapOptions);
 
-    google.maps.event.addDomListener(map, 'idle', function() {
-        calculateCenter();
-    });
+    // google.maps.event.addDomListener(map, 'idle', function() {
+    //     calculateCenter();
+    // });
   
-    google.maps.event.addDomListener(window, 'resize', function() {
-        map.setCenter(center);
-    });
+    // google.maps.event.addDomListener(window, 'resize', function() {
+    //     map.setCenter(center);
+    // });
 }
 
 function calculateCenter() {
@@ -42,7 +42,7 @@ $(function(){
 
   new WOW().init();
 
-  loadGoogleMap();
+  // loadGoogleMap();
 });
 
 // isotope
